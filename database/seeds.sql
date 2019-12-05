@@ -1,7 +1,7 @@
 USE toshare;
 
-INSERT INTO family (name)
-VALUES ('Dupont');
+INSERT INTO family (name, id)
+VALUES ('Dupont', 1);
 
 INSERT INTO event 
 (
