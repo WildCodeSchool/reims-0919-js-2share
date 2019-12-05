@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 
-app.get('/family', (req, res) => {
+app.get('/families', (req, res) => {
   database.query('SELECT * from family', (err, results) => {
     if (err) {
       res.status(500).send('Erreur lors de la récupération des familles');
@@ -20,7 +20,7 @@ app.get('/family', (req, res) => {
 });
 
 
-app.get('/event', (req, res) => {
+app.get('/events', (req, res) => {
   database.query('SELECT * from event', (err, results) => {
     console.log(results)
     if (err) {
