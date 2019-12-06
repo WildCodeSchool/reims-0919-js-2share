@@ -1,13 +1,17 @@
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const port = 8000;
 const database = require('./conf');
+
+//Enbale All CORS Requests
+app.use(cors())
+//
 
 
 app.get('/', (req, res) => {
   res.send('Welcome to Express')
 })
-
 
 app.get('/families', (req, res) => {
   database.query('SELECT * from family', (err, results) => {
