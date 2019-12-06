@@ -6,7 +6,7 @@ class FamilyDirectory extends React.Component {
 
         this.state = {
             familyList : [],
-            eventList : []
+            eventsList : []
         }
     }
 
@@ -16,24 +16,26 @@ class FamilyDirectory extends React.Component {
     }
 
     showFamily = () => {
-        fetch('http://localhost:8000/families')
-            .then(response => response.json())
-            .then(data => this.setState({familyList : data}))
-    }
+    fetch('http://localhost:8000/families')
+        .then(response => response.json())
+        .then(data => this.setState({familyList : data}))
+  }
 
     showEvents = () => {
         fetch('http://localhost:8000/events')
             .then(response => response.json())
-            .then(data => this.setState({eventList : data}))
+            .then(data => this.setState({eventsList : data}))
     }
 
     render() {
-        const {familyList, eventList} = this.state
+        const {familyList, eventsList} = this.state
         return(
             <div>
-                {familyList
-                    .map(family => <h1>{family.name}</h1>)
-                }               
+                    {familyList
+                        .map(family => <h1 key={family.id}>Ma famille : {family.name}</h1>)
+                    }
+                    {eventsList
+                        .map(event => <p key={event.id}>Date du rendez-vous :{event.date_start} <br/> Fin du rendez-vous prevue a : {event.date_end}</p>)} 
             </div>
         )
     }
