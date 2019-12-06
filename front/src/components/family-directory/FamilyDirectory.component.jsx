@@ -16,13 +16,13 @@ class FamilyDirectory extends React.Component {
     }
 
     showFamily = () => {
-        fetch('http://localhost:8000/family')
+        fetch('http://localhost:8000/families')
             .then(response => response.json())
             .then(data => this.setState({familyList : data}))
     }
 
     showEvents = () => {
-        fetch('http://localhost:8000/event')
+        fetch('http://localhost:8000/events')
             .then(response => response.json())
             .then(data => this.setState({eventList : data}))
     }
