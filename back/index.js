@@ -3,14 +3,6 @@ const cors = require('cors')
 const app = express();
 const port = 8000;
 const database = require('./conf');
-const bodyParser = require('body-parser');
-
-
-app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
 //Enbale All CORS Requests
 app.use(cors())
