@@ -35,6 +35,42 @@ app.get('/events', (req, res) => {
   });
 });
 
+app.get('/events/:id', (req, res) => {
+  database.query('SELECT * from event where id = ?', [req.params.id], (err, results) => {
+   console.log(results)
+    if (err) {
+     res.status(500).send('Error retrieving event');
+   } else {
+     res.json(results);
+   }
+ });
+})
+
+app.post('/events', (req, res) => {
+  const formAdd = req.body;
+  database.query('INSERT INTO event (date_start, date_end) VALUES (?)', formAdd, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error saving a new event");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+app.put('/events/:id', (req, res) => {
+  const idevent = req.params.id;
+  const formData = req.body;
+    database.query('UPDATE event SET ? WHERE id = ?', [formData, idevent], err => {
+    if (err) {
+      console.log(err);
+      response.status(500).send("Error editing the event");
+    } else {
+      response.sendStatus(200);
+    }
+  });
+});
+
 
 app.listen(port, (err) => {
   if (err) {
