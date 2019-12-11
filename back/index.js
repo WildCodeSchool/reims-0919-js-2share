@@ -72,9 +72,9 @@ app.put('/events/:id', (req, res) => {
     database.query('UPDATE event SET ? WHERE id = ?', [formData, idevent], err => {
     if (err) {
       console.log(err);
-      response.status(500).send("Error editing the event");
+      res.status(500).send("Error editing the event");
     } else {
-      response.sendStatus(200);
+      res.sendStatus(200);
     }
   });
 });
