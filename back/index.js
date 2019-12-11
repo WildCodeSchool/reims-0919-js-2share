@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const port = 8000;
 const database = require('./conf');
+const cors = require('cors')
 
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('Welcome to Express')
