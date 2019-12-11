@@ -6,17 +6,21 @@ GET http://localhost:8000/events
 POST http://localhost:8000/events
 Content-Type: application/json
 
+{ 
+"date_start" : "2044-12-06 16:00:00",
+"date_end": "2011-12-06 16:00:00",
+"family_id" : 1
+}
 
 
 ### PUT an event
-PUT http://localhost:8000/events/:1
+PUT http://localhost:8000/events/1
 Content-Type: application/json
 
 { 
-"date_start" : "2029-12-06T15:00:00.000Z-",
-"date_end": "2039-12-06T15:00:00.000Z",
-"family_id": 2
+"date_start" : "3029-12-06 16:00:00",
+"date_end": "2009-12-06 16:00:00"
 }
 
 ### GET one event
-GET http://localhost:8000/events/:id
+GET http://localhost:8000/events/4

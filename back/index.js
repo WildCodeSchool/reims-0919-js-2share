@@ -56,7 +56,7 @@ app.get('/events/:id', (req, res) => {
 
 app.post('/events', (req, res) => {
   const formAdd = req.body;
-  database.query('INSERT INTO event (date_start, date_end) VALUES (?)', formAdd, (err, results) => {
+  database.query('INSERT INTO event SET ?', formAdd, (err, results) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error saving a new event");
