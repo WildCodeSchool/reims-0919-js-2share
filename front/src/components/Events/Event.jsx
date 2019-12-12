@@ -22,13 +22,6 @@ class Event extends React.Component {
     console.log(this.state.date[0])
     console.log(this.state.date[1])
   }
-  /*reset = () => {
-    this.setState ({
-      showDate: false
-    })
-    console.log('reset done')
-  }
-*/
       
   render() {
     return (
