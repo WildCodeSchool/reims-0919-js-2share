@@ -6,8 +6,3 @@
   text-align: center;
 }
 
-/* ne fonctionne pas / mettre au centre*/
-.btn_add_event{
-  align-self: center;
-  justify-content: center;
-}

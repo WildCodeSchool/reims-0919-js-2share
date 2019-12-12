@@ -7,7 +7,7 @@ import Event from './components/Events/Event'
 function App() {
   return (
     <div>
-      <FamilyDirectory />
+      
       <Event />
     </div>
   );
