@@ -1,0 +1,8 @@
+.main_calendar {
+  display: flex;
+  justify-content: center;
+}
+.event_title{
+  text-align: center;
+}
+
