@@ -16,10 +16,10 @@ class FamilyDirectory extends React.Component {
     }
 
     showFamily = () => {
-    fetch('/families')
+    fetch('http://localhost:8000/families')
         .then(response => response.json())
         .then(data => this.setState({familyList : data}))
-    }
+  }
 
     showEvents = () => {
         fetch('http://localhost:8000/events')
@@ -40,4 +40,5 @@ class FamilyDirectory extends React.Component {
         )
     }
 }
+
 export default FamilyDirectory;

@@ -12,13 +12,10 @@
   "author": "Jessy,Sophie,Marine,Alexis",
   "license": "ISC",
   "dependencies": {
-    "backend-js": "^0.9.9-70",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql": "^2.17.1",
-    "nodemon": "^2.0.1",
-    "react-router-dom": "^5.1.2",
-    "react-switch": "^5.0.1"
+    "nodemon": "^2.0.1"
   }
 }
