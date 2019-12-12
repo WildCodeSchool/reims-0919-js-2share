@@ -31,6 +31,43 @@ app.get('/families', (req, res) => {
   });
 });
 
+app.get('/families/:id', (req, res) => {
+  database.query('SELECT * from family where id = ?', [req.params.id], (err, results) => {
+   console.log(results)
+    if (err) {
+     res.status(500).send('Error retrieving families');
+   } else {
+     res.json(results);
+   }
+ });
+})
+
+app.post('/families', (req, res) => {
+  const formAdd = req.body;
+  database.query('INSERT INTO family SET ?', formAdd, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error saving a new family");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+app.put('/families/:id', (req, res) => {
+  const idfamily = req.params.id;
+  const formData = req.body;
+    database.query('UPDATE family SET ? WHERE id = ?', [formData, idfamily], err => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error editing the family");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+
 
 app.get('/events', (req, res) => {
   database.query('SELECT * from event', (err, results) => {
