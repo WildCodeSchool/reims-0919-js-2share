@@ -1,0 +1,26 @@
+### GET a list of event
+GET http://localhost:8000/events
+
+
+### POST new event
+POST http://localhost:8000/events
+Content-Type: application/json
+
+{ 
+"date_start" : "2044-12-06 16:00:00",
+"date_end": "2011-12-06 16:00:00",
+"family_id" : 1
+}
+
+
+### PUT an event
+PUT http://localhost:8000/events/1
+Content-Type: application/json
+
+{ 
+"date_start" : "3029-12-06 16:00:00",
+"date_end": "2009-12-06 16:00:00"
+}
+
+### GET one event
+GET http://localhost:8000/events/4

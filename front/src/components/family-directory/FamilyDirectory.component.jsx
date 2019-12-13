@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class FamilyDirectory extends React.Component {
     constructor() {
@@ -16,15 +17,13 @@ class FamilyDirectory extends React.Component {
     }
 
     showFamily = () => {
-    fetch('http://localhost:8000/families')
-        .then(response => response.json())
-        .then(data => this.setState({familyList : data}))
+        axios.get('http://localhost:8000/families')
+        .then(response => this.setState({familyList : response.data}))
   }
 
     showEvents = () => {
-        fetch('http://localhost:8000/events')
-            .then(response => response.json())
-            .then(data => this.setState({eventsList : data}))
+        axios.get('http://localhost:8000/events')
+            .then(response => this.setState({eventsList : response.data}))
     }
 
     render() {
