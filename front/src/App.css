@@ -1,1 +1,20 @@
+*{
+  margin:0;
+  padding:0;
+}
 
+.header_style_theme {
+  background:  #F1F2F6 ;
+  display: flex;
+  justify-content: center;
+}
+
+img{
+  width: 40%;
+}
+
+.footer_style_theme{
+  background: #F1F2F6;
+  position:absolute;
+  bottom:0;
+}
