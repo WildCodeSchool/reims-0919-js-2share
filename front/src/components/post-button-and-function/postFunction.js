@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const postFonction = (startDate, endDate) => {
+export const postFunction = (startDate, endDate) => {
   axios
     .post("http://localhost:8000/events", {
       date_start: startDate,
