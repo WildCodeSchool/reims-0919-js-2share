@@ -18,7 +18,8 @@ h2{
 }
 
 .text_style {
-  font-family: 'Open Sans', sans-serif , bold;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
   font-size: 14px;
   color: #27272A;
   text-align: center;

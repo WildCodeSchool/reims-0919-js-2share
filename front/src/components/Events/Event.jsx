@@ -39,8 +39,8 @@ class Event extends React.Component {
         <div>
         { this.state.showDate ? (
             <div className='text_style'>
-              <p>Du :{this.state.date[0].toLocaleDateString()}</p>
-              <p>Au :{this.state.date[1].toLocaleDateString()}</p>
+              <p>Du : {this.state.date[0].toLocaleDateString()}</p>
+              <p>Au : {this.state.date[1].toLocaleDateString()}</p>
             </div>
           ) : null }
         </div>
