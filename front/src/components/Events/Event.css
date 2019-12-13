@@ -1,0 +1,35 @@
+.main_calendar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px;
+  align-items: center;
+}
+.event_title{
+  text-align: center;
+  background: #0155A6;
+  color:#FFFF;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+}
+
+h2{
+  margin-bottom: 10px;
+}
+
+.text_style {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
+  font-size: 14px;
+  color: #27272A;
+  text-align: center;
+  padding: 10px;
+}
+
+.btn_style{
+  background : grey;
+  color: white;
+  border-radius: 20px;
+  width: 30%;
+  margin: 3px;
+}

@@ -1,22 +1,20 @@
-.App {
-  text-align: center;
+*{
+  margin:0;
+  padding:0;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header_style_theme {
+  background:  #F1F2F6 ;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #09d3ac;
+img{
+  width: 40%;
+}
+
+.footer_style_theme{
+  background: #F1F2F6;
+  position:absolute;
+  bottom:0;
 }

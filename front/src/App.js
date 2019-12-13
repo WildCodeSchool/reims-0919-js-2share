@@ -5,17 +5,25 @@ import ButtonRedirectory from './components/family-button/ButtonRedirectory.comp
 import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Home from './components/Home';
+import Event from './components/Events/Event';
 
 function App() {
   return (
-    <div className="App">
+    <div>
         <BrowserRouter>
+          <header className='header_style_theme'>
+            <img src='logo_toshare_blue.png' alt='logo-toshare'/>
+          </header>
           <Switch>
             <Route exact path="/" exact component={ButtonRedirectory} />
             <Route path="/home" component={Home} />
             <Route path="/family-directory" component={FamilyDirectory} />
+            <Route path="/event" component={Event} />
           </Switch>
-        </BrowserRouter>
+          <footer className='footer_style_theme'>
+            <p>Icones</p>
+          </footer>
+        </BrowserRouter> 
     </div>
   );
 }

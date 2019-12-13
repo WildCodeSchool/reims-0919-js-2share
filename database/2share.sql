@@ -3,7 +3,7 @@ CREATE DATABASE toshare;
 USE toshare;
 
 DROP TABLE if exists family;
-DROP TABLE if exists calendar;
+DROP TABLE if exists event;
 
 CREATE TABLE family 
 (
