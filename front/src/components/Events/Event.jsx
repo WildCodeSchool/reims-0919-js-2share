@@ -28,21 +28,21 @@ class Event extends React.Component {
       <div>
         <h2 className='event_title'>Calendrier Partagé</h2>
         <div className='main_calendar' onClick={this.reset}>
-          <Calendar className='test'
+          <Calendar
             onChange={this.onChange}
             value={this.state.date}
             selectRange={true}
           />
-          <button onClick={this.validation}>Valider</button>
-          { this.state.showDate ? (
-            <div>
-              <p>Du :{this.state.date[0].toLocaleDateString()}</p>
-              <p>Au :{this.state.date[1].toLocaleDateString()}</p>
+          <button className='btn_style' onClick={this.validation}>Valider</button>
+        </div>
+        <h4 className='event_title'>Rappels :</h4>
+        <div>
+        { this.state.showDate ? (
+            <div className='text_style'>
+              <p>Du : {this.state.date[0].toLocaleDateString()}</p>
+              <p>Au : {this.state.date[1].toLocaleDateString()}</p>
             </div>
           ) : null }
-        </div>
-        <div>
-        <h4 className='event_title'>Rappels :</h4>
         </div>
       </div>
     );
