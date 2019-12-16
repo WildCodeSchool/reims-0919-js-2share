@@ -4,7 +4,7 @@ import { postFunction } from "./postFunction";
 export const postButton = (startDate, endDate) => {
   return (
     <div>
-      <button Onclick={() => postFunction(startDate, endDate)}>Valider</button>
+      <button onClick={() => postFunction(startDate, endDate)}>Valider</button>
     </div>
   );
 };
