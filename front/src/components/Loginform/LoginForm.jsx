@@ -20,11 +20,7 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit = event => {
-    event.preventDefault();
-  }
-// créer une nouvelle methode afin de l'ajouter au onClick et transmettre cette méthode au bouton
-
-  verifyPassword () {
+    event.preventDefault();  
     axios.post('https://reqres.in/api/login',{
       email: "eve.holt@reqres.in",
       password: "cityslicka"
@@ -71,7 +67,7 @@ class LoginForm extends React.Component {
 
             <hr />
             <div className="form-data">
-              <input type="submit" value="Login" onClick={this.verifyPassword} />
+              <input type="submit" value="Login" />
             </div>
           </fieldset>
         </form>
