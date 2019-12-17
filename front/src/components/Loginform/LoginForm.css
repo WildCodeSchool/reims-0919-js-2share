@@ -1,0 +1,27 @@
+.LoginForm {
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.LoginForm h1 {
+  text-align: center;
+}
+
+.LoginForm .form-data {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+  border-radius: 30%;
+}
+
+.LoginForm .form-data label {
+  display: inline-block;
+  width: 75px;
+  margin-right: 10px;
+  text-align: right;
+}
+
+.LoginForm .form-data input:not([type="submit"]) {
+  flex-grow: 1;
+}
