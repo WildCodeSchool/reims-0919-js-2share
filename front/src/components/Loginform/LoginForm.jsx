@@ -24,15 +24,16 @@ class LoginForm extends React.Component {
   }
 // créer une nouvelle methode afin de l'ajouter au onClick et transmettre cette méthode au bouton
 
-  verifyPassword = () => {
-    axios.post('http://localhost:8000/Home')
-    .then(response => this.setState({password : response.data}))
-    .catch(e => {
-      console.error(e);
-      alert('wrong password');
-    }); 
+  verifyPassword () {
+    axios.post('https://reqres.in/api/login',{
+      email: "eve.holt@reqres.in",
+      password: "cityslicka"
+  })
+    .then(response => {
+      console.log('yes!', response.data)
+    })
   }
-  
+  //essayer avec des données en dur
 
   render () {
     const { email, password} = this.state;
