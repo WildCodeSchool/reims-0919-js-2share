@@ -116,6 +116,27 @@ app.put('/events/:id', (req, res) => {
   });
 });
 
+app.post('/register', (req, res) => {
+  const formData = req.body;
+  if (formData.email && formData.password) {
+    console.log('email', formData.email, 'password', formData.password);
+    res.status(200).send();
+  }
+  else {
+    res.status(400).send();
+  }
+});
+
+app.post('/login', (req, res) => {
+  const formLogin = req.body;
+  if (formLogin.user && formLogin.password) {
+    console.log('user', formLogin.user, 'password', formLogin.password);
+    res.status(200).send();
+  }
+  else {
+    res.status(400).send();
+  }
+});
 
 app.listen(port, (err) => {
   if (err) {
