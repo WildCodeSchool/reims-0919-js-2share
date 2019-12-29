@@ -1,26 +1,39 @@
 import React from 'react';
 import Calendar from 'react-calendar';
 import './Event.css'
+import axios from 'axios';
 
 class Event extends React.Component {
   constructor() {
     super()
     this.state = { 
       date: new Date(),
-      showDate: false
+      events : []
     }
   }
+
+// Api call (eventlist)
+
+  getEvent = () =>{
+    console.log('sergiorico')
+    axios.get('http://localhost:8000/events')
+      .then (response => {
+        console.log(response.data)
+        this.setState({
+          events : response.data
+        })
+      })
+  }
+
+  componentDidMount(){
+    console.log('lol')
+    this.getEvent();
+  }
+
       
   onChange = date => {
     this.setState({date})
-  }
-
-  validation = () => {
-    this.setState ({
-      showDate: true
-    })
-    console.log(this.state.date[0])
-    console.log(this.state.date[1])
+    console.log(date)
   }
       
   render() {
@@ -31,18 +44,12 @@ class Event extends React.Component {
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
-            selectRange={true}
+            selectRange={false}
           />
-          <button className='btn_style' onClick={this.validation}>Valider</button>
         </div>
         <h4 className='event_title'>Rappels :</h4>
         <div>
-        { this.state.showDate ? (
-            <div className='text_style'>
-              <p>Du : {this.state.date[0].toLocaleDateString()}</p>
-              <p>Au : {this.state.date[1].toLocaleDateString()}</p>
-            </div>
-          ) : null }
+
         </div>
       </div>
     );

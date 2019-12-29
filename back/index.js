@@ -93,6 +93,7 @@ app.get('/events/:id', (req, res) => {
 
 app.post('/events', (req, res) => {
   const formAdd = req.body;
+  console.log(formAdd)
   database.query('INSERT INTO event SET ?', formAdd, (err, results) => {
     if (err) {
       console.log(err);
