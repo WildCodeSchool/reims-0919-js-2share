@@ -3,6 +3,7 @@ import EventList from './EventList'
 import Calendar from 'react-calendar';
 import './Event.css'
 import axios from 'axios';
+import Modal from 'react-modal';
 
 class Event extends React.Component {
   constructor() {
@@ -10,7 +11,10 @@ class Event extends React.Component {
     this.state = { 
       date: new Date(),
       events : [],
+      showModal: false,
     }
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   getEvent = () =>{
@@ -39,6 +43,13 @@ class Event extends React.Component {
       event.date_start.split(" ")[0] === this.state.date.toISOString().substring(0,10))
   }
 
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+  
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
       
   render() {
     return (
@@ -57,6 +68,15 @@ class Event extends React.Component {
         <div>
          <EventList events={this.getEventsOfDate()} />
         </div>
+        <button onClick={this.handleOpenModal}>New</button>
+        <Modal 
+           isOpen={this.state.showModal}
+           contentLabel="Sergio Rico"
+           onRequestClose={this.handleCloseModal}
+        >
+          <p>Nouvel évènement</p>
+          <button onClick={this.handleCloseModal}>Close Modal</button>
+        </Modal>
       </div>
     );
   }    
