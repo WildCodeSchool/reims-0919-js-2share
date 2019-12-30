@@ -12,6 +12,7 @@ function verifyToken(req, res, next) {
     next();
   } else {
     //Forbidden
+    console.log('sergio rico')
     res.sendStatus(403);
   }
 }

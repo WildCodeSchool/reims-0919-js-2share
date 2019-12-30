@@ -8,6 +8,7 @@ const connection = require('./conf');
 const verifyToken = require('./verifyToken');
 const myKey = require('./key');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 app.use(bodyParser.json());
 
@@ -134,15 +135,16 @@ app.put('/events/:id', (req, res) => {
   );
 });
 
-app.post('/register', verifyToken, (req, res) => {
-  jwt.verify(req.token, myKey, (err, authData) => {
+app.post('/register', (req, res) => {
+  const formAdd = req.body;
+  formAdd.password = bcrypt.hashSync(formAdd.password, 10);
+  database.query('INSERT INTO user SET ?', formAdd, (err, results) => {
     if (err) {
-      res.sendStatus(403);
+      console.log(err);
+      res.status(500).send('Error registering a new user');
     } else {
-      res.json({
-        message: 'register successful.',
-        authData
-      });
+      res.sendStatus(200);
+      // Générer et renvoyer un token ici si on veut
     }
   });
 });
