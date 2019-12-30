@@ -151,6 +151,7 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
   const userInfo = req.body;
+  console.log(userInfo)
   connection.query(
     'SELECT email, password from user WHERE email = ?',
     userInfo.email,
@@ -160,15 +161,22 @@ app.post('/login', (req, res) => {
       } else if (results.length === 0) {
         res.send('Email invalide');
       } else {
-        if (results[0].password === userInfo.password) {
+        bcrypt.compare(userInfo.password, results[0].password, function(err, ress) {
+          if(ress) {
+           // Passwords match
+           res.sendStatus(200);
+          /*
           jwt.sign(req.body, 'secret', (err, token) => {
             res.json({
               token
             });
           });
-        } else {
-          res.send('Mauvais mot de passe');
-        }
+          */
+          } else {
+           // Passwords don't match
+           res.status(500).send('Mauvais mot de passe');
+          } 
+        });
       }
     }
   );
