@@ -165,13 +165,6 @@ app.post('/login', (req, res) => {
           if(ress) {
            // Passwords match
            res.sendStatus(200);
-          /*
-          jwt.sign(req.body, 'secret', (err, token) => {
-            res.json({
-              token
-            });
-          });
-          */
           } else {
            // Passwords don't match
            res.status(500).send('Mauvais mot de passe');
