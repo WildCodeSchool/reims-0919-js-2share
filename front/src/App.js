@@ -15,7 +15,7 @@ function App() {
             <img src='logo_toshare_blue.png' alt='logo-toshare'/>
           </header>
           <Switch>
-            <Route exact path="/" exact component={ButtonRedirectory} />
+            <Route exact path="/" component={ButtonRedirectory} />
             <Route path="/home" component={Home} />
             <Route path="/family-directory" component={FamilyDirectory} />
             <Route path="/event" component={Event} />

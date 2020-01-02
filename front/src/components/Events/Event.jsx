@@ -1,6 +1,7 @@
 import React from 'react';
 import Calendar from 'react-calendar';
 import './Event.css'
+import Modal from 'react-modal';
 
 class Event extends React.Component {
   constructor() {
@@ -43,6 +44,18 @@ class Event extends React.Component {
               <p>Au : {this.state.date[1].toLocaleDateString()}</p>
             </div>
           ) : null }
+        </div>
+        <div className='btn_add_event'>
+          <button onClick={this.handleOpenModal}>+</button>
+          <Modal 
+            isOpen={this.state.showModal}
+            contentLabel="Sergio Rico"
+            onRequestClose={this.handleCloseModal}
+          >
+            <h4>Nouvel évènement</h4>
+            <p>Indiquer Date / Heure</p>
+            <button onClick={this.handleCloseModal}>Close</button>
+          </Modal>
         </div>
       </div>
     );
