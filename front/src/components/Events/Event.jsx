@@ -1,49 +1,82 @@
 import React from 'react';
+import EventList from './EventList'
 import Calendar from 'react-calendar';
 import './Event.css'
+import axios from 'axios';
+import Modal from 'react-modal';
 
 class Event extends React.Component {
   constructor() {
     super()
     this.state = { 
       date: new Date(),
-      showDate: false
+      events : [],
+      showModal: false,
     }
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+
+  getEvent = () =>{
+    console.log('sergiorico')
+    axios.get('http://localhost:8000/events')
+      .then (response => {
+        console.log(response.data)
+        this.setState({
+          events : response.data
+        })
+      })
+  }
+
+  componentDidMount(){
+    this.getEvent();
   }
       
   onChange = date => {
+    date.setHours(2)
     this.setState({date})
   }
 
-  validation = () => {
-    this.setState ({
-      showDate: true
-    })
-    console.log(this.state.date[0])
-    console.log(this.state.date[1])
+  getEventsOfDate (){
+    console.log('lol' + this.state.date.toISOString().substring(0,10))
+    return this.state.events.filter (event => 
+      event.date_start.split(" ")[0] === this.state.date.toISOString().substring(0,10))
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+  
+  handleCloseModal () {
+    this.setState({ showModal: false });
   }
       
   render() {
     return (
       <div>
         <h2 className='event_title'>Calendrier Partagé</h2>
-        <div className='main_calendar' onClick={this.reset}>
+        <div className='main_calendar'>
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
-            selectRange={true}
+            selectRange={false}
+            locale={'fr-FR'}
+            calendarType={"ISO 8601"}
           />
-          <button className='btn_style' onClick={this.validation}>Valider</button>
         </div>
         <h4 className='event_title'>Rappels :</h4>
         <div>
-        { this.state.showDate ? (
-            <div className='text_style'>
-              <p>Du : {this.state.date[0].toLocaleDateString()}</p>
-              <p>Au : {this.state.date[1].toLocaleDateString()}</p>
-            </div>
-          ) : null }
+         <EventList events={this.getEventsOfDate()} />
         </div>
+        <button onClick={this.handleOpenModal}>New</button>
+        <Modal 
+           isOpen={this.state.showModal}
+           contentLabel="Sergio Rico"
+           onRequestClose={this.handleCloseModal}
+        >
+          <p>Nouvel évènement</p>
+          <button onClick={this.handleCloseModal}>Close Modal</button>
+        </Modal>
       </div>
     );
   }    

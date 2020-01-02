@@ -23,12 +23,13 @@ FOREIGN KEY (family_id) REFERENCES family (id)
 );
 
 CREATE TABLE user
+
 (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   firstname VARCHAR (30) NOT NULL,
   lastname VARCHAR (30) NOT NULL,
   birthdate DATE NOT NULL,
-  email VARCHAR (320) NOT NULL ,
+  email VARCHAR (320) NOT NULL , /* Penser à rajouter un uniq sur l'email */
   password VARCHAR (256) NOT NULL ,
   phone_number VARCHAR (15),
   profile_picture VARCHAR (255)
