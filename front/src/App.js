@@ -1,11 +1,10 @@
 import React from 'react';
 import FamilyDirectory from './components/family-directory/FamilyDirectory.component';
 import './App.css';
-import ButtonRedirectory from './components/family-button/ButtonRedirectory.component';
 import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
-import Home from './components/Home';
 import Event from './components/Events/Event';
+import LoginForm from './components/Loginform/LoginForm'
 
 class App extends React.Component {
   constructor(){
