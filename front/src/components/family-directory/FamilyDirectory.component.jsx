@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ButtonRedirectory from '../family-button/ButtonRedirectory.component';
 
 class FamilyDirectory extends React.Component {
     constructor() {
@@ -31,7 +32,7 @@ class FamilyDirectory extends React.Component {
         return(
             <div>
                     {familyList
-                        .map(family => <h1 key={family.id}>Ma famille : {family.name}</h1>)
+                        .map(family => <ButtonRedirectory/>)
                     }
                     {eventsList
                         .map(event => <p key={event.id}>Date du rendez-vous :{event.date_start} <br/> Fin du rendez-vous prevue a : {event.date_end}</p>)} 

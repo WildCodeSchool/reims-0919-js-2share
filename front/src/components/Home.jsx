@@ -1,13 +1,10 @@
 import React from 'react';
-import ButtonRedirectory from './family-button/ButtonRedirectory.component';
-import LoginForm from './Loginform/LoginForm';
+import LogoutControl from './LogoutControl/LogoutControl'
 
 function Home  (){
     return (
         <div>
-            <p> Hello </p>
-            <ButtonRedirectory/>
-            <LoginForm />
+            <LogoutControl />
         </div>
 
     )
