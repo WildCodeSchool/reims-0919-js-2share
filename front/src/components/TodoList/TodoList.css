@@ -1,0 +1,59 @@
+.btnAdd {
+  width:60px;
+  height:30px;
+  text-align:center;
+  color:rgb(97, 192, 230);
+  text-decoration:none;
+  background-color: #0155A6;
+  border: none;
+  border-radius: 10%;
+  }
+  
+  .btnDelete {
+    width:60px;
+    height:30px;
+    text-align:center;
+    color:rgb(97, 192, 230);
+    text-decoration:none;
+    background-color: #0155A6;
+    border: none;
+    border-radius: 10%;
+    margin-left: 20px;
+    }
+  
+  ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .todolist {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .placeholder {
+    margin-right: 40px;
+    width: 500px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .items {
+    margin: 10px;
+  }
