@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Event from './components/Events/Event';
 import LoginForm from './components/Loginform/LoginForm';
-import TodoList from './components/TodoList/TodoList';
+import Todos from './components/TodoList/Todos';
 
 class App extends React.Component {
   constructor(){
@@ -37,7 +37,7 @@ class App extends React.Component {
               <Route exact path="/" component={LoginForm} />
               <Route path="/family-directory" component={()=>this.props.isUserExist ? <FamilyDirectory/> : <LoginForm /> } />
               <Route path="/event" component={Event} />
-              <Route path="/todolist" component={TodoList} />
+              <Route path="/todolist" component={Todos} />
             </Switch>
             <footer className='footer_style_theme'>
               <p>Icones Footer</p>
