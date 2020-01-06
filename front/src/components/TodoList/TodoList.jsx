@@ -8,7 +8,7 @@ class TodoList extends Component {
       <div className="list">{ this.props.todos.map((todo, index) => {
           return <div className="items" key={index}>
                   { todo }
-                  <button className="btnDelete" onClick={(e) => { this.props.removeItem(index)}} key={todo}>Del</button>
+                  <button className="btnDelete" onClick={(e) => { this.props.removeItem(index)}} >Del</button>
                 </div>
         })}
         </div>
