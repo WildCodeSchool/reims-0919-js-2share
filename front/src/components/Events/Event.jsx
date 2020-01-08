@@ -4,6 +4,8 @@ import Calendar from 'react-calendar';
 import './Event.css'
 import axios from 'axios';
 import Modal from 'react-modal';
+import { PostButton } from '../post-button-and-function/PostButton.component';
+
 
 class Event extends React.Component {
   constructor() {
@@ -12,16 +14,15 @@ class Event extends React.Component {
       date: new Date(),
       events : [],
       showModal: false,
+      test:''
     }
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   getEvent = () =>{
-    console.log('sergiorico')
     axios.get('http://localhost:8000/events')
       .then (response => {
-        console.log(response.data)
         this.setState({
           events : response.data
         })
@@ -38,7 +39,7 @@ class Event extends React.Component {
   }
 
   getEventsOfDate (){
-    console.log('lol' + this.state.date.toISOString().substring(0,10))
+    console.log('GetEventsOfDate ' + this.state.date.toISOString().substring(0,10))
     return this.state.events.filter (event => 
       event.date_start.split(" ")[0] === this.state.date.toISOString().substring(0,10))
   }
@@ -50,6 +51,12 @@ class Event extends React.Component {
   handleCloseModal () {
     this.setState({ showModal: false });
   }
+
+  handleChange() {
+    this.setState({test: test});
+    console.log(this.state.test)
+  }
+
       
   render() {
     return (
@@ -65,18 +72,29 @@ class Event extends React.Component {
           />
         </div>
         <h4 className='event_title'>Rappels :</h4>
-        <div>
+        <div className='event_list'>
          <EventList events={this.getEventsOfDate()} />
         </div>
-        <button onClick={this.handleOpenModal}>New</button>
-        <Modal 
-           isOpen={this.state.showModal}
-           contentLabel="Sergio Rico"
-           onRequestClose={this.handleCloseModal}
-        >
-          <p>Nouvel évènement</p>
-          <button onClick={this.handleCloseModal}>Close Modal</button>
-        </Modal>
+        <div>
+          <button className='test_btn_newEvent' onClick={this.handleOpenModal}>New Event</button>
+          <Modal 
+            className='test_modal'
+            isOpen={this.state.showModal}
+          >
+            <h3>Nouvel évènement</h3>
+            <label htmlFor="start">Titre :</label>
+            <input type='text' />
+
+            <label htmlFor="start">Start date :</label>
+            <input type='date' onChange={this.handleChange}/>
+
+            <label htmlFor="start">Start hour :</label>
+            <input type='time' />
+
+            <PostButton/>
+            <button onClick={this.handleCloseModal}>Fermer</button>
+          </Modal>
+        </div>
       </div>
     );
   }    

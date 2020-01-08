@@ -17,4 +17,5 @@ img{
   background: #F1F2F6;
   position:absolute;
   bottom:0;
+  display: flex;
 }
