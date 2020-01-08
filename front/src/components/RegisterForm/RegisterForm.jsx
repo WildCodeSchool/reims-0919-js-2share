@@ -129,7 +129,7 @@ class RegisterForm extends React.Component {
             <hr />
 
             <div className="form-data">
-              <input type="submit" value="Envoyer" onClick={this.submitForm} />
+              <input type="submit" value="Envoyer" />
             </div>
           </fieldset>
         </form>
