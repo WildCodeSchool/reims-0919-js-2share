@@ -22,30 +22,26 @@ class RegisterForm extends React.Component {
 
   submitForm = e => {
     e.preventDefault();
-    axios
-      .post("https://localhost:8000/register", {
-        firstname: this.state.firstname,
-        lastname: this.state.lastname,
-        birthdate: this.state.birthdate,
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(res => {
-        if (res.error) {
-          alert(res.error);
-        } else {
-          alert("Compte créé");
-        }
-      })
-      .catch(e => {
-        console.error(e);
-        alert("Erreur lors de l'envoi du formulaire d'inscription");
-      });
-  };
-
-  checkPassword = () => {
     if (this.state.password === this.state.password_confirm) {
-      this.submitForm();
+      axios
+        .post("https://localhost:8000/register", {
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          birthdate: this.state.birthdate,
+          email: this.state.email,
+          password: this.state.password
+        })
+        .then(res => {
+          if (res.error) {
+            alert(res.error);
+          } else {
+            alert("Compte créé");
+          }
+        })
+        .catch(e => {
+          console.error(e);
+          alert("Erreur lors de l'envoi du formulaire d'inscription");
+        });
     } else {
       alert("Le mot de passe ne correspond pas");
     }
@@ -133,11 +129,7 @@ class RegisterForm extends React.Component {
             <hr />
 
             <div className="form-data">
-              <input
-                type="submit"
-                value="Envoyer"
-                onClick={this.checkPassword}
-              />
+              <input type="submit" value="Envoyer" onClick={this.submitForm} />
             </div>
           </fieldset>
         </form>
