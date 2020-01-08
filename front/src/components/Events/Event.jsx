@@ -18,6 +18,7 @@ class Event extends React.Component {
     }
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   getEvent = () =>{
@@ -52,8 +53,9 @@ class Event extends React.Component {
     this.setState({ showModal: false });
   }
 
-  handleChange() {
-    this.setState({test: test});
+  handleInputChange(event) {
+    console.log('lol')
+    this.setState({test: event.target.value});
     console.log(this.state.test)
   }
 
@@ -82,17 +84,19 @@ class Event extends React.Component {
             isOpen={this.state.showModal}
           >
             <h3>Nouvel évènement</h3>
-            <label htmlFor="start">Titre :</label>
-            <input type='text' />
+            <form>
+              <label htmlFor="titre">Titre :</label>
+              <input type='text' />
 
-            <label htmlFor="start">Start date :</label>
-            <input type='date' onChange={this.handleChange}/>
+              <label htmlFor="start-date">Start date :</label>
+              <input type='date' value={this.state.test} onChange={this.handleInputChange}/>
 
-            <label htmlFor="start">Start hour :</label>
-            <input type='time' />
+              <label htmlFor="start-hour">Start hour :</label>
+              <input type='time' />
 
-            <PostButton/>
-            <button onClick={this.handleCloseModal}>Fermer</button>
+              <PostButton/>
+              <button onClick={this.handleCloseModal}>Fermer</button>
+            </form>
           </Modal>
         </div>
       </div>
