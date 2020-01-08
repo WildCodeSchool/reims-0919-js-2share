@@ -45,7 +45,7 @@ class RegisterForm extends React.Component {
 
   checkPassword = () => {
     if (this.state.password === this.state.password_confirm) {
-      console.log("Nice");
+      this.submitForm();
     } else {
       alert("Le mot de passe ne correspond pas");
     }
