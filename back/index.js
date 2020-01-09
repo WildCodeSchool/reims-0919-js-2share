@@ -195,7 +195,6 @@ app.post("/login", (req, res) => {
                 token
               });
             });
-            res.sendStatus(200);
           } else {
             // Passwords don't match
             res.status(400).send("Mauvais mot de passe");
