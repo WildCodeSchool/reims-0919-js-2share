@@ -5,7 +5,8 @@ import './Documents.css';
 function Documents (){
         return(
             <div className="Doc">
-                <p> vf </p>
+                <p> Documents </p>
+                <button class="Buttondocument">Ajouter un fichier </button>
                 {/* <Link to="/family-directory"><p> Family </p></Link> */}
             </div>            
         )}
