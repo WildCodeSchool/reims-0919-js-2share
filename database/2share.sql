@@ -5,7 +5,8 @@ USE toshare;
 DROP TABLE if exists family;
 DROP TABLE if exists event;
 DROP TABLE if exists user;
-DROP TABLE if exists user_family
+DROP TABLE if exists user_family;
+DROP TABLE if exists documents;
 
 CREATE TABLE family 
 (
@@ -41,4 +42,11 @@ CREATE TABLE user_family
   FOREIGN KEY (user_id) REFERENCES user (id),
   family_id INT NOT NULL,
   FOREIGN KEY (family_id) REFERENCES family (id)
+);
+
+CREATE TABLE documents
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  date_start DATETIME,
+  date_end DATETIME
 );
