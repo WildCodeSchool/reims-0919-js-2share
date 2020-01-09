@@ -1,45 +1,44 @@
-import React from 'react';
-import './LoginForm.css';
+import React from "react";
+import "./LoginForm.css";
 
-import axios from 'axios';
-
+import axios from "axios";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password : '',
-    }
+      email: "",
+      password: ""
+    };
   }
 
   handleChange = event => {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
-  }
+  };
 
   handleSubmit = event => {
-    event.preventDefault();  
-    axios.post('https://reqres.in/api/login',{
-      email: "eve.holt@reqres.in",
-      password: "cityslicka"
-  })
-    .then(response => {
-      console.log('yes!', response.data)
-    })
-  }
+    event.preventDefault();
+    axios
+      .post("http://localhost:8000/login", {
+        email: this.state.email,
+        password: this.state.password
+      })
+      .then(response => {
+        console.log("yes!", response.data);
+      });
+  };
   //essayer avec des données en dur
 
-  render () {
-    const { email, password} = this.state;
+  render() {
+    const { email, password } = this.state;
     return (
       <div className="LoginForm">
         <h1>CONNEXION</h1>
 
         <form onSubmit={this.handleSubmit}>
           <fieldset>
-            
             <div className="form-data">
               <label htmlFor="email">E-MAIL</label>
               <input
@@ -72,8 +71,8 @@ class LoginForm extends React.Component {
           </fieldset>
         </form>
       </div>
-
-    )};
+    );
+  }
 }
 
 export default LoginForm;
