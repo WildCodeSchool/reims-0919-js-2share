@@ -3,12 +3,15 @@ import React from 'react';
 import './Documents.css';
 
 function Documents (){
-        return(
+    
+    return(
             <div className="Doc">
                 <p> Documents </p>
-                <button class="Buttondocument">Ajouter un fichier </button>
+                <button class="Buttondocument">Ajouter un fichier </button>     
+
                 {/* <Link to="/family-directory"><p> Family </p></Link> */}
             </div>            
         )}
+
 
 export default Documents;
