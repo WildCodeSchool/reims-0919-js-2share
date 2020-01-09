@@ -24,7 +24,7 @@ class RegisterForm extends React.Component {
     e.preventDefault();
     if (this.state.password === this.state.password_confirm) {
       axios
-        .post("https://localhost:8000/register", {
+        .post("http://localhost:8000/register", {
           firstname: this.state.firstname,
           lastname: this.state.lastname,
           birthdate: this.state.birthdate,
@@ -80,11 +80,12 @@ class RegisterForm extends React.Component {
             </div>
 
             <div className="form-data">
-              <label htmlFor="firstname">Date de Naissance</label>
+              <label htmlFor="Birthdate">Date de Naissance</label>
               <input
                 type="date"
                 id="birthdate"
                 name="birthdate"
+                min="1920-01-01"
                 onChange={this.onChange}
                 value={this.state.birthdate}
                 required
