@@ -205,6 +205,18 @@ app.post("/login", (req, res) => {
   );
 });
 
+app
+  .route("/todos")
+  .get(function(req, res) {
+    res.status(200).send("Eva mendes");
+  })
+  .post(function(req, res) {
+    res.status(200).send("Carlos Montoya");
+  })
+  .delete(function(req, res) {
+    res.status(200).send("Por una Cabeza");
+  });
+
 app.listen(port, err => {
   if (err) {
     throw new Error("Something bad happened...");
