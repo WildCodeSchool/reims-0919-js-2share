@@ -42,3 +42,9 @@ CREATE TABLE user_family
   family_id INT NOT NULL,
   FOREIGN KEY (family_id) REFERENCES family (id)
 );
+
+CREATE TABLE todo
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  description VARCHAR(50)
+);
