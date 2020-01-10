@@ -5,7 +5,7 @@ USE toshare;
 DROP TABLE if exists family;
 DROP TABLE if exists event;
 DROP TABLE if exists user;
-DROP TABLE if exists user_family
+DROP TABLE if exists user_family;
 
 CREATE TABLE family 
 (
