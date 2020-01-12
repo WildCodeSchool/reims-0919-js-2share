@@ -1,20 +1,21 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import './HomePage.css';
 
 function HomePage () {
   return (
 
-    <div className="item">
+    <div className="redirectionItem">
       <span>
         <Link to="/loginform">
-        <button>
+        <button className="redirectionButton1">
         Se connecter
         </button>
         </Link>
       </span>
       <span>
         <Link to="/registerform">
-        <button>
+        <button className="redirectionButton2">
         S'inscrire
         </button>
         </Link>
