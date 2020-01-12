@@ -1,11 +1,13 @@
 import React from 'react';
 import FamilyDirectory from './components/family-directory/FamilyDirectory.component';
 import './App.css';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch} from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Event from './components/Events/Event';
 import LoginForm from './components/Loginform/LoginForm';
 import Todos from './components/TodoList/Todos';
+import HomePage from './components/HomePage/HomePage';
+import RegisterForm from './components/RegisterForm/RegisterForm';
 
 class App extends React.Component {
   constructor(){
@@ -34,11 +36,15 @@ class App extends React.Component {
               <img src='logo_toshare_blue.png' alt='logo-toshare'/>
             </header>
             <Switch>
-              <Route exact path="/" component={LoginForm} />
+              <Route exact path="/loginform" component={LoginForm} />
               <Route path="/family-directory" component={()=>this.props.isUserExist ? <FamilyDirectory/> : <LoginForm /> } />
               <Route path="/event" component={Event} />
               <Route path="/todolist" component={Todos} />
+              <Route path="/registerform" component={RegisterForm} />
             </Switch>
+            
+            <HomePage />
+            
             <footer className='footer_style_theme'>
               <p>Icones Footer</p>
             </footer>
