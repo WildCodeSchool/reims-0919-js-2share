@@ -6,8 +6,8 @@ import { BrowserRouter } from "react-router-dom";
 import Event from './components/Events/Event';
 import LoginForm from './components/Loginform/LoginForm';
 import Todos from './components/TodoList/Todos';
-import HomePage from './components/HomePage/HomePage';
 import RegisterForm from './components/RegisterForm/RegisterForm';
+import HomePage from './components/HomePage/HomePage';
 
 class App extends React.Component {
   constructor(){
@@ -36,14 +36,13 @@ class App extends React.Component {
               <img src='logo_toshare_blue.png' alt='logo-toshare'/>
             </header>
             <Switch>
-              <Route exact path="/loginform" component={LoginForm} />
+              <Route exact path="/" component={HomePage}/>
+              <Route path="/loginform" component={LoginForm} />
               <Route path="/family-directory" component={()=>this.props.isUserExist ? <FamilyDirectory/> : <LoginForm /> } />
               <Route path="/event" component={Event} />
               <Route path="/todolist" component={Todos} />
               <Route path="/registerform" component={RegisterForm} />
             </Switch>
-            
-            <HomePage />
             
             <footer className='footer_style_theme'>
               <p>Icones Footer</p>
