@@ -32,7 +32,7 @@ export default class Todos extends Component {
   render() {
     return(
       <div>
-        <h1> TODO LIST</h1>
+        <h1 className="title"> TODO LIST</h1>
         <form className="todolist" onSubmit = {(e) => this.addTodo(e)}>
           <input className="placeholder"
             type="text"
