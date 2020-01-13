@@ -5,7 +5,8 @@ USE toshare;
 DROP TABLE if exists family;
 DROP TABLE if exists event;
 DROP TABLE if exists user;
-DROP TABLE if exists user_family
+DROP TABLE if exists user_family;
+DROP TABLE if exists todo;
 
 CREATE TABLE family 
 (
@@ -37,6 +38,16 @@ CREATE TABLE user
 
 CREATE TABLE user_family
 (
+  user_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user (id),
+  family_id INT NOT NULL,
+  FOREIGN KEY (family_id) REFERENCES family (id)
+);
+
+CREATE TABLE todo
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  description VARCHAR(50),
   user_id INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user (id),
   family_id INT NOT NULL,

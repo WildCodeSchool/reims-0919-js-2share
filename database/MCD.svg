@@ -1,0 +1,106 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg width="240" height="202" view_box="0 0 240 202"
+xmlns="http://www.w3.org/2000/svg"
+xmlns:link="http://www.w3.org/1999/xlink">\n\n<desc>Généré par Mocodo 2.3.7 le Fri, 10 Jan 2020 00:24:24</desc>
+
+<rect id="frame" x="0" y="0" width="240" height="202" fill="#f5f5f5" stroke="none" stroke-width="0"/>
+
+<!-- Association contains -->
+<line x1="31" y1="176" x2="118" y2="109" stroke="#35978f" stroke-width="2"/>
+<text x="55" y="172.584689551" fill="#8c510a" font-family="Verdana" font-size="12">1,1</text>
+<line x1="207" y1="34" x2="118" y2="109" stroke="#35978f" stroke-width="2"/>
+<text x="185.606223499" y="68" fill="#8c510a" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-contains">
+	<path d="M 137 84 a 14 14 90 0 1 14 14 V 109 h -66 V 98 a 14 14 90 0 1 14 -14" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+	<path d="M 151 109.0 v 11 a 14 14 90 0 1 -14 14 H 99 a 14 14 90 0 1 -14 -14 V 109.0 H 66" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+	<rect x="85" y="84" width="66" height="50" fill="none" rx="14" stroke="#35978f" stroke-width="2"/>
+	<line x1="85" y1="109" x2="151" y2="109" stroke="#35978f" stroke-width="1"/>
+	<text x="92" y="101.7" fill="#000000" font-family="Verdana" font-size="12">contains</text>
+</g>
+
+<!-- Association belongs -->
+<line x1="31" y1="34" x2="118" y2="34" stroke="#35978f" stroke-width="2"/>
+<text x="55" y="51.0" fill="#8c510a" font-family="Verdana" font-size="12">0,N</text>
+<line x1="207" y1="34" x2="118" y2="34" stroke="#35978f" stroke-width="2"/>
+<text x="156" y="26.0" fill="#8c510a" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-belongs">
+	<path d="M 135 9 a 14 14 90 0 1 14 14 V 34 h -62 V 23 a 14 14 90 0 1 14 -14" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+	<path d="M 149 34.0 v 11 a 14 14 90 0 1 -14 14 H 101 a 14 14 90 0 1 -14 -14 V 34.0 H 62" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+	<rect x="87" y="9" width="62" height="50" fill="none" rx="14" stroke="#35978f" stroke-width="2"/>
+	<line x1="87" y1="34" x2="149" y2="34" stroke="#35978f" stroke-width="1"/>
+	<text x="94" y="26.7" fill="#000000" font-family="Verdana" font-size="12">belongs</text>
+</g>
+
+<!-- Association does -->
+<line x1="31" y1="176" x2="31" y2="109" stroke="#35978f" stroke-width="2"/>
+<text x="5.0" y="151" fill="#8c510a" font-family="Verdana" font-size="12">1,1</text>
+<line x1="31" y1="34" x2="31" y2="109" stroke="#35978f" stroke-width="2"/>
+<text x="36.0" y="68" fill="#8c510a" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-does">
+	<path d="M 39 84 a 14 14 90 0 1 14 14 V 109 h -44 V 98 a 14 14 90 0 1 14 -14" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+	<path d="M 53 109.0 v 11 a 14 14 90 0 1 -14 14 H 23 a 14 14 90 0 1 -14 -14 V 109.0 H 44" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+	<rect x="9" y="84" width="44" height="50" fill="none" rx="14" stroke="#35978f" stroke-width="2"/>
+	<line x1="9" y1="109" x2="53" y2="109" stroke="#35978f" stroke-width="1"/>
+	<text x="16" y="101.7" fill="#000000" font-family="Verdana" font-size="12">does</text>
+</g>
+
+<!-- Association plans -->
+<line x1="118" y1="176" x2="207" y2="109" stroke="#35978f" stroke-width="2"/>
+<text x="120.256664514" y="151" fill="#8c510a" font-family="Verdana" font-size="12">1,1</text>
+<line x1="207" y1="34" x2="207" y2="109" stroke="#35978f" stroke-width="2"/>
+<text x="212.0" y="68" fill="#8c510a" font-family="Verdana" font-size="12">0,N</text>
+<g id="association-plans">
+	<path d="M 217 84 a 14 14 90 0 1 14 14 V 109 h -48 V 98 a 14 14 90 0 1 14 -14" fill="#80cdc1" stroke="#80cdc1" stroke-width="0"/>
+	<path d="M 231 109.0 v 11 a 14 14 90 0 1 -14 14 H 197 a 14 14 90 0 1 -14 -14 V 109.0 H 48" fill="#c7eae5" stroke="#c7eae5" stroke-width="0"/>
+	<rect x="183" y="84" width="48" height="50" fill="none" rx="14" stroke="#35978f" stroke-width="2"/>
+	<line x1="183" y1="109" x2="231" y2="109" stroke="#35978f" stroke-width="1"/>
+	<text x="190" y="101.7" fill="#000000" font-family="Verdana" font-size="12">plans</text>
+</g>
+
+<!-- Entity todo -->
+<g id="entity-todo">
+	<g id="frame-todo">
+		<rect x="12" y="159" width="38" height="25" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+		<rect x="12" y="184.0" width="38" height="9" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+		<rect x="12" y="159" width="38" height="34" fill="none" stroke="#bf812d" stroke-width="2"/>
+		<line x1="12" y1="184" x2="50" y2="184" stroke="#bf812d" stroke-width="1"/>
+	</g>
+	<text x="17" y="176.8" fill="#000000" font-family="Verdana" font-size="12">todo</text>
+</g>
+
+<!-- Entity user -->
+<g id="entity-user">
+	<g id="frame-user">
+		<rect x="12" y="17" width="38" height="25" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+		<rect x="12" y="42.0" width="38" height="9" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+		<rect x="12" y="17" width="38" height="34" fill="none" stroke="#bf812d" stroke-width="2"/>
+		<line x1="12" y1="42" x2="50" y2="42" stroke="#bf812d" stroke-width="1"/>
+	</g>
+	<text x="17" y="34.8" fill="#000000" font-family="Verdana" font-size="12">user</text>
+</g>
+
+<!-- Entity family -->
+<g id="entity-family">
+	<g id="frame-family">
+		<rect x="183" y="17" width="48" height="25" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+		<rect x="183" y="42.0" width="48" height="9" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+		<rect x="183" y="17" width="48" height="34" fill="none" stroke="#bf812d" stroke-width="2"/>
+		<line x1="183" y1="42" x2="231" y2="42" stroke="#bf812d" stroke-width="1"/>
+	</g>
+	<text x="188" y="34.8" fill="#000000" font-family="Verdana" font-size="12">family</text>
+</g>
+
+<!-- Entity event -->
+<g id="entity-event">
+	<g id="frame-event">
+		<rect x="95" y="159" width="46" height="25" fill="#dfc27d" stroke="#dfc27d" stroke-width="0"/>
+		<rect x="95" y="184.0" width="46" height="9" fill="#f6e8c3" stroke="#f6e8c3" stroke-width="0"/>
+		<rect x="95" y="159" width="46" height="34" fill="none" stroke="#bf812d" stroke-width="2"/>
+		<line x1="95" y1="184" x2="141" y2="184" stroke="#bf812d" stroke-width="1"/>
+	</g>
+	<text x="100" y="176.8" fill="#000000" font-family="Verdana" font-size="12">event</text>
+</g>
+</svg>
