@@ -7,5 +7,5 @@ export const postFunction = (props) => {
       date_end: props.endDate,
       family_id: 1
     })
-    .alert("Vos dates ont bien été enregistrées");
+    .then(() => alert("Vos dates ont bien été enregistrées"));
 };

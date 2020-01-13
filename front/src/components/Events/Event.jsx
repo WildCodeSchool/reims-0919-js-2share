@@ -14,8 +14,6 @@ class Event extends React.Component {
       date: new Date(),
       events : [],
       showModal: false,
-      startDate:'',
-      endDate:'',
       startDateEvent:'',
       endDateEvent:'',
       endHourEvent:'',
@@ -24,14 +22,11 @@ class Event extends React.Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.enterStartDate = this.enterStartDate.bind(this);
-    this.enterEndDate = this.enterEndDate.bind(this);
   }
 
   getEvent = () =>{
     axios.get('http://localhost:8000/events')
       .then (response => {
-        console.log(response.data)
         this.setState({
           events : response.data
         })
@@ -48,7 +43,6 @@ class Event extends React.Component {
   }
 
   getEventsOfDate (){
-    console.log('GetEventsOfDate ' + this.state.date.toISOString().substring(0,10))
     return this.state.events.filter (event => 
       event.date_start.split(" ")[0] === this.state.date.toISOString().substring(0,10))
   }
@@ -67,20 +61,6 @@ class Event extends React.Component {
       ...this.state,
       [evt.target.name]: value
     });
-  }
-
-  enterStartDate (){
-    this.setState({
-      startDate : this.state.startDateEvent + ' ' + this.state.startHourEvent + ':00'
-    })
-    console.log(this.state.startDate)
-  }
-  
-  enterEndDate(){
-    this.setState({
-      endDate : this.state.endDateEvent + ' ' + this.state.endHourEvent + ':00'
-    })
-    console.log(this.state.endDate)
   }
       
   render() {
@@ -107,7 +87,7 @@ class Event extends React.Component {
             isOpen={this.state.showModal}
           >
             <h3>Nouvel évènement</h3>
-            <form>
+            <form action="#">
               <label htmlFor="titre">Titre :</label>
               <input type='text' />
 
@@ -123,11 +103,10 @@ class Event extends React.Component {
               <label htmlFor="end-hour">End hour :</label>
               <input type='time' name="endHourEvent" value={this.state.endHourEvent} onChange={this.handleInputChange}/>
 
-              <PostButton startDate={this.state.startDate} endDate={this.state.endDate} />
+              <PostButton startDate={this.state.startDateEvent + ' ' + this.state.startHourEvent + ':00'} endDate={this.state.endDateEvent + ' ' + this.state.endHourEvent + ':00'} />
              
               <button onClick={this.handleCloseModal}>Fermer</button>
             </form>
-            <button onClick={this.enterStartDate}>Test</button>
           </Modal>
         </div>
       </div>
