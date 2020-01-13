@@ -39,8 +39,8 @@ class App extends React.Component {
               <Route exact path="/" component={HomePage}/>
               <Route path="/loginform" component={LoginForm} />
               <Route path="/family-directory" component={()=>this.props.isUserExist ? <FamilyDirectory/> : <LoginForm /> } />
-              <Route path="/event" component={Event} />
-              <Route path="/todolist" component={Todos} />
+              <Route path="/events" component={Event} />
+              <Route path="/todos" component={Todos} />
               <Route path="/registerform" component={RegisterForm} />
             </Switch>
             
