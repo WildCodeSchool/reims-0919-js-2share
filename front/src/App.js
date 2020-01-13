@@ -27,7 +27,7 @@ class App extends React.Component {
   isUserExist (){
     this.setState({isAuthData : true})
   }
-  //{this.state.isLoggedIn ? <LogoutControl handleLogoutClick={this.handleLogoutClick}/> : <LoginForm />}
+ 
   render(){
     return (
       <div>
@@ -45,7 +45,9 @@ class App extends React.Component {
             </Switch>
             
             <footer className='footer_style_theme'>
-              <p>Icones Footer</p>
+              <p>Profil</p>
+              <p>Event</p>
+              <p>To DoList</p>
             </footer>
           </BrowserRouter> 
       </div>
