@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList'
 import './Todos.css';
+import axios from 'axios';
 
 export default class Todos extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       todos: [], 
-      text: '' };
+      description: '' };
     this.removeItem = this.removeItem.bind(this)
   }
 
+  componentDidMount(){
+    axios.get('http://localhost:8000/todos')
+    .then(response => 
+      this.setState({
+        todos: response.data
+      }))    
+  };
+  
+
   addTodo(e) {
     e.preventDefault();
-    if (this.state.text ===''){
+    if (this.state.description ===''){
       alert('Add a todo please')
     } else {
-      this.setState({ todos: [ {id: this.state.todos.length, text: this.state.text}, ...this.state.todos ], text: '' });
+      this.setState({ todos: [ {id: this.state.todos.length, description: this.state.description}, ...this.state.todos ], description: '' });
     }
   }
 
@@ -37,7 +47,7 @@ export default class Todos extends Component {
           <input className="placeholder"
             type="text"
             placeholder="Add Todo"
-            value={this.state.text}
+            value={this.state.description}
             onChange={(e) => {this.updateValue(e)}}
             />
           <button className="btnAdd" type="submit">Add</button>

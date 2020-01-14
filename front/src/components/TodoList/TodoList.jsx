@@ -16,13 +16,12 @@ class TodoList extends Component {
   render() {
     return(
       <div className="list">{ React.Children.toArray(this.props.todos.map((todo) => {
-          console.log(todo);
           return <div className="items">
-            { todo.text }
+            { todo.description }
             <button className="btnDelete" onClick={() => { this.deleteItem(todo.id)}} >Del</button>
           </div>
         }))}
-        </div>
+      </div>
 
     );
   }
