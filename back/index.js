@@ -237,8 +237,13 @@ app.put("/todos/:id", (req, res) => {
 
 app.delete("/todos/:id", (req, res) => {
   const idTodo = req.params.id;
-  console.log('delete todo:', idTodo);
-  res.sendStatus(200);
+  database.query('DELETE FROM todo WHERE id=?', [idTodo], err =>{
+    if (err) {
+      res.status(500).send('Error delete todo');
+    } else {
+      res.sendStatus(200);
+    }
+  });
 });
 
 app.post("/todos", (req, res) => {
