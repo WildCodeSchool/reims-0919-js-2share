@@ -205,17 +205,57 @@ app.post("/login", (req, res) => {
   );
 });
 
-app
-  .route("/todos")
-  .get(function(req, res) {
-    res.status(200).send("Eva mendes");
-  })
-  .post(function(req, res) {
-    res.status(200).send("Carlos Montoya");
-  })
-  .delete(function(req, res) {
-    res.status(200).send("Por una Cabeza");
+// ROUTES TODO
+
+app.get("/todos", (req, res) => {
+  database.query("SELECT * from todo", (err, results) => {
+    console.log(results);
+    if (err) {
+      res.status(500).send("Erreur lors de la récupération des todos");
+    } else {
+      res.json(results);
+    }
   });
+});
+
+app.put("/todos/:id", (req, res) => {
+  const idTodo = req.params.id;
+  const formData = req.body;
+  database.query(
+    "UPDATE todo SET ? WHERE id = ?",
+    [formData, idTodo],
+    err => {
+      if (err) {
+        console.log('SQL:', err.sql, 'Error:', err.sqlMessage);
+        res.status(500).send("Error editing the todo");
+      } else {
+        res.sendStatus(200);
+      }
+    }
+  );
+});
+
+app.delete("/todos/:id", (req, res) => {
+  const idTodo = req.params.id;
+  console.log('delete todo:', idTodo);
+  res.sendStatus(200);
+});
+
+app.post("/todos", (req, res) => {
+  const formAdd = req.body;
+  database.query("INSERT INTO todo SET ?", formAdd, (err, results) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error saving a new todo");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+
+
+
 
 app.listen(port, err => {
   if (err) {
