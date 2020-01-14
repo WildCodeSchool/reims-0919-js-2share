@@ -16,16 +16,16 @@ export default class Todos extends Component {
     if (this.state.text ===''){
       alert('Add a todo please')
     } else {
-    this.setState({ todos: [ this.state.text, ...this.state.todos ], text: '' });
+      this.setState({ todos: [ {id: this.state.todos.length, text: this.state.text}, ...this.state.todos ], text: '' });
     }
   }
 
   updateValue(e) {
     this.setState({ text: [e.target.value]})
   }
-  removeItem(index) {
-    const todos = this.state.todos.filter((todo, todoIndex) => {
-      return todoIndex !== index
+  removeItem(id) {
+    const todos = this.state.todos.filter((todo) => {
+      return todo.id !== id
     })
     this.setState({ todos })
   }
