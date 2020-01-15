@@ -1,2 +1,4 @@
 node_modules
 conf.js
+key.js
+.DS_Store

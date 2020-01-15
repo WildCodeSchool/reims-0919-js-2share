@@ -4,7 +4,7 @@ import './button.css';
 
 function ButtonRedirectory  (){
         return(
-            <div className="button">
+            <div className="familyButton">
                 <Link to="/family-directory"><p> Family </p></Link>
             </div>            
         )}
