@@ -6,10 +6,8 @@ function Documents (){
     
     return(
             <div className="Doc">
-                <p> Documents </p>
-                <button class="Buttondocument">Ajouter un fichier </button>     
-
-                {/* <Link to="/family-directory"><p> Family </p></Link> */}
+                <button onClick="pdfRender()">Render PDF</button>
+                <script type="text/javascript" src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
             </div>            
         )}
 
