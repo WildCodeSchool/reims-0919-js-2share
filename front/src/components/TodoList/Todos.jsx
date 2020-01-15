@@ -39,6 +39,10 @@ export default class Todos extends Component {
     }
   }
 
+  refreshPage (e){
+    window.location.reload();
+} 
+
   updateValue(e) {
     this.setState({ description: e.target.value})
   }
@@ -59,7 +63,7 @@ export default class Todos extends Component {
             value={this.state.description}
             onChange={(e) => {this.updateValue(e)}}
             />
-          <button className="btnAdd" type="submit">Add</button>
+          <button className="btnAdd" type="submit" onClick={(e) => {this.refreshPage(e)}}>Add</button>
         </form>
         <TodoList todos={this.state.todos} removeItem={this.removeItem} />
       </div>
