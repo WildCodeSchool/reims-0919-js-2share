@@ -172,6 +172,9 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
+  const payload = {
+    sub: req.body.email
+  };
   const userInfo = req.body;
   database.query(
     "SELECT email, password from user WHERE email = ?",
@@ -189,7 +192,7 @@ app.post("/login", (req, res) => {
         ) {
           if (ress) {
             // Passwords match
-            jwt.sign(userInfo, myKey, (err, token) => {
+            jwt.sign(payload, myKey, (err, token) => {
               res.json({
                 token
               });
@@ -220,25 +223,21 @@ app.get("/todos", (req, res) => {
 app.put("/todos/:id", (req, res) => {
   const idTodo = req.params.id;
   const formData = req.body;
-  database.query(
-    "UPDATE todo SET ? WHERE id = ?",
-    [formData, idTodo],
-    err => {
-      if (err) {
-        console.log('SQL:', err.sql, 'Error:', err.sqlMessage);
-        res.status(500).send("Error editing the todo");
-      } else {
-        res.sendStatus(200);
-      }
+  database.query("UPDATE todo SET ? WHERE id = ?", [formData, idTodo], err => {
+    if (err) {
+      console.log("SQL:", err.sql, "Error:", err.sqlMessage);
+      res.status(500).send("Error editing the todo");
+    } else {
+      res.sendStatus(200);
     }
-  );
+  });
 });
 
 app.delete("/todos/:id", (req, res) => {
   const idTodo = req.params.id;
-  database.query('DELETE FROM todo WHERE id=?', [idTodo], err =>{
+  database.query("DELETE FROM todo WHERE id=?", [idTodo], err => {
     if (err) {
-      res.status(500).send('Error delete todo');
+      res.status(500).send("Error delete todo");
     } else {
       res.sendStatus(200);
     }
@@ -256,10 +255,6 @@ app.post("/todos", (req, res) => {
     }
   });
 });
-
-
-
-
 
 app.listen(port, err => {
   if (err) {
