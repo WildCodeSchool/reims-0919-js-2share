@@ -27,7 +27,7 @@ class App extends React.Component {
   isUserExist (){
     this.setState({isAuthData : true})
   }
-  //{this.state.isLoggedIn ? <LogoutControl handleLogoutClick={this.handleLogoutClick}/> : <LoginForm />}
+ 
   render(){
     return (
       <div>
@@ -39,13 +39,15 @@ class App extends React.Component {
               <Route exact path="/" component={HomePage}/>
               <Route path="/loginform" component={LoginForm} />
               <Route path="/family-directory" component={()=>this.props.isUserExist ? <FamilyDirectory/> : <LoginForm /> } />
-              <Route path="/event" component={Event} />
-              <Route path="/todolist" component={Todos} />
+              <Route path="/events" component={Event} />
+              <Route path="/todos" component={Todos} />
               <Route path="/registerform" component={RegisterForm} />
             </Switch>
             
             <footer className='footer_style_theme'>
-              <p>Icones Footer</p>
+              <p>Profil</p>
+              <p>Event</p>
+              <p>To DoList</p>
             </footer>
           </BrowserRouter> 
       </div>
