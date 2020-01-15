@@ -26,8 +26,12 @@ export default class Todos extends Component {
     if (this.state.description ===''){
       alert('Add a todo please')
     } else {
-      const description = {description: this.state.description};
-      axios.post(`http://localhost:8000/todos`, { description })
+      const body = {
+        description: this.state.description,
+        user_id: 1,
+        family_id: 1,
+      };
+      axios.post(`http://localhost:8000/todos`, body)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -36,7 +40,7 @@ export default class Todos extends Component {
   }
 
   updateValue(e) {
-    this.setState({ description: [e.target.value]})
+    this.setState({ description: e.target.value})
   }
   removeItem(id) {
     const todos = this.state.todos.filter((todo) => {
@@ -62,4 +66,6 @@ export default class Todos extends Component {
     );
   }
 }
+
+
 
