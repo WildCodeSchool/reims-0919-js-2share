@@ -1,8 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+import { storeToken } from "../../redux/reducer";
+
 import "./LoginForm.css";
 
 import axios from "axios";
 
+const mapDispatchToProps = dispatch => ({
+  storeToken: token => dispatch(storeToken(token))
+});
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +32,7 @@ class LoginForm extends React.Component {
         password: this.state.password
       })
       .then(response => {
-        console.log("yes!", response.data);
+        this.props.storeToken(response.data.token);
       });
   };
   //essayer avec des données en dur
@@ -75,4 +81,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default LoginForm;
+export default connect(null, mapDispatchToProps)(LoginForm);
