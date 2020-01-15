@@ -8,7 +8,7 @@ function EventList (props){
         <h4>{event.title}</h4>
         <p>{event.date_start.substring(5,16)}</p>
         <p>{event.end_start}</p>
-        <button onClick={()=> removeEvent()}>Del.</button>
+        <button onClick={()=> checkEvent(event.id)}>Del.</button>
       </article>
       )
     )
