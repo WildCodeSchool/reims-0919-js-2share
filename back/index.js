@@ -107,7 +107,6 @@ app.get("/events/:id", (req, res) => {
 
 app.post("/events", (req, res) => {
   const formAdd = req.body;
-  console.log(formAdd);
   database.query("INSERT INTO event SET ?", formAdd, (err, results) => {
     if (err) {
       console.log(err);
@@ -247,13 +246,14 @@ app.delete("/todos/:id", (req, res) => {
 });
 
 app.post("/todos", (req, res) => {
-  const formAdd = req.body;
-  database.query("INSERT INTO todo SET ?", formAdd, (err, results) => {
+  const {description, user_id, family_id} = req.body;
+  const formAdd = {description, user_id, family_id};
+  database.query("INSERT INTO todo SET ?", formAdd, (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error saving a new todo");
     } else {
-      res.sendStatus(200);
+      res.status(201).send({...formAdd, id: result.insertId});
     }
   });
 });
