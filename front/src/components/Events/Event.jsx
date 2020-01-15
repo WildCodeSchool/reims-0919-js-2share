@@ -62,6 +62,15 @@ class Event extends React.Component {
       [evt.target.name]: value
     });
   }
+
+  removeEvent = () =>{
+    axios.del('http://localhost:8000/events')
+      .then (response => {
+        this.setState({
+          
+        })
+      })
+  }
       
   render() {
     return (
