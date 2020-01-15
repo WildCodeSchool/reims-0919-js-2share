@@ -172,6 +172,9 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
+  const payload = {
+    sub: req.body.email
+  };
   const userInfo = req.body;
   database.query(
     "SELECT email, password from user WHERE email = ?",
@@ -189,7 +192,7 @@ app.post("/login", (req, res) => {
         ) {
           if (ress) {
             // Passwords match
-            jwt.sign(userInfo, myKey, (err, token) => {
+            jwt.sign(payload, myKey, (err, token) => {
               res.json({
                 token
               });
@@ -204,17 +207,55 @@ app.post("/login", (req, res) => {
   );
 });
 
-app
-  .route("/todos")
-  .get(function(req, res) {
-    res.status(200).send("Eva mendes");
-  })
-  .post(function(req, res) {
-    res.status(200).send("Carlos Montoya");
-  })
-  .delete(function(req, res) {
-    res.status(200).send("Por una Cabeza");
+// ROUTES TODO
+
+app.get("/todos", (req, res) => {
+  database.query("SELECT * from todo", (err, results) => {
+    console.log(results);
+    if (err) {
+      res.status(500).send("Erreur lors de la récupération des todos");
+    } else {
+      res.json(results);
+    }
   });
+});
+
+app.put("/todos/:id", (req, res) => {
+  const idTodo = req.params.id;
+  const formData = req.body;
+  database.query("UPDATE todo SET ? WHERE id = ?", [formData, idTodo], err => {
+    if (err) {
+      console.log("SQL:", err.sql, "Error:", err.sqlMessage);
+      res.status(500).send("Error editing the todo");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+app.delete("/todos/:id", (req, res) => {
+  const idTodo = req.params.id;
+  database.query("DELETE FROM todo WHERE id=?", [idTodo], err => {
+    if (err) {
+      res.status(500).send("Error delete todo");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+app.post("/todos", (req, res) => {
+  const {description, user_id, family_id} = req.body;
+  const formAdd = {description, user_id, family_id};
+  database.query("INSERT INTO todo SET ?", formAdd, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error saving a new todo");
+    } else {
+      res.status(201).send({...formAdd, id: result.insertId});
+    }
+  });
+});
 
 app.listen(port, err => {
   if (err) {
