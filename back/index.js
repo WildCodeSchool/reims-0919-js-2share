@@ -117,6 +117,17 @@ app.post("/events", (req, res) => {
   });
 });
 
+app.delete("/events/:id", (req, res) => {
+  const idEvent = req.params.id;
+  database.query("DELETE FROM event WHERE id=?", [idEvent], err => {
+    if (err) {
+      res.status(500).send("Error delete Event");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
 app.put("/events/:id", (req, res) => {
   const idevent = req.params.id;
   const formData = req.body;
