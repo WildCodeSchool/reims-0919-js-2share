@@ -1,8 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+import { storeToken } from "../../redux/reducer";
+
 import "./LoginForm.css";
 
 import axios from "axios";
 
+const mapDispatchToProps = dispatch => ({
+  storeToken: token => dispatch(storeToken(token))
+});
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -26,7 +32,7 @@ class LoginForm extends React.Component {
         password: this.state.password
       })
       .then(response => {
-        console.log("yes!", response.data);
+        this.props.storeToken(response.data.token);
       });
   };
   //essayer avec des données en dur
@@ -35,44 +41,40 @@ class LoginForm extends React.Component {
     const { email, password } = this.state;
     return (
       <div className="LoginForm">
-        <h1>CONNEXION</h1>
-
         <form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <div className="form-data">
-              <label htmlFor="email">E-MAIL</label>
+            <div>
+              <div>
               <input
+                className="inputStyle"
                 type="text"
                 id="email"
-                placeholder="Enter your email"
+                placeholder="Email"
                 name="email"
                 onChange={this.handleChange}
                 value={email}
               />
+              </div>
             </div>
 
-            <div className="form-data">
-              <label htmlFor="password">PASSWORD</label>
+            <div >
               <input
+                className="inputStyle"
                 type="password"
                 id="password"
-                placeholder="Enter your password"
+                placeholder="Password"
                 name="password"
                 onChange={this.handleChange}
                 value={password}
                 required
               />
             </div>
-
-            <hr />
-            <div className="form-data">
-              <input type="submit" value="Login" />
+            <div className="spaceBetween">
+              <button className="loginButton" type="submit" value="Login" >CONNEXION</button>
             </div>
-          </fieldset>
         </form>
       </div>
     );
   }
 }
 
-export default LoginForm;
+export default connect(null, mapDispatchToProps)(LoginForm);

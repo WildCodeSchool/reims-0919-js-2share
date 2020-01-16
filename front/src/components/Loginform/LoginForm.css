@@ -1,27 +1,41 @@
 .LoginForm {
-  width: 400px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.LoginForm h1 {
-  text-align: center;
-}
-
-.LoginForm .form-data {
   display: flex;
   justify-content: center;
-  margin: 5px 0;
-  border-radius: 30%;
+  flex-direction: column;
+  border-color: white;
+  padding-top: 60px;
 }
 
-.LoginForm .form-data label {
-  display: inline-block;
-  width: 75px;
-  margin-right: 10px;
-  text-align: right;
+.inputStyle {
+  outline:none;
+  background-color:transparent;
+  color: white;
+  width: 40%;
+  height: 40px;
+  margin: 40px 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  border-color: white;
+  border: solid 2px;
+ }
+
+.inputStyle::placeholder{
+  padding-left: 20px ;
+  padding-block-start: 10px;
+  color: white;
+  font-size: 1rem;
 }
 
-.LoginForm .form-data input:not([type="submit"]) {
-  flex-grow: 1;
+.spaceBetween {
+  padding-top: 40px;
+}
+
+.loginButton {
+  background-color: white;
+  color:#5499C7;
+  width: 20%;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1rem;
+  border: solid 1px;
 }
