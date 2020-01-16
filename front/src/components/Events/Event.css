@@ -26,12 +26,14 @@ h2{
   padding: 10px;
 }
 
-.btn_style{
+.btn_add_event{
   background : grey;
   color: white;
   border-radius: 20px;
-  width: 30%;
-  margin: 3px;
+  border: 2px solid black;
+  font-weight: bolder;
+  width: 15%;
+  margin: 5px;
 }
 
 .event_list{
