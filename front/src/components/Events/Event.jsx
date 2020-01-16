@@ -23,6 +23,7 @@ class Event extends React.Component {
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.checkEvent = this.checkEvent.bind(this);
   }
 
   getEvent = () =>{
@@ -72,10 +73,10 @@ class Event extends React.Component {
   }
 
   removeEvent = (id) =>{
-    axios.del(`http://localhost:8000/events/${id}`)
+    axios.delete(`http://localhost:8000/events/${id}`)
       .then (response => {
           if (response.status === 200) {
-            this.props.checkEvent(id)
+            this.checkEvent(id)
           }
       })
   }
@@ -88,14 +89,15 @@ class Event extends React.Component {
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
-            selectRange={false}
+            selectRange={false}           // à voir 
             locale={'fr-FR'}
             calendarType={"ISO 8601"}
+            showWeekNumber={true} //à voir 
           />
         </div>
         <h4 className='event_title'>Rappels :</h4>
         <div className='event_list'>
-         <EventList events={this.getEventsOfDate()} checkEvent={this.checkEvent} />
+         <EventList events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
         </div>
         <div>
           <button className='test_btn_newEvent' onClick={this.handleOpenModal}>New Event</button>
@@ -106,7 +108,7 @@ class Event extends React.Component {
             <h3>Nouvel évènement</h3>
             <form action="#">
               <label htmlFor="titre">Titre :</label>
-              <input type='text' name="title" value={this.state.title} />
+              <input type='text' name="title" value={this.state.title} onChange={this.handleInputChange} />
 
               <label htmlFor="start-date">Start date :</label>
               <input type='date' name="startDateEvent" value={this.state.startDateEvent} onChange={this.handleInputChange}/>

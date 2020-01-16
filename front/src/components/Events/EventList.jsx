@@ -6,9 +6,9 @@ function EventList (props){
     props.events.map(event => (
       <article key={event.id}>
         <h4>{event.title}</h4>
-        <p>{event.date_start.substring(5,16)}</p>
-        <p>{event.end_start}</p>
-        <button onClick={()=> checkEvent(event.id)}>Del.</button>
+        <p>Début : {event.date_start.substring(10,16)}</p>
+        <p>Fin : {event.date_end.substring(10,16)}</p>
+        <button onClick={()=> props.removeEvent(event.id)}>Del.</button>
       </article>
       )
     )
