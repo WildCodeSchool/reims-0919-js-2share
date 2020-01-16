@@ -36,18 +36,46 @@ h2{
   margin: 5px;
 }
 
+.event_list_container{
+  max-height: 40%;
+}
 .event_list{
-  height: max-content
+  overflow: scroll;
+}
+.modal_style{
+  background-color: #999999;
+
 }
 
-.test_modal{
-  background-color: #999999;
+.form_style{
   display: flex;
   flex-direction: column;
-  align-content: center;
+  justify-content: center
 
 }
 
-.test_btn_newEvent{
+input{
+  align-self: center;
+  margin: 5px;
+}
 
+.btn_newEvent{
+  position: absolute; right: 0;
+  bottom : 0;
+  margin : 5px;
+}
+
+.event_list_style{
+  margin : 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #409be0;
+  border-radius: 2em;
+  border: 2px solid black;
+}
+
+.test2{
+  background-color: red;
 }
