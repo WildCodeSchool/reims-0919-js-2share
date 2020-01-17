@@ -31,9 +31,14 @@ body {
 @media screen and (max-width: 1200px) {
   .redirectionButton1 {
     font-size: 1.5rem;
+    margin: 120px 0;
+    width: 50%;
+    height: 60px;
 
   }
   .redirectionButton2 {
     font-size: 1.5rem;
+    width: 50%;
+    height: 60px;
   }
   }
