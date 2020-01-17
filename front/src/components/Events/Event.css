@@ -31,24 +31,55 @@ h2{
   padding: 10px;
 }
 
-.btn_add_event{
-  background : blue;
-  color: #27272A;
-  border-radius: 20px;
-  border: 2px solid black;
-  font-weight: bolder;
-  width: 15%;
+.event_list_container{
+  max-height: 40%;
+}
+.event_list{
+  overflow: scroll;
+}
+.modal_style{
+  background-color: #999999;
+
+}
+
+.form_style{
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+
+}
+
+input{
+  align-self: center;
   margin: 5px;
 }
 
-.event_list{
-  height: max-content
+.btn_newEvent{
+  position: absolute; right: 0;
+  bottom : 0;
+  margin : 5px;
+  padding : 2px;
+  border : 2px solid black;
+  border-radius: 20%;
 }
 
-.test_modal{
-
+.event_list_style{
+  margin : 5px;
+  padding: 5px;
   display: flex;
-  flex-direction: column;
-  align-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #409be0;
+  border-radius: 2em;
+  border: 2px solid black;
+}
 
+.test2{
+  background-color:grey;
+  border: 2px solid black;
+  border-radius: 20%;
+}
+
+.title_newEvent{
+  align-self: center;
 }

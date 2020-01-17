@@ -91,24 +91,23 @@ class Event extends React.Component {
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
-            selectRange={false}           // à voir 
+            selectRange={false} 
             locale={'fr-FR'}
             calendarType={"ISO 8601"}
-            showWeekNumber={true} //à voir 
           />
         </div>
         <h4 className='event_title'>Rappels :</h4>
-        <div className='event_list'>
-         <EventList events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
+        <div className='event_list_container'>
+         <EventList className='event_list' events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
         </div>
+        <button className='btn_newEvent' onClick={this.handleOpenModal}>Ajouter un<br/>évènement</button>
         <div>
-          <button className='test_btn_newEvent' onClick={this.handleOpenModal}>Ajouter un évènement</button>
           <Modal 
-            className='test_modal'
+            className='modal_style'
             isOpen={this.state.showModal}
           >
             <h3>Nouvel évènement</h3>
-            <form action="#">
+            <form className='form_style' action="#">
               <label htmlFor="titre">Titre :</label>
               <input type='text' name="title" value={this.state.title} onChange={this.handleInputChange} />
 
