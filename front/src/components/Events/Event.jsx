@@ -130,7 +130,6 @@ class Event extends React.Component {
               <button onClick={this.handleCloseModal}>Fermer</button>
             </form>
           </Modal>
-
         </div>
       </div>
     );
