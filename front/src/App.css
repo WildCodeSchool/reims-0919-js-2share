@@ -9,13 +9,15 @@
   justify-content: center;
 }
 
-img{
-  width: 40%;
-}
-
 .footer_style_theme{
   background: #F1F2F6;
   position:absolute;
   bottom:0;
   display: flex;
+}
+
+@media screen and (max-width: 1200px){
+  img{
+    width: 50%;
+  }
 }

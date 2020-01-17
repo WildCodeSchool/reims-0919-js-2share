@@ -5,6 +5,8 @@ import './Event.css'
 import axios from 'axios';
 import Modal from 'react-modal';
 import { PostButton } from '../post-button-and-function/PostButton.component';
+import Footer from '../Footer/Footer';
+
 
 
 class Event extends React.Component {
@@ -98,7 +100,7 @@ class Event extends React.Component {
         <div className='event_list_container'>
          <EventList className='event_list' events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
         </div>
-        <button className='btn_newEvent' onClick={this.handleOpenModal}>New</button>
+        <button className='btn_newEvent' onClick={this.handleOpenModal}>Ajouter un<br/>évènement</button>
         <div>
           <Modal 
             className='modal_style'
@@ -128,6 +130,7 @@ class Event extends React.Component {
               <button onClick={this.handleCloseModal}>Fermer</button>
             </form>
           </Modal>
+
         </div>
       </div>
     );

@@ -18,7 +18,7 @@ class TodoList extends Component {
       <div className="list">{ React.Children.toArray(this.props.todos.map((todo) => {
           return <div className="items">
             { todo.description }
-            <button className="btnDelete" onClick={() => { this.deleteItem(todo.id)}} >Del</button>
+            <button className="btnDelete" onClick={() => { this.deleteItem(todo.id)}} >Supp</button>
           </div>
         }))}
       </div>

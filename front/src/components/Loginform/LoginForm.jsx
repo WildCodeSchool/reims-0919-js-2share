@@ -33,6 +33,7 @@ class LoginForm extends React.Component {
       })
       .then(response => {
         this.props.storeToken(response.data.token);
+        response.data.token && this.props.history.push("/family-directory");
       });
   };
   //essayer avec des données en dur
@@ -42,8 +43,8 @@ class LoginForm extends React.Component {
     return (
       <div className="LoginForm">
         <form onSubmit={this.handleSubmit}>
+          <div>
             <div>
-              <div>
               <input
                 className="inputStyle"
                 type="text"
@@ -53,24 +54,26 @@ class LoginForm extends React.Component {
                 onChange={this.handleChange}
                 value={email}
               />
-              </div>
             </div>
+          </div>
 
-            <div >
-              <input
-                className="inputStyle"
-                type="password"
-                id="password"
-                placeholder="Password"
-                name="password"
-                onChange={this.handleChange}
-                value={password}
-                required
-              />
-            </div>
-            <div className="spaceBetween">
-              <button className="loginButton" type="submit" value="Login" >CONNEXION</button>
-            </div>
+          <div>
+            <input
+              className="inputStyle"
+              type="password"
+              id="password"
+              placeholder="Mot de passe"
+              name="password"
+              onChange={this.handleChange}
+              value={password}
+              required
+            />
+          </div>
+          <div className="spaceBetween">
+            <button className="loginButton" type="submit" value="Login">
+              CONNEXION
+            </button>
+          </div>
         </form>
       </div>
     );
