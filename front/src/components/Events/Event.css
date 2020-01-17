@@ -7,8 +7,8 @@
 }
 .event_title{
   text-align: center;
-  background: #0155A6;
-  color:#FFFF;
+  background: #FFFFFF;
+  color:#27272A;
   font-family: 'Open Sans', sans-serif;
   font-size: 18px;
 }
@@ -27,8 +27,8 @@ h2{
 }
 
 .btn_add_event{
-  background : grey;
-  color: white;
+  background : blue;
+  color: #27272A;
   border-radius: 20px;
   border: 2px solid black;
   font-weight: bolder;
@@ -41,13 +41,13 @@ h2{
 }
 
 .test_modal{
-  background-color: #999999;
+
   display: flex;
   flex-direction: column;
   align-content: center;
 
 }
 
-.test_btn_newEvent{
-
+* {
+  background-color: #FFFFFF;
 }
