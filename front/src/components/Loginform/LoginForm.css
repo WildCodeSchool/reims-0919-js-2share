@@ -39,3 +39,15 @@
   font-size: 1rem;
   border: solid 1px;
 }
+
+@media screen and (max-width: 1200px) {
+  .inputStyle {
+    width: 70%;
+    height: 55px;
+  }
+
+  .loginButton {
+    width: 45%;
+
+  }
+}

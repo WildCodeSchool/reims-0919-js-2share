@@ -50,7 +50,7 @@ class RegisterForm extends React.Component {
   render() {
     return (
       <div >
-        <h1 className="h1Family">Création de Compte</h1>
+        <h1 className="h1Family">Create account</h1>
 
         <form className="FormFamily" onSubmit={this.submitForm}>
             <div>

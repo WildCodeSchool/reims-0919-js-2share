@@ -44,11 +44,6 @@ class App extends React.Component {
               <Route path="/registerform" component={RegisterForm} />
             </Switch>
             
-            <footer className='footer_style_theme'>
-              <p>Profil</p>
-              <p>Event</p>
-              <p>To DoList</p>
-            </footer>
           </BrowserRouter> 
       </div>
     );
