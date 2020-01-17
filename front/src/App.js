@@ -1,36 +1,35 @@
-import React from 'react';
-import FamilyDirectory from './components/family-directory/FamilyDirectory.component';
-import './App.css';
-import { Route, Switch} from "react-router-dom";
+import React from "react";
+import FamilyDirectory from "./components/family-directory/FamilyDirectory.component";
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Event from './components/Events/Event';
 import LoginForm from './components/Loginform/LoginForm';
-// import Todos from './components/TodoList/Todos';
+import Todos from './components/TodoList/Todos';
 import Documents from './components/Documents/Documents';
 import HomePage from './components/HomePage/HomePage';
 import RegisterForm from './components/RegisterForm/RegisterForm';
 
-
 class App extends React.Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      isLoggedIn : true,
-      email: '',
-      password : '',
-      isAuthData : false,
-    }
+      isLoggedIn: true,
+      email: "",
+      password: "",
+      isAuthData: false
+    };
   }
 
   handleLogoutClick() {
-    this.setState({isLoggedIn : false});
+    this.setState({ isLoggedIn: false });
   }
 
-  isUserExist (){
-    this.setState({isAuthData : true})
+  isUserExist() {
+    this.setState({ isAuthData: true });
   }
- 
-  render(){
+
+  render() {
     return (
       <div>
           <BrowserRouter>

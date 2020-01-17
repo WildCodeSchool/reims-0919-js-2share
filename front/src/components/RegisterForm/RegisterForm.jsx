@@ -49,15 +49,14 @@ class RegisterForm extends React.Component {
 
   render() {
     return (
-      <div className="FormFamily">
-        <h1>Création de Compte</h1>
+      <div >
+        <h1 className="h1Family">Create account</h1>
 
-        <form onSubmit={this.submitForm}>
-          <fieldset>
-            <legend>Informations</legend>
-            <div className="form-data">
-              <label htmlFor="lastname">Nom</label>
+        <form className="FormFamily" onSubmit={this.submitForm}>
+            <div>
+              <p className="paragraphFamily" htmlFor="lastname">Nom</p>
               <input
+                className="inputFamily"
                 type="text"
                 id="lastname"
                 name="lastname"
@@ -67,9 +66,10 @@ class RegisterForm extends React.Component {
               />
             </div>
 
-            <div className="form-data">
-              <label htmlFor="firstname">Prénom</label>
+            <div>
+              <p className="paragraphFamily" htmlFor="firstname">Prénom</p>
               <input
+                className="inputFamily"
                 type="text"
                 id="firstname"
                 name="firstname"
@@ -79,9 +79,10 @@ class RegisterForm extends React.Component {
               />
             </div>
 
-            <div className="form-data">
-              <label htmlFor="Birthdate">Date de Naissance</label>
+            <div>
+              <p className="paragraphFamily" htmlFor="Birthdate">Date de Naissance</p>
               <input
+                className="inputFamily"
                 type="date"
                 id="birthdate"
                 name="birthdate"
@@ -92,9 +93,10 @@ class RegisterForm extends React.Component {
               />
             </div>
 
-            <div className="form-data">
-              <label htmlFor="email">E-mail</label>
+            <div>
+              <p className="paragraphFamily" htmlFor="email">E-mail</p>
               <input
+                className="inputFamily"
                 type="email"
                 id="email"
                 name="email"
@@ -103,11 +105,11 @@ class RegisterForm extends React.Component {
                 required
               />
             </div>
-            <hr />
 
-            <div className="form-data">
-              <label htmlFor="password">Mot de passe</label>
+            <div>
+              <p className="paragraphFamily" htmlFor="password">Mot de passe</p>
               <input
+                className="inputFamily"
                 type="password"
                 id="password"
                 name="password"
@@ -116,9 +118,11 @@ class RegisterForm extends React.Component {
                 required
               />
             </div>
-            <div className="form-data">
-              <label htmlFor="password">Confirmez votre mot de passe</label>
+
+            <div>
+              <p className="paragraphFamily" htmlFor="password">Confirmez votre mot de passe</p>
               <input
+                className="inputFamily"
                 type="password"
                 id="password_confirm"
                 name="password_confirm"
@@ -127,12 +131,9 @@ class RegisterForm extends React.Component {
                 required
               />
             </div>
-            <hr />
-
-            <div className="form-data">
-              <input type="submit" value="Envoyer" />
+            <div className="divButton">
+              <input className="familyButton" type="submit" value="Envoyer" />
             </div>
-          </fieldset>
         </form>
       </div>
     );

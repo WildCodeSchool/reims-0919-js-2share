@@ -10,7 +10,7 @@
 }
 
 img{
-  width: 40%;
+  width: 30%;
 }
 
 .footer_style_theme{
@@ -18,4 +18,10 @@ img{
   position:absolute;
   bottom:0;
   display: flex;
+}
+
+@media screen and (max-width: 1200px){
+  img{
+    width: 50%;
+  }
 }
