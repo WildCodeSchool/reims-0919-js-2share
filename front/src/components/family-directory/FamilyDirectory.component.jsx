@@ -45,7 +45,7 @@ class FamilyDirectory extends React.Component {
         {eventsList.map(event => (
           <p key={event.id}>
             Date du rendez-vous :{event.date_start} <br /> Fin du rendez-vous
-            prevue a : {event.date_end}
+            prevue à : {event.date_end}
           </p>
         ))}
       </div>
