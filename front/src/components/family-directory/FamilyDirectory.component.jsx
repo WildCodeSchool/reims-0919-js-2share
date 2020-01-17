@@ -13,8 +13,7 @@ class FamilyDirectory extends React.Component {
     super(props);
 
     this.state = {
-      familyList: [],
-      eventsList: []
+      familyList: []
     };
   }
 
@@ -27,7 +26,6 @@ class FamilyDirectory extends React.Component {
       .get("http://localhost:8000/families")
       .then(response => this.setState({ familyList: response.data }));
   };
-
 
   render() {
     const { familyList } = this.state;

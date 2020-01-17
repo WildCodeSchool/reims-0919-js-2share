@@ -85,7 +85,7 @@ class Event extends React.Component {
    
   render() {
     return (
-      <div>
+      <div className="Bodyevent">
         <h2 className='event_title'>Calendrier Partagé</h2>
         <div className='main_calendar'>
           <Calendar
@@ -131,6 +131,7 @@ class Event extends React.Component {
             </form>
           </Modal>
         </div>
+        <Footer />
       </div>
     );
   }    

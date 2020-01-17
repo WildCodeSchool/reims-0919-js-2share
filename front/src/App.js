@@ -40,7 +40,7 @@ class App extends React.Component {
             <Switch>
               <Route exact path="/" component={HomePage}/>
               <Route path="/loginform" component={LoginForm} />
-              <Route path="/family-directory" component={FamilyDirectory}/>
+              <Route path="/family-directory" component={FamilyDirectory} />
               <Route path="/event" component={Event} />
               <Route path="/documents" component={Documents} />
               <Route path="/registerform" component={RegisterForm} />

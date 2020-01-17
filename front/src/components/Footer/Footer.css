@@ -1,14 +1,13 @@
 .logo2shareindividual {
-    background-color: #F9F9F9;
+
     margin: 0%;
     padding: 0%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding-top: 160px;
+    /* padding-top: 160px; */
     width: 7em;
     margin-left: 35px;
+    position: fixed;
+    bottom: 0;
 }
 
 .logorappel , .logocontact {
