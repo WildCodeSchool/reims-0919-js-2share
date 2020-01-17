@@ -89,10 +89,9 @@ class Event extends React.Component {
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
-            selectRange={false}           // à voir 
+            selectRange={false} 
             locale={'fr-FR'}
             calendarType={"ISO 8601"}
-            showWeekNumber={true} //à voir 
           />
         </div>
         <h4 className='event_title'>Rappels :</h4>

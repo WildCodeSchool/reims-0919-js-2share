@@ -63,6 +63,8 @@ input{
   position: absolute; right: 0;
   bottom : 0;
   margin : 5px;
+  border : 2px solid black;
+  border-radius: 20%;
 }
 
 .event_list_style{
@@ -77,5 +79,11 @@ input{
 }
 
 .test2{
-  background-color: red;
+  background-color:grey;
+  border: 2px solid black;
+  border-radius: 20%;
+}
+
+.title_newEvent{
+  align-self: center;
 }
