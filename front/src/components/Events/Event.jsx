@@ -100,7 +100,7 @@ class Event extends React.Component {
          <EventList events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
         </div>
         <div>
-          <button className='test_btn_newEvent' onClick={this.handleOpenModal}>New Event</button>
+          <button className='test_btn_newEvent' onClick={this.handleOpenModal}>Ajouter un évènement</button>
           <Modal 
             className='test_modal'
             isOpen={this.state.showModal}

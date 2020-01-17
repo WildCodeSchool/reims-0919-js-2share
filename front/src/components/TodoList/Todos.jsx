@@ -55,15 +55,15 @@ export default class Todos extends Component {
   render() {
     return(
       <div>
-        <h1 className="title"> TODO LIST</h1>
+        <h1 className="title"> TACHES A REALISER</h1>
         <form className="todolist" onSubmit = {(e) => this.addTodo(e)}>
           <input className="placeholder"
             type="text"
-            placeholder="Add Todo"
+            placeholder="Nouvelle tâche"
             value={this.state.description}
             onChange={(e) => {this.updateValue(e)}}
             />
-          <button className="btnAdd" type="submit" onClick={(e) => {this.refreshPage(e)}}>Add</button>
+          <button className="btnAdd" type="submit" onClick={(e) => {this.refreshPage(e)}}>Ajouter</button>
         </form>
         <TodoList todos={this.state.todos} removeItem={this.removeItem} />
       </div>

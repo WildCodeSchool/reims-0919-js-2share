@@ -20,6 +20,12 @@
   margin-right: 40px;
   width: 60%;
   height: 40px;
+  border-radius: 10px;
+  font-size: 1rem;
+  border-color: white;
+  border: solid 2px;
+  outline:none;
+  color: white;
 }
 
 .title {
