@@ -52,12 +52,12 @@ app.get("/families/:id", (req, res) => {
 
 app.post("/families", (req, res) => {
   const formAdd = req.body;
-  database.query("INSERT INTO family SET ?", formAdd, (err, results) => {
+  database.query("INSERT INTO family SET ?", formAdd, (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error saving a new family");
     } else {
-      res.sendStatus(200);
+      res.status(201).send({...formAdd, id: result.insertId});
     }
   });
 });
