@@ -7,6 +7,7 @@ import {
   Link,
   Redirect,
   Route,
+  Switch,
 } from "react-router-dom";
 //import Event from './components/Events/Event';
 //import LoginForm from './components/Loginform/LoginForm';
@@ -45,6 +46,7 @@ class App extends React.Component {
     return (
       <main className="space:reset height:viewport-100 flex:column">
         <BrowserRouter>
+          <Switch>
 
           <Route exact path="/">
             <Redirect to="/families" />
@@ -62,30 +64,33 @@ class App extends React.Component {
             <Redirect to="/" />
           </Route>
 
+          <Route path="/">
+
           <Route exact path="/events">
             <p className="flex:1">hello from /events</p>
-            <NavBar />
           </Route>
           <Route exact path="/families">
             <div className="flex:1">
               <FamilyList />
             </div>
-            <NavBar />
           </Route>
           <Route exact path="/families/:id" render={props => (
             <>
               <div className="flex:1">
                 <Family {...props} />
               </div>
-              <NavBar />
             </>
           )}>
           </Route>
           <Route exact path="/todos">
             <p className="flex:1">hello from /todos</p>
-            <NavBar />
           </Route>
 
+          <NavBar />
+
+          </Route>
+
+          </Switch>
         </BrowserRouter>
       </main>
     )
