@@ -7,12 +7,7 @@ class FamilyList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      families: [
-        {id: 1, name: 'Pinchon'},
-        {id: 2, name: 'Robert'},
-        {id: 3, name: 'Tonello'},
-        {id: 4, name: 'Trochain'},
-      ]
+      families: this.props.families,
     }
   }
 

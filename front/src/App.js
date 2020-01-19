@@ -30,6 +30,12 @@ class App extends React.Component {
       email: "",
       password: "",
       isAuthData: false*/
+      families: [
+        {id: 1, name: 'Pinchon'},
+        {id: 2, name: 'Robert'},
+        {id: 3, name: 'Tonello'},
+        {id: 4, name: 'Trochain'},
+      ],
       token: null,
     };
   }
@@ -71,7 +77,7 @@ class App extends React.Component {
                 <Route path="/families">
                   <div className="flex:1">
                     <Route exact path="/families" render={() => (
-                      <FamilyList />
+                      <FamilyList families={this.state.families} />
                     )} />
                     <Route exact path="/families/:id" render={props => (
                       <Family {...props} />
