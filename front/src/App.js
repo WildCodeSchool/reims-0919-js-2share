@@ -81,7 +81,9 @@ class App extends React.Component {
 
                 <Route path="/">
 
-                  <p>show all my data, or my data for one family</p>
+                  <select>
+                    <option value="0">voir tout</option>
+                  </select>
 
                   <Route exact path="/events">
                     <p className="flex:1">hello from /events</p>
