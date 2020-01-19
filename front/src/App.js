@@ -48,47 +48,47 @@ class App extends React.Component {
         <BrowserRouter>
           <Switch>
 
-          <Route exact path="/">
-            <Redirect to="/families" />
-          </Route>
+            <Route exact path="/">
+              <Redirect to="/families" />
+            </Route>
 
-          <Route exact path="/login">
-            <p>hello from /login</p>
-            <Link to="/register">s'enregistrer</Link>
-          </Route>
-          <Route exact path="/register">
-            <p>hello from /register</p>
-            <Link to="/login">se connecter</Link>
-          </Route>
-          <Route exact path="/logout">
-            <Redirect to="/" />
-          </Route>
+            <Route exact path="/login">
+              <p>hello from /login</p>
+              <Link to="/register">s'enregistrer</Link>
+            </Route>
+            <Route exact path="/register">
+              <p>hello from /register</p>
+              <Link to="/login">se connecter</Link>
+            </Route>
+            <Route exact path="/logout">
+              <Redirect to="/" />
+            </Route>
 
-          <Route path="/">
+            <Route path="/">
 
-          <Route exact path="/events">
-            <p className="flex:1">hello from /events</p>
-          </Route>
-          <Route exact path="/families">
-            <div className="flex:1">
-              <FamilyList />
-            </div>
-          </Route>
-          <Route exact path="/families/:id" render={props => (
-            <>
-              <div className="flex:1">
-                <Family {...props} />
-              </div>
-            </>
-          )}>
-          </Route>
-          <Route exact path="/todos">
-            <p className="flex:1">hello from /todos</p>
-          </Route>
+              <Route exact path="/events">
+                <p className="flex:1">hello from /events</p>
+              </Route>
+              <Route exact path="/families">
+                <div className="flex:1">
+                  <FamilyList />
+                </div>
+              </Route>
+              <Route exact path="/families/:id" render={props => (
+                <>
+                  <div className="flex:1">
+                    <Family {...props} />
+                  </div>
+                </>
+              )}>
+              </Route>
+              <Route exact path="/todos">
+                <p className="flex:1">hello from /todos</p>
+              </Route>
 
-          <NavBar />
+              <NavBar />
 
-          </Route>
+            </Route>
 
           </Switch>
         </BrowserRouter>
