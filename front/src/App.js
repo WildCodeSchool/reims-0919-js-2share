@@ -2,7 +2,11 @@ import React from "react";
 //import FamilyDirectory from "./components/family-directory/FamilyDirectory.component";
 //import "./App.css";
 //import { Route, Switch } from "react-router-dom";
-//import { BrowserRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  Redirect,
+  Route,
+} from "react-router-dom";
 //import Event from './components/Events/Event';
 //import LoginForm from './components/Loginform/LoginForm';
 //import Todos from './components/TodoList/Todos';
@@ -32,8 +36,36 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
-      </>
+      <BrowserRouter>
+
+        <Route exact path="/">
+          <Redirect to="/families" />
+        </Route>
+
+        <Route exact path="/login">
+          <p>hello from /login</p>
+        </Route>
+        <Route exact path="/register">
+          <p>hello from /register</p>
+        </Route>
+        <Route exact path="/logout">
+          <Redirect to="/" />
+        </Route>
+
+        <Route exact path="/events">
+          <p>hello from /events</p>
+        </Route>
+        <Route exact path="/families">
+          <p>hello from /families</p>
+        </Route>
+        <Route exact path="/families/:id">
+          <p>hello from /families/:id</p>
+        </Route>
+        <Route exact path="/todos">
+          <p>hello from /todos</p>
+        </Route>
+
+      </BrowserRouter>
     )
     /*return (
       <div>
