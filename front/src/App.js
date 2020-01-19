@@ -14,6 +14,7 @@ import {
 //import Documents from './components/Documents/Documents';
 //import HomePage from './components/HomePage/HomePage';
 //import RegisterForm from './components/RegisterForm/RegisterForm';
+import FamilyList from './components/FamilyList'
 import NavBar from './components/NavBar'
 import './styles/common.css'
 import './styles/layout.css'
@@ -65,7 +66,9 @@ class App extends React.Component {
             <NavBar />
           </Route>
           <Route exact path="/families">
-            <p className="flex:1">hello from /families</p>
+            <div className="flex:1">
+              <FamilyList />
+            </div>
             <NavBar />
           </Route>
           <Route exact path="/families/:id">
