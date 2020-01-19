@@ -30,16 +30,16 @@ class App extends React.Component {
       email: "",
       password: "",
       isAuthData: false*/
-      families: [
-        {id: 1, name: 'Pinchon'},
-        {id: 2, name: 'Robert'},
-        {id: 3, name: 'Tonello'},
-        {id: 4, name: 'Trochain'},
-      ],
+      families: [],
       token: null,
     };
   }
 
+  componentDidMount() {
+    fetch('http://localhost:8000/families')
+      .then(response => response.json())
+      .then(data => this.setState({families: data}))
+  }
   /*handleLogoutClick() {
     this.setState({ isLoggedIn: false });
   }*/
