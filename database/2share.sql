@@ -30,7 +30,7 @@ CREATE TABLE user
   firstname VARCHAR (30) NOT NULL,
   lastname VARCHAR (30) NOT NULL,
   birthdate DATE NOT NULL,
-  email VARCHAR (320) NOT NULL , /* Penser à rajouter un uniq sur l'email */
+  email VARCHAR (320) NOT NULL UNIQUE,
   password VARCHAR (256) NOT NULL ,
   phone_number VARCHAR (15),
   profile_picture VARCHAR (255)
@@ -38,10 +38,10 @@ CREATE TABLE user
 
 CREATE TABLE user_family
 (
-  user_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES user (id),
+  email VARCHAR (320) NOT NULL,
   family_id INT NOT NULL,
-  FOREIGN KEY (family_id) REFERENCES family (id)
+  FOREIGN KEY (family_id) REFERENCES family (id),
+  PRIMARY KEY (email, family_id)
 );
 
 CREATE TABLE todo
