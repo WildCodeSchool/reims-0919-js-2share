@@ -14,6 +14,7 @@ import {
 //import Documents from './components/Documents/Documents';
 //import HomePage from './components/HomePage/HomePage';
 //import RegisterForm from './components/RegisterForm/RegisterForm';
+import NavBar from './components/NavBar'
 
 class App extends React.Component {
   constructor(props) {
@@ -57,15 +58,19 @@ class App extends React.Component {
 
         <Route exact path="/events">
           <p>hello from /events</p>
+          <NavBar />
         </Route>
         <Route exact path="/families">
           <p>hello from /families</p>
+          <NavBar />
         </Route>
         <Route exact path="/families/:id">
           <p>hello from /families/:id</p>
+          <NavBar />
         </Route>
         <Route exact path="/todos">
           <p>hello from /todos</p>
+          <NavBar />
         </Route>
 
       </BrowserRouter>
