@@ -15,6 +15,7 @@ import {
 //import HomePage from './components/HomePage/HomePage';
 //import RegisterForm from './components/RegisterForm/RegisterForm';
 import FamilyList from './components/FamilyList'
+import Family from './components/Family'
 import NavBar from './components/NavBar'
 import './styles/common.css'
 import './styles/layout.css'
@@ -71,9 +72,14 @@ class App extends React.Component {
             </div>
             <NavBar />
           </Route>
-          <Route exact path="/families/:id">
-            <p className="flex:1">hello from /families/:id</p>
-            <NavBar />
+          <Route exact path="/families/:id" render={props => (
+            <>
+              <div className="flex:1">
+                <Family {...props} />
+              </div>
+              <NavBar />
+            </>
+          )}>
           </Route>
           <Route exact path="/todos">
             <p className="flex:1">hello from /todos</p>
