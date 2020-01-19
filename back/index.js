@@ -50,6 +50,33 @@ app.get("/families/:id", (req, res) => {
   );
 });
 
+app.get("/families/:id/users", (req, res) => {
+  database.query(
+    "SELECT * from user_family where family_id = ?",
+    [req.params.id],
+    (err, results) => {
+      console.log(results);
+      if (err) {
+        res.status(500).send("Error retrieving families");
+      } else {
+        res.json(results);
+      }
+    }
+  );
+});
+
+app.post("/families/:id/users", (req, res) => {
+  const formAdd = req.body;
+  database.query("INSERT INTO user_family SET ?", formAdd, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error saving a new family");
+    } else {
+      res.status(201).send({...formAdd, id: result.insertId});
+    }
+  });
+});
+
 app.post("/families", (req, res) => {
   const formAdd = req.body;
   database.query("INSERT INTO family SET ?", formAdd, (err, result) => {
