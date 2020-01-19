@@ -89,6 +89,15 @@ class App extends React.Component {
 
                   <select>
                     <option value="0">voir tout</option>
+                    {
+                      React.Children.toArray(
+                        this.state.families.map(
+                          family => (
+                            <option value={family.id}>{family.name}</option>
+                          )
+                        )
+                      )
+                    }
                   </select>
 
                   <Route exact path="/events">
