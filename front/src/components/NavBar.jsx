@@ -6,7 +6,7 @@ import {
 const NavBar = (
 ) => {
   return (
-    <nav>
+    <nav className="flex:row flex-main:space-around">
       <NavLink to="/events">events</NavLink>
       <NavLink to="/todos">todos</NavLink>
       <NavLink to="/families">families</NavLink>

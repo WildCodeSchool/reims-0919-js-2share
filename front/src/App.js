@@ -15,6 +15,9 @@ import {
 //import HomePage from './components/HomePage/HomePage';
 //import RegisterForm from './components/RegisterForm/RegisterForm';
 import NavBar from './components/NavBar'
+import './styles/common.css'
+import './styles/layout.css'
+import './styles/space.css'
 
 class App extends React.Component {
   constructor(props) {
@@ -38,42 +41,44 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <main className="space:reset height:viewport-100 flex:column">
+        <BrowserRouter>
 
-        <Route exact path="/">
-          <Redirect to="/families" />
-        </Route>
+          <Route exact path="/">
+            <Redirect to="/families" />
+          </Route>
 
-        <Route exact path="/login">
-          <p>hello from /login</p>
-          <Link to="/register">s'enregistrer</Link>
-        </Route>
-        <Route exact path="/register">
-          <p>hello from /register</p>
-          <Link to="/login">se connecter</Link>
-        </Route>
-        <Route exact path="/logout">
-          <Redirect to="/" />
-        </Route>
+          <Route exact path="/login">
+            <p>hello from /login</p>
+            <Link to="/register">s'enregistrer</Link>
+          </Route>
+          <Route exact path="/register">
+            <p>hello from /register</p>
+            <Link to="/login">se connecter</Link>
+          </Route>
+          <Route exact path="/logout">
+            <Redirect to="/" />
+          </Route>
 
-        <Route exact path="/events">
-          <p>hello from /events</p>
-          <NavBar />
-        </Route>
-        <Route exact path="/families">
-          <p>hello from /families</p>
-          <NavBar />
-        </Route>
-        <Route exact path="/families/:id">
-          <p>hello from /families/:id</p>
-          <NavBar />
-        </Route>
-        <Route exact path="/todos">
-          <p>hello from /todos</p>
-          <NavBar />
-        </Route>
+          <Route exact path="/events">
+            <p className="flex:1">hello from /events</p>
+            <NavBar />
+          </Route>
+          <Route exact path="/families">
+            <p className="flex:1">hello from /families</p>
+            <NavBar />
+          </Route>
+          <Route exact path="/families/:id">
+            <p className="flex:1">hello from /families/:id</p>
+            <NavBar />
+          </Route>
+          <Route exact path="/todos">
+            <p className="flex:1">hello from /todos</p>
+            <NavBar />
+          </Route>
 
-      </BrowserRouter>
+        </BrowserRouter>
+      </main>
     )
     /*return (
       <div>
