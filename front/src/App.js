@@ -4,6 +4,7 @@ import React from "react";
 //import { Route, Switch } from "react-router-dom";
 import {
   BrowserRouter,
+  Link,
   Redirect,
   Route,
 } from "react-router-dom";
@@ -44,9 +45,11 @@ class App extends React.Component {
 
         <Route exact path="/login">
           <p>hello from /login</p>
+          <Link to="/register">s'enregistrer</Link>
         </Route>
         <Route exact path="/register">
           <p>hello from /register</p>
+          <Link to="/login">se connecter</Link>
         </Route>
         <Route exact path="/logout">
           <Redirect to="/" />
