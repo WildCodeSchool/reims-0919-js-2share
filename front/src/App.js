@@ -66,9 +66,8 @@ class App extends React.Component {
 
             <Route path="/">
 
-              <Route exact path="/events">
-                <p className="flex:1">hello from /events</p>
-              </Route>
+              <Switch>
+
               <Route exact path="/families">
                 <div className="flex:1">
                   <FamilyList />
@@ -82,9 +81,21 @@ class App extends React.Component {
                 </>
               )}>
               </Route>
+
+              <Route path="/">
+
+              <p>show all my data, or my data for one family</p>
+
+              <Route exact path="/events">
+                <p className="flex:1">hello from /events</p>
+              </Route>
               <Route exact path="/todos">
                 <p className="flex:1">hello from /todos</p>
               </Route>
+
+              </Route>
+
+              </Switch>
 
               <NavBar />
 
