@@ -68,32 +68,32 @@ class App extends React.Component {
 
               <Switch>
 
-              <Route exact path="/families">
-                <div className="flex:1">
-                  <FamilyList />
-                </div>
-              </Route>
-              <Route exact path="/families/:id" render={props => (
-                <>
+                <Route exact path="/families">
                   <div className="flex:1">
-                    <Family {...props} />
+                    <FamilyList />
                   </div>
-                </>
-              )}>
-              </Route>
+                </Route>
+                <Route exact path="/families/:id" render={props => (
+                  <>
+                    <div className="flex:1">
+                      <Family {...props} />
+                    </div>
+                  </>
+                )}>
+                </Route>
 
-              <Route path="/">
+                <Route path="/">
 
-              <p>show all my data, or my data for one family</p>
+                  <p>show all my data, or my data for one family</p>
 
-              <Route exact path="/events">
-                <p className="flex:1">hello from /events</p>
-              </Route>
-              <Route exact path="/todos">
-                <p className="flex:1">hello from /todos</p>
-              </Route>
+                  <Route exact path="/events">
+                    <p className="flex:1">hello from /events</p>
+                  </Route>
+                  <Route exact path="/todos">
+                    <p className="flex:1">hello from /todos</p>
+                  </Route>
 
-              </Route>
+                </Route>
 
               </Switch>
 
