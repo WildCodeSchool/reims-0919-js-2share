@@ -1,36 +1,41 @@
 import React from "react";
-import FamilyDirectory from "./components/family-directory/FamilyDirectory.component";
-import "./App.css";
-import { Route, Switch } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
-import Event from './components/Events/Event';
-import LoginForm from './components/Loginform/LoginForm';
-import Todos from './components/TodoList/Todos';
-import Documents from './components/Documents/Documents';
-import HomePage from './components/HomePage/HomePage';
-import RegisterForm from './components/RegisterForm/RegisterForm';
+//import FamilyDirectory from "./components/family-directory/FamilyDirectory.component";
+//import "./App.css";
+//import { Route, Switch } from "react-router-dom";
+//import { BrowserRouter } from "react-router-dom";
+//import Event from './components/Events/Event';
+//import LoginForm from './components/Loginform/LoginForm';
+//import Todos from './components/TodoList/Todos';
+//import Documents from './components/Documents/Documents';
+//import HomePage from './components/HomePage/HomePage';
+//import RegisterForm from './components/RegisterForm/RegisterForm';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      isLoggedIn: true,
+      /*isLoggedIn: true,
       email: "",
       password: "",
-      isAuthData: false
+      isAuthData: false*/
+      token: null,
     };
   }
 
-  handleLogoutClick() {
+  /*handleLogoutClick() {
     this.setState({ isLoggedIn: false });
-  }
+  }*/
 
-  isUserExist() {
+  /*isUserExist() {
     this.setState({ isAuthData: true });
-  }
+  }*/
 
   render() {
     return (
+      <>
+      </>
+    )
+    /*return (
       <div>
           <BrowserRouter>
             <header className='header_style_theme'>
@@ -47,7 +52,7 @@ class App extends React.Component {
             </Switch>
           </BrowserRouter> 
       </div>
-    );
+    );*/
   }
 }
 
