@@ -1,15 +1,21 @@
-import React from 'react'
+import React, {
+  useState,
+} from 'react'
 import {
   Link,
 } from "react-router-dom";
 
 const FamilyList = ({
   families,
+  createFamily,
 }) => {
+  const [newFamilyName, setNewFamilyName] = useState('')
+
   return (
     <ul>
       <li>
-        <input type="text" placeholder="Doe" /><button>+</button>
+        <input type="text" placeholder="Doe" onChange={e => setNewFamilyName(e.target.value)} value={newFamilyName} />
+        <button onClick={() => {createFamily(newFamilyName); setNewFamilyName('')}}>+</button>
       </li>
       {
         React.Children.toArray(

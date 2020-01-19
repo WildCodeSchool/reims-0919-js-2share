@@ -33,12 +33,24 @@ class App extends React.Component {
       families: [],
       token: null,
     };
+    this.createFamily = this.createFamily.bind(this)
   }
 
   componentDidMount() {
     fetch('http://localhost:8000/families')
       .then(response => response.json())
       .then(data => this.setState({families: data}))
+  }
+  createFamily(name) {
+    fetch('http://localhost:8000/families', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({name})
+    })
+      .then(response => response.json())
+      .then(data => this.setState(prevState => ({families: [...prevState.families, data]})))
   }
   /*handleLogoutClick() {
     this.setState({ isLoggedIn: false });
@@ -77,7 +89,7 @@ class App extends React.Component {
                 <Route path="/families">
                   <div className="flex:1">
                     <Route exact path="/families" render={() => (
-                      <FamilyList families={this.state.families} />
+                      <FamilyList families={this.state.families} createFamily={this.createFamily} />
                     )} />
                     <Route exact path="/families/:id" render={props => (
                       <Family {...props} />
