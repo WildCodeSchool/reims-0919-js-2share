@@ -31,6 +31,7 @@ class LoginForm extends React.Component {
       })
       .then(response => {
         this.props.storeToken(response.data.token);
+        response.data.token && this.props.history.push("/families");
       });
   };
   //essayer avec des données en dur

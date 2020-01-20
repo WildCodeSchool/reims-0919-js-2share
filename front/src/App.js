@@ -1,25 +1,23 @@
 import React from "react";
-import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/Loginform/LoginForm";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import "./styles/common.css";
 import "./styles/layout.css";
 import "./styles/space.css";
-import {
-  BrowserRouter,
-  Link,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
-import Event from './components/Events/Event';
-import Todos from './components/TodoList/Todos';
-import FamilyList from './components/FamilyList'
-import Family from './components/Family'
-import NavBar from './components/NavBar'
-import './styles/common.css'
-import './styles/layout.css'
-import './styles/space.css'
+import { Link, Redirect, Route, Switch, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import Event from "./components/Events/Event";
+import Todos from "./components/TodoList/Todos";
+import FamilyList from "./components/FamilyList";
+import Family from "./components/Family";
+import NavBar from "./components/NavBar";
+import "./styles/common.css";
+import "./styles/layout.css";
+import "./styles/space.css";
+
+const mapStateToProps = state => ({
+  token: state.token
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -29,8 +27,7 @@ class App extends React.Component {
       email: "",
       password: "",
       isAuthData: false*/
-      families: [],
-      token: null
+      families: []
     };
     this.createFamily = this.createFamily.bind(this);
   }
@@ -66,25 +63,31 @@ class App extends React.Component {
   render() {
     return (
       <main className="space:reset height:viewport-100 flex:column">
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/">
-              <Redirect to="/families" />
-            </Route>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/families" />
+          </Route>
 
-            <Route exact path="/login">
-              <LoginForm />
-              <Link to="/register">s'enregistrer</Link>
-            </Route>
-            <Route exact path="/register">
-              <RegisterForm />
-              <Link to="/login">se connecter</Link>
-            </Route>
-            <Route exact path="/logout">
-              <Redirect to="/" />
-            </Route>
+          <Route
+            exact
+            path="/login"
+            render={props => (
+              <>
+                <LoginForm {...props} />
+                <Link to="/register">s'enregistrer</Link>
+              </>
+            )}
+          ></Route>
+          <Route exact path="/register">
+            <RegisterForm />
+            <Link to="/login">se connecter</Link>
+          </Route>
+          <Route exact path="/logout">
+            <Redirect to="/" />
+          </Route>
 
-            <Route path="/">
+          <Route path="/">
+            {this.props.token ? (
               <Switch>
                 <Route path="/families">
                   <div className="flex:1">
@@ -123,38 +126,22 @@ class App extends React.Component {
                   </Route>
 
                   <Route exact path="/todos" component={Todos}>
-                    <div className="flex:1"> 
+                    <div className="flex:1">
                       <Todos />
                     </div>
                   </Route>
                 </Route>
               </Switch>
+            ) : (
+              <Redirect to="/login" />
+            )}
 
-              <NavBar />
-            </Route>
-          </Switch>
-        </BrowserRouter>
+            <NavBar />
+          </Route>
+        </Switch>
       </main>
     );
-    /*return (
-      <div>
-          <BrowserRouter>
-            <header className='header_style_theme'>
-              <img src='logo_toshare_blue.png' alt='logo-toshare'/>
-
-            </header>
-            <Switch>
-              <Route exact path="/" component={HomePage}/>
-              <Route path="/loginform" component={LoginForm} />
-              <Route path="/family-directory" component={FamilyDirectory} />
-              <Route path="/event" component={Event} />
-              <Route path="/documents" component={Documents} />
-              <Route path="/registerform" component={RegisterForm} />
-            </Switch>
-          </BrowserRouter> 
-      </div>
-    );*/
   }
 }
 
-export default App;
+export default withRouter(connect(mapStateToProps)(App));
