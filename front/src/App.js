@@ -115,8 +115,11 @@ class App extends React.Component {
                   <Route exact path="/events">
                     <p className="flex:1">hello from /events</p>
                   </Route>
-                  <Route exact path="/todos">
-                    <Route path="/todos" component={Todos}/>
+
+                  <Route exact path="/todos" component={Todos}>
+                    <div className="flex:1"> 
+                      <Todos />
+                    </div>
                   </Route>
 
                 </Route>
