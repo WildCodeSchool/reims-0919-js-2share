@@ -17,9 +17,10 @@ name VARCHAR (100)
 CREATE TABLE event
 (
 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-date_start DATETIME,
-date_end DATETIME,
+date_start TEXT NOT NULL,
+date_end TEXT,
 family_id INT NOT NULL,
+title VARCHAR(45) NOT NULL,
 FOREIGN KEY (family_id) REFERENCES family (id)
 );
 
