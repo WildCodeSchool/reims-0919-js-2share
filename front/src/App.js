@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
   token: state.token
 });
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);

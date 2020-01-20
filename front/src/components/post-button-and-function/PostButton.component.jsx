@@ -5,7 +5,10 @@ export const PostButton = ({title, startDate, endDate, family_id}) => {
   return (
     
     <div>
-      <button onClick={() => postFunction({title, startDate, endDate, family_id})}>Valider</button>
+      <button onClick={e => {
+        e.preventDefault();
+        return postFunction({title, startDate, endDate, family_id})
+      }}>Valider</button>
     </div>
   );
 };

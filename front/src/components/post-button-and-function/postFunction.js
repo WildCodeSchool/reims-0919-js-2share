@@ -8,5 +8,8 @@ export const postFunction = (props) => {
       date_end: props.endDate,
       family_id: 1
     })
-    .then(() => alert("Vos dates ont bien été enregistrées"));
+    .then(res => {
+      console.log(res.status);
+      alert("Vos dates ont bien été enregistrées");
+    });
 };
