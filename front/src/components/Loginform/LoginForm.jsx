@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { storeToken } from "../../redux/reducer";
 
-import "./LoginForm.css";
-
 import axios from "axios";
 
 const mapDispatchToProps = dispatch => ({
@@ -33,7 +31,6 @@ class LoginForm extends React.Component {
       })
       .then(response => {
         this.props.storeToken(response.data.token);
-        response.data.token && this.props.history.push("/family-directory");
       });
   };
   //essayer avec des données en dur

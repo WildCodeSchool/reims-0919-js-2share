@@ -1,5 +1,4 @@
 import React from "react";
-import "./registerform.css";
 import axios from "axios";
 
 class RegisterForm extends React.Component {
