@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList'
-import './Todos.css';
 import axios from 'axios';
 
 export default class Todos extends Component {
