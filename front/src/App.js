@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import Event from './components/Events/Event';
 //import LoginForm from './components/Loginform/LoginForm';
-//import Todos from './components/TodoList/Todos';
+import Todos from './components/TodoList/Todos';
 //import Documents from './components/Documents/Documents';
 //import HomePage from './components/HomePage/HomePage';
 //import RegisterForm from './components/RegisterForm/RegisterForm';
@@ -117,8 +117,11 @@ class App extends React.Component {
                       <Event />
                     </div>
                   </Route>
-                  <Route exact path="/todos">
-                    <p className="flex:1">hello from /todos</p>
+
+                  <Route exact path="/todos" component={Todos}>
+                    <div className="flex:1"> 
+                      <Todos />
+                    </div>
                   </Route>
 
                 </Route>
