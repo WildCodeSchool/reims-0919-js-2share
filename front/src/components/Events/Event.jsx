@@ -131,7 +131,6 @@ class Event extends React.Component {
             </form>
           </Modal>
         </div>
-        <Footer />
       </div>
     );
   }    

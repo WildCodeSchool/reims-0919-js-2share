@@ -9,7 +9,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-//import Event from './components/Events/Event';
+import Event from './components/Events/Event';
 //import LoginForm from './components/Loginform/LoginForm';
 //import Todos from './components/TodoList/Todos';
 //import Documents from './components/Documents/Documents';
@@ -113,7 +113,9 @@ class App extends React.Component {
                   </select>
 
                   <Route exact path="/events">
-                    <p className="flex:1">hello from /events</p>
+                    <div className="flex:1">
+                      <Route exact path="/events" component={Event}/>
+                    </div>
                   </Route>
                   <Route exact path="/todos">
                     <p className="flex:1">hello from /todos</p>
@@ -131,7 +133,7 @@ class App extends React.Component {
         </BrowserRouter>
       </main>
     )
-    /*return (
+    {/*return (
       <div>
           <BrowserRouter>
             <header className='header_style_theme'>
@@ -148,7 +150,7 @@ class App extends React.Component {
             </Switch>
           </BrowserRouter> 
       </div>
-    );*/
+    );*/}
   }
 }
 
