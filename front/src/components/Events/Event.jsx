@@ -5,7 +5,6 @@ import './Event.css'
 import axios from 'axios';
 import Modal from 'react-modal';
 import { PostButton } from '../post-button-and-function/PostButton.component';
-import Footer from '../Footer/Footer';
 
 
 

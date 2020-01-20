@@ -112,9 +112,9 @@ class App extends React.Component {
                     }
                   </select>
 
-                  <Route exact path="/events">
+                  <Route exact path="/events" component={Event}>
                     <div className="flex:1">
-                      <Route exact path="/events" component={Event}/>
+                      <Event />
                     </div>
                   </Route>
                   <Route exact path="/todos">
