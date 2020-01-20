@@ -1,7 +1,10 @@
 import React from "react";
-//import FamilyDirectory from "./components/family-directory/FamilyDirectory.component";
-//import "./App.css";
-//import { Route, Switch } from "react-router-dom";
+import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
+import LoginForm from "./components/Loginform/LoginForm";
+import RegisterForm from "./components/RegisterForm/RegisterForm";
+import "./styles/common.css";
+import "./styles/layout.css";
+import "./styles/space.css";
 import {
   BrowserRouter,
   Link,
@@ -10,11 +13,7 @@ import {
   Switch,
 } from "react-router-dom";
 import Event from './components/Events/Event';
-//import LoginForm from './components/Loginform/LoginForm';
 import Todos from './components/TodoList/Todos';
-//import Documents from './components/Documents/Documents';
-//import HomePage from './components/HomePage/HomePage';
-//import RegisterForm from './components/RegisterForm/RegisterForm';
 import FamilyList from './components/FamilyList'
 import Family from './components/Family'
 import NavBar from './components/NavBar'
@@ -31,26 +30,30 @@ class App extends React.Component {
       password: "",
       isAuthData: false*/
       families: [],
-      token: null,
+      token: null
     };
-    this.createFamily = this.createFamily.bind(this)
+    this.createFamily = this.createFamily.bind(this);
   }
 
   componentDidMount() {
-    fetch('http://localhost:8000/families')
+    fetch("http://localhost:8000/families")
       .then(response => response.json())
-      .then(data => this.setState({families: data}))
+      .then(data => this.setState({ families: data }));
   }
   createFamily(name) {
-    fetch('http://localhost:8000/families', {
-      method: 'post',
+    fetch("http://localhost:8000/families", {
+      method: "post",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({name})
+      body: JSON.stringify({ name })
     })
       .then(response => response.json())
-      .then(data => this.setState(prevState => ({families: [...prevState.families, data]})))
+      .then(data =>
+        this.setState(prevState => ({
+          families: [...prevState.families, data]
+        }))
+      );
   }
   /*handleLogoutClick() {
     this.setState({ isLoggedIn: false });
@@ -65,17 +68,16 @@ class App extends React.Component {
       <main className="space:reset height:viewport-100 flex:column">
         <BrowserRouter>
           <Switch>
-
             <Route exact path="/">
               <Redirect to="/families" />
             </Route>
 
             <Route exact path="/login">
-              <p>hello from /login</p>
+              <LoginForm />
               <Link to="/register">s'enregistrer</Link>
             </Route>
             <Route exact path="/register">
-              <p>hello from /register</p>
+              <RegisterForm />
               <Link to="/login">se connecter</Link>
             </Route>
             <Route exact path="/logout">
@@ -83,33 +85,35 @@ class App extends React.Component {
             </Route>
 
             <Route path="/">
-
               <Switch>
-
                 <Route path="/families">
                   <div className="flex:1">
-                    <Route exact path="/families" render={() => (
-                      <FamilyList families={this.state.families} createFamily={this.createFamily} />
-                    )} />
-                    <Route exact path="/families/:id" render={props => (
-                      <Family {...props} />
-                    )} />
+                    <Route
+                      exact
+                      path="/families"
+                      render={() => (
+                        <FamilyList
+                          families={this.state.families}
+                          createFamily={this.createFamily}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/families/:id"
+                      render={props => <Family {...props} />}
+                    />
                   </div>
                 </Route>
 
                 <Route path="/">
-
                   <select>
                     <option value="0">voir tout</option>
-                    {
-                      React.Children.toArray(
-                        this.state.families.map(
-                          family => (
-                            <option value={family.id}>{family.name}</option>
-                          )
-                        )
-                      )
-                    }
+                    {React.Children.toArray(
+                      this.state.families.map(family => (
+                        <option value={family.id}>{family.name}</option>
+                      ))
+                    )}
                   </select>
 
                   <Route exact path="/events" component={Event}>
@@ -123,20 +127,16 @@ class App extends React.Component {
                       <Todos />
                     </div>
                   </Route>
-
                 </Route>
-
               </Switch>
 
               <NavBar />
-
             </Route>
-
           </Switch>
         </BrowserRouter>
       </main>
-    )
-    {/*return (
+    );
+    /*return (
       <div>
           <BrowserRouter>
             <header className='header_style_theme'>
@@ -153,7 +153,7 @@ class App extends React.Component {
             </Switch>
           </BrowserRouter> 
       </div>
-    );*/}
+    );*/
   }
 }
 

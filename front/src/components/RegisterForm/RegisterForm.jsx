@@ -1,5 +1,4 @@
 import React from "react";
-import "./registerform.css";
 import axios from "axios";
 
 class RegisterForm extends React.Component {
@@ -49,91 +48,103 @@ class RegisterForm extends React.Component {
 
   render() {
     return (
-      <div >
+      <div>
         <h1 className="h1Family">Création de compte</h1>
 
         <form className="FormFamily" onSubmit={this.submitForm}>
-            <div>
-              <p className="paragraphFamily" htmlFor="lastname">Nom</p>
-              <input
-                className="inputFamily"
-                type="text"
-                id="lastname"
-                name="lastname"
-                onChange={this.onChange}
-                value={this.state.lastname}
-                required
-              />
-            </div>
+          <div>
+            <p className="paragraphFamily" htmlFor="lastname">
+              Nom
+            </p>
+            <input
+              className="inputFamily"
+              type="text"
+              id="lastname"
+              name="lastname"
+              onChange={this.onChange}
+              value={this.state.lastname}
+              required
+            />
+          </div>
 
-            <div>
-              <p className="paragraphFamily" htmlFor="firstname">Prénom</p>
-              <input
-                className="inputFamily"
-                type="text"
-                id="firstname"
-                name="firstname"
-                onChange={this.onChange}
-                value={this.state.firstname}
-                required
-              />
-            </div>
+          <div>
+            <p className="paragraphFamily" htmlFor="firstname">
+              Prénom
+            </p>
+            <input
+              className="inputFamily"
+              type="text"
+              id="firstname"
+              name="firstname"
+              onChange={this.onChange}
+              value={this.state.firstname}
+              required
+            />
+          </div>
 
-            <div>
-              <p className="paragraphFamily" htmlFor="Birthdate">Date de naissance</p>
-              <input
-                className="inputFamily"
-                type="date"
-                id="birthdate"
-                name="birthdate"
-                min="1920-01-01"
-                onChange={this.onChange}
-                value={this.state.birthdate}
-                required
-              />
-            </div>
+          <div>
+            <p className="paragraphFamily" htmlFor="Birthdate">
+              Date de naissance
+            </p>
+            <input
+              className="inputFamily"
+              type="date"
+              id="birthdate"
+              name="birthdate"
+              min="1920-01-01"
+              onChange={this.onChange}
+              value={this.state.birthdate}
+              required
+            />
+          </div>
 
-            <div>
-              <p className="paragraphFamily" htmlFor="email">Email</p>
-              <input
-                className="inputFamily"
-                type="email"
-                id="email"
-                name="email"
-                onChange={this.onChange}
-                value={this.state.email}
-                required
-              />
-            </div>
+          <div>
+            <p className="paragraphFamily" htmlFor="email">
+              Email
+            </p>
+            <input
+              className="inputFamily"
+              type="email"
+              id="email"
+              name="email"
+              onChange={this.onChange}
+              value={this.state.email}
+              required
+            />
+          </div>
 
-            <div>
-              <p className="paragraphFamily" htmlFor="password">Mot de passe</p>
-              <input
-                className="inputFamily"
-                type="password"
-                id="password"
-                name="password"
-                onChange={this.onChange}
-                value={this.state.password}
-                required
-              />
-            </div>
+          <div>
+            <p className="paragraphFamily" htmlFor="password">
+              Mot de passe
+            </p>
+            <input
+              className="inputFamily"
+              type="password"
+              id="password"
+              name="password"
+              onChange={this.onChange}
+              value={this.state.password}
+              required
+            />
+          </div>
 
-            <div>
-              <p className="paragraphFamily" htmlFor="password">Confirmation du mot de passe</p>
-              <input
-                className="inputFamily"
-                type="password"
-                id="password_confirm"
-                name="password_confirm"
-                onChange={this.onChange}
-                value={this.state.password_confirm}
-                required
-              />
-            </div>
-            <div className="divButton">
-              <input className="familyButton" type="submit" value="Envoyer" />
-            </div>
+          <div>
+            <p className="paragraphFamily" htmlFor="password">
+              Confirmation du mot de passe
+            </p>
+            <input
+              className="inputFamily"
+              type="password"
+              id="password_confirm"
+              name="password_confirm"
+              onChange={this.onChange}
+              value={this.state.password_confirm}
+              required
+            />
+          </div>
+          <div className="divButton">
+            <input className="familyButton" type="submit" value="Envoyer" />
+          </div>
         </form>
       </div>
     );
