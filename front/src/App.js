@@ -1,10 +1,8 @@
 import React from "react";
 import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
-//import Event from './components/Events/Event';
+import Event from "./components/Events/Event";
 import LoginForm from "./components/Loginform/LoginForm";
 //import Todos from './components/TodoList/Todos';
-//import Documents from './components/Documents/Documents';
-//import HomePage from './components/HomePage/HomePage';
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import FamilyList from "./components/FamilyList";
 import Family from "./components/Family";
@@ -108,8 +106,10 @@ class App extends React.Component {
                     )}
                   </select>
 
-                  <Route exact path="/events">
-                    <p className="flex:1">hello from /events</p>
+                  <Route exact path="/events" component={Event}>
+                    <div className="flex:1">
+                      <Event />
+                    </div>
                   </Route>
                   <Route exact path="/todos">
                     <p className="flex:1">hello from /todos</p>
