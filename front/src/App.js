@@ -5,13 +5,6 @@ import RegisterForm from "./components/RegisterForm/RegisterForm";
 import "./styles/common.css";
 import "./styles/layout.css";
 import "./styles/space.css";
-import {
-  BrowserRouter,
-  Link,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
 import Event from './components/Events/Event';
 import Todos from './components/TodoList/Todos';
 import FamilyList from './components/FamilyList'
@@ -136,24 +129,6 @@ class App extends React.Component {
         </BrowserRouter>
       </main>
     );
-    /*return (
-      <div>
-          <BrowserRouter>
-            <header className='header_style_theme'>
-              <img src='logo_toshare_blue.png' alt='logo-toshare'/>
-
-            </header>
-            <Switch>
-              <Route exact path="/" component={HomePage}/>
-              <Route path="/loginform" component={LoginForm} />
-              <Route path="/family-directory" component={FamilyDirectory} />
-              <Route path="/event" component={Event} />
-              <Route path="/documents" component={Documents} />
-              <Route path="/registerform" component={RegisterForm} />
-            </Switch>
-          </BrowserRouter> 
-      </div>
-    );*/
   }
 }
 
