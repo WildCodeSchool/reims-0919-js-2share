@@ -1,15 +1,25 @@
 import React from "react";
 import { BrowserRouter, Link, Redirect, Route, Switch } from "react-router-dom";
-import Event from "./components/Events/Event";
 import LoginForm from "./components/Loginform/LoginForm";
-//import Todos from './components/TodoList/Todos';
 import RegisterForm from "./components/RegisterForm/RegisterForm";
-import FamilyList from "./components/FamilyList";
-import Family from "./components/Family";
-import NavBar from "./components/NavBar";
 import "./styles/common.css";
 import "./styles/layout.css";
 import "./styles/space.css";
+import {
+  BrowserRouter,
+  Link,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import Event from './components/Events/Event';
+import Todos from './components/TodoList/Todos';
+import FamilyList from './components/FamilyList'
+import Family from './components/Family'
+import NavBar from './components/NavBar'
+import './styles/common.css'
+import './styles/layout.css'
+import './styles/space.css'
 
 class App extends React.Component {
   constructor(props) {
@@ -111,8 +121,11 @@ class App extends React.Component {
                       <Event />
                     </div>
                   </Route>
-                  <Route exact path="/todos">
-                    <p className="flex:1">hello from /todos</p>
+
+                  <Route exact path="/todos" component={Todos}>
+                    <div className="flex:1"> 
+                      <Todos />
+                    </div>
                   </Route>
                 </Route>
               </Switch>

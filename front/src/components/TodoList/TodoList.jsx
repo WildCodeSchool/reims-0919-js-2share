@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './TodoList.css'
 import Axios from 'axios';
 
 
