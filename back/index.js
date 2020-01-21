@@ -300,5 +300,29 @@ app.listen(port, err => {
     throw new Error("Something bad happened...");
   }
 
+  //ROUTES CHILDREN
+
+app.get("/children", (req, res) => {
+  database.query("SELECT * from child", (err, results) => {
+    if (err) {
+      res.status(500).send("Erreur lors de la récupération des enfants");
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+app.post("/children", (req, res) => {
+  const formAdd = req.body;
+  database.query("INSERT INTO child SET ?", formAdd, (err, result) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send("Error saving a new child");
+    } else {
+      res.status(201).send({...formAdd, id: result.insertId});
+    }
+  });
+});
+
   console.log(`Server is listening on ${port}`);
 });
