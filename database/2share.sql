@@ -55,3 +55,11 @@ CREATE TABLE todo
   family_id INT NOT NULL,
   FOREIGN KEY (family_id) REFERENCES family (id)
 );
+
+CREATE TABLE child
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  firstname VARCHAR(30) NOT NULL,
+  family_id INT NOT NULL,
+  FOREIGN KEY (family_id) REFERENCES family(id)
+);
