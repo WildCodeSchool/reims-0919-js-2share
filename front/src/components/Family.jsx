@@ -25,6 +25,7 @@ class Family extends React.Component {
       body: JSON.stringify({
         email: this.state.newMemberEmail,
         family_id: this.props.match.params.id,
+        role: this.props.match.params.id,
       })
     })
       .then(response => response.json())
