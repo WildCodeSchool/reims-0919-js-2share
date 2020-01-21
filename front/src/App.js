@@ -19,7 +19,6 @@ const mapStateToProps = state => ({
   token: state.token
 });
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,17 +30,25 @@ class App extends React.Component {
       families: []
     };
     this.createFamily = this.createFamily.bind(this);
+    this.getFamilies = this.getFamilies.bind(this);
   }
 
-  componentDidMount() {
-    fetch("http://localhost:8000/families")
+  getFamilies() {
+    fetch("http://localhost:8000/families", {
+      headers: {
+        "Authorization": this.props.token,
+        "Content-Type": "application/json"
+      }
+    })
       .then(response => response.json())
-      .then(data => this.setState({ families: data }));
+      .then(data => this.setState({ families: data }))
+      .then(() => this.props.history.push("/families"));
   }
   createFamily(name) {
     fetch("http://localhost:8000/families", {
       method: "post",
       headers: {
+        "Authorization": this.props.token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ name })
@@ -74,7 +81,7 @@ class App extends React.Component {
             path="/login"
             render={props => (
               <>
-                <LoginForm {...props} />
+                <LoginForm {...props} getFamilies={this.getFamilies} />
                 <Link to="/register">s'enregistrer</Link>
               </>
             )}
@@ -99,6 +106,7 @@ class App extends React.Component {
                         <FamilyList
                           families={this.state.families}
                           createFamily={this.createFamily}
+                          getFamilies={this.getFamilies}
                         />
                       )}
                     />

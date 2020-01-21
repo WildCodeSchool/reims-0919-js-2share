@@ -4,6 +4,10 @@ import { storeToken } from "../../redux/reducer";
 
 import axios from "axios";
 
+const mapStateToProps = state => ({
+  token: state.token
+});
+
 const mapDispatchToProps = dispatch => ({
   storeToken: token => dispatch(storeToken(token))
 });
@@ -22,6 +26,10 @@ class LoginForm extends React.Component {
     });
   };
 
+  componentDidUpdate() {
+    this.props.token && this.props.getFamilies()
+  }
+
   handleSubmit = event => {
     event.preventDefault();
     axios
@@ -31,10 +39,8 @@ class LoginForm extends React.Component {
       })
       .then(response => {
         this.props.storeToken(response.data.token);
-        response.data.token && this.props.history.push("/families");
-      });
+      })
   };
-  //essayer avec des données en dur
 
   render() {
     const { email, password } = this.state;
@@ -78,4 +84,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
