@@ -1,4 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => ({
+  token: state.token
+})
 
 class Family extends React.Component {
   constructor(props) {
@@ -28,6 +33,7 @@ class Family extends React.Component {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
+        'Autorization': this.props.token
       },
       body: JSON.stringify({
         email: this.state.newMemberEmail,
@@ -111,4 +117,4 @@ class Family extends React.Component {
   }
 }
 
-export default Family
+export default connect(mapStateToProps)(Family)
