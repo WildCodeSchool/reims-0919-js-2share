@@ -41,6 +41,7 @@ CREATE TABLE user_family
 (
   email VARCHAR (320) NOT NULL,
   family_id INT NOT NULL,
+  role VARCHAR (30) NOT NULL,
   FOREIGN KEY (family_id) REFERENCES family (id),
   PRIMARY KEY (email, family_id)
 );
@@ -53,4 +54,12 @@ CREATE TABLE todo
   FOREIGN KEY (user_id) REFERENCES user (id),
   family_id INT NOT NULL,
   FOREIGN KEY (family_id) REFERENCES family (id)
+);
+
+CREATE TABLE child
+(
+  id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  firstname VARCHAR(30) NOT NULL,
+  family_id INT NOT NULL,
+  FOREIGN KEY (family_id) REFERENCES family(id)
 );
