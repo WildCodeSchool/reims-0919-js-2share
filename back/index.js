@@ -74,7 +74,16 @@ app.get("/families/:id/users", (req, res) => {
   );
 });
 
-app.post("/families/:id/users", (req, res) => {
+app.post("/families/:id/users", verifyToken, (req, res) => {
+  jwt.verify(req.token, myKey, (err, authData) => {
+    if(err){
+      res.status(401)
+    } else {
+      database.query("INSERT INTO user_family SET?", authData, (err, result) => {
+        console.log('authData:', authData)
+      })
+    }
+  })
   const formAdd = req.body;
   database.query("INSERT INTO user_family SET ?", formAdd, (err, result) => {
     if (err) {
