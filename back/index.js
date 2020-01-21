@@ -25,14 +25,23 @@ app.get("/", (req, res) => {
   res.send("Welcome to Express");
 });
 
-app.get("/families", (req, res) => {
-  database.query("SELECT * from family", (err, results) => {
+
+
+app.get("/families", verifyToken, (req, res) => {
+  jwt.verify(req.token, myKey, (err, authData) => {
     if (err) {
-      res.status(500).send("Erreur lors de la récupération des familles");
-    } else {
-      res.json(results);
+      res.sendStatus(401)
+    }else {
+      database.query("SELECT family.id, family.name FROM user_family JOIN family ON user_family.family_id=family.id WHERE user_family.email=?", authData.sub, (err, results) => {
+        if (err) {
+          res.status(500).send("Erreur lors de la récupération des familles");
+        } else {
+          res.json(results);
+        }
+      })
     }
-  });
+  })
+  ;
 });
 
 app.get("/families/:id", (req, res) => {
@@ -77,16 +86,29 @@ app.post("/families/:id/users", (req, res) => {
   });
 });
 
-app.post("/families", (req, res) => {
+app.post("/families", verifyToken, (req, res) => {
   const formAdd = req.body;
-  database.query("INSERT INTO family SET ?", formAdd, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error saving a new family");
-    } else {
-      res.status(201).send({...formAdd, id: result.insertId});
+  jwt.verify(req.token, myKey, (err, authData) => {
+    if(err) {
+      res.status(401)
+    }else {
+      database.query("INSERT INTO family SET ?", formAdd, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error saving a new family");
+        } else {
+          database.query("INSERT INTO user_family SET ?", {email:authData.sub, family_id:result.insertId}, (err, result) => {
+            if (err) {
+              console.log(err);
+              res.status(500).send("Error saving a new family");
+            } else {
+              res.status(201).send({...formAdd, id: result.insertId});
+            }
+          })
+        }
+      })
     }
-  });
+  })
 });
 
 app.put("/families/:id", (req, res) => {

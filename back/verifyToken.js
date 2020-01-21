@@ -1,9 +1,9 @@
 function verifyToken(req, res, next) {
   // GET auth header value
-  const bearerHeader = req.headers['authorization'];
+  const bearerHeader = req.headers["authorization"];
   // check if bearer is undefined
-  if (typeof bearerHeader !== 'undefined') {
-    const bearer = bearerHeader.split(' ');
+  if (typeof bearerHeader !== "undefined") {
+    const bearer = bearerHeader.split(" ");
     // get token
     const bearerToken = bearer[1];
     // set token
@@ -12,7 +12,6 @@ function verifyToken(req, res, next) {
     next();
   } else {
     //Forbidden
-    console.log('sergio rico')
     res.sendStatus(403);
   }
 }
