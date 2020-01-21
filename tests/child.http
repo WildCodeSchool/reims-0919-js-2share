@@ -3,7 +3,7 @@ GET http://localhost:8000/children
 
 
 ### POST new event
-POST http://localhost:8000/children/:id
+POST http://localhost:8000/children
 Content-Type: application/json
 
 { 

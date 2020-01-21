@@ -312,7 +312,7 @@ app.get("/children", (req, res) => {
   });
 });
 
-app.post("/children/:id", (req, res) => {
+app.post("/children", (req, res) => {
   const formAdd = req.body;
   database.query("INSERT INTO child SET ?", formAdd, (err, result) => {
     if (err) {
