@@ -4,7 +4,7 @@ import Calendar from 'react-calendar';
 import './Event.css'
 import axios from 'axios';
 import Modal from 'react-modal';
-import { PostButton } from '../post-button-and-function/PostButton.component';
+// import { PostButton } from '../post-button-and-function/PostButton.component';
 
 
 
@@ -65,6 +65,21 @@ class Event extends React.Component {
       [evt.target.name]: value
     });
   }
+
+  // add event method
+  addEvent = () => {
+    axios.post("http://localhost:8000/events", {
+        title: this.state.title,
+        date_start: this.state.startDateEvent + ' ' + this.state.startHourEvent + ':00',
+        date_end: this.state.endDateEvent + ' ' + this.state.endHourEvent + ':00',
+        family_id: 1
+      })
+      .then(res => {
+        alert("Vos dates ont bien été enregistrées");
+      });
+  };
+
+
   
   checkEvent(id) {
     const events = this.state.events.filter((event) => {
@@ -121,11 +136,9 @@ class Event extends React.Component {
               
               <label htmlFor="end-hour">End hour :</label>
               <input type='time' name="endHourEvent" value={this.state.endHourEvent} onChange={this.handleInputChange}/>
-              <PostButton 
-              startDate={this.state.startDateEvent + ' ' + this.state.startHourEvent + ':00'} 
-              endDate={this.state.endDateEvent + ' ' + this.state.endHourEvent + ':00'}
-              title={this.state.title}
-              />
+              <div>
+                <button onClick={this.addEvent}>Valider</button>
+              </div>
               <button onClick={this.handleCloseModal}>Fermer</button>
             </form>
           </Modal>
