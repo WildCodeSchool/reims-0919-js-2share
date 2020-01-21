@@ -9,6 +9,7 @@ export default class Todos extends Component {
       todos: [], 
       description: '' };
     this.removeItem = this.removeItem.bind(this)
+    this.addTodo = this.addTodo.bind(this)
   }
 
   componentDidMount(){
@@ -32,19 +33,18 @@ export default class Todos extends Component {
       };
       axios.post(`http://localhost:8000/todos`, body)
       .then(res => {
-        console.log(res);
-        console.log(res.data);
+        this.setState(prevState => ({
+          todos: [...prevState.todos, res.data],
+          description: '',
+        }))
       })
     }
   }
 
-  refreshPage (e){
-    window.location.reload();
-} 
-
   updateValue(e) {
     this.setState({ description: e.target.value})
   }
+
   removeItem(id) {
     const todos = this.state.todos.filter((todo) => {
       return todo.id !== id
@@ -62,7 +62,9 @@ export default class Todos extends Component {
             value={this.state.description}
             onChange={(e) => {this.updateValue(e)}}
             />
-          <button className="btnAdd" type="submit" onClick={(e) => {this.refreshPage(e)}}>Ajouter</button>
+          <button className="btnAdd" type="submit">
+            Ajouter
+          </button>
         </form>
         <TodoList todos={this.state.todos} removeItem={this.removeItem} />
       </div>
