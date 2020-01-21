@@ -45,6 +45,9 @@ class Family extends React.Component {
   }
 
   addChild() {
+    if(this.state.newChildrenFirstname === '') {
+      alert('ajouter un prénom')
+    } else {
     fetch('http://localhost:8000/children', {
       method: 'post',
       headers: {
@@ -62,6 +65,7 @@ class Family extends React.Component {
           newChildrenFirstname: '',
         }))
       })
+    }
   }
 
   render() {
