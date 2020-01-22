@@ -85,7 +85,11 @@ class Family extends React.Component {
   }
 
   deleteChild = (id) => {
-    axios(`http://localhost:8000/children/${id}`, {method:'delete'})
+    axios(`http://localhost:8000/children/${id}`, {
+      method:'delete',
+      headers: {
+        'Authorization': this.props.token
+      }})
       .then(response => {
         if (response.status === 200) {
           this.removeChild(id)
