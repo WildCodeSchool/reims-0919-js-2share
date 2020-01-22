@@ -2,11 +2,19 @@
 GET http://localhost:8000/children
 
 
-### POST new event
+### POST new child
 POST http://localhost:8000/children
 Content-Type: application/json
 
 { 
 "firstname": "Jérémy",
 "family_id" : 1
+}
+
+### DELETE child
+DELETE http://localhost:8000/children/19
+Content-Type: application/json
+
+{
+  "child_id" : 18
 }

@@ -329,37 +329,31 @@ app.post("/todos", (req, res) => {
   });
 });
 
-app.listen(port, err => {
-  if (err) {
-    throw new Error("Something bad happened...");
-  }
 
   //ROUTES CHILDREN
 
-  app.get("/children", verifyToken, (req, res) => {
-    jwt.verify(req.token, myKey, (err, authData) => {
-      console.log("authData:", authData);
-      if (err) {
-        res.send(401);
-      } else {
-        database.query(
-          "SELECT child.firstname FROM child JOIN family ON child.family_id=family.id WHERE family_id=?",
-          req.headers["id"],
-          (err, results) => {
-            console.log("err:", err);
-            console.log("results:", results);
-            if (err) {
-              res
-                .status(500)
-                .send("Erreur lors de la récupération des enfants");
-            } else {
-              res.json(results);
-            }
-          }
-        );
-      }
-    });
-  });
+app.get("/children", verifyToken, (req, res) => {
+  jwt.verify(req.token, myKey, (err, authData) => {
+    console.log("authData:",authData)
+    if(err){
+      res.send(401)
+    } else {
+      database.query("SELECT child.firstname, child.id FROM child JOIN family ON child.family_id=family.id WHERE family_id=?", 
+          req.headers["id"], 
+         (err, results) => {
+          console.log('err:', err)
+          console.log('results:', results)
+        if (err) {
+          res.status(500)
+            .send("Erreur lors de la récupération des enfants");
+        } else {
+          res.json(results);
+        }
+      })
+    }
+  })
+});
+
 
   app.post("/children", verifyToken, (req, res) => {
     jwt.verify(req.token, myKey, (err, authData) => {
@@ -379,5 +373,20 @@ app.listen(port, err => {
     });
   });
 
+app.delete("/children/:id", (req, res) => {
+  const idChild = req.params.id;
+  database.query("DELETE FROM child WHERE id=?", [idChild], err => {
+    if (err) {
+      res.status(500).send("Error delete child");
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+app.listen(port, err => {
+  if (err) {
+    throw new Error("Something bad happened...");
+  }
   console.log(`Server is listening on ${port}`);
 });
