@@ -23,7 +23,14 @@ class Family extends React.Component {
       .then(response => response.json())
       .then(data => this.setState({members: data}));
     
-      fetch('http://localhost:8000/children')
+      fetch('http://localhost:8000/children', {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': this.props.token,
+          'id' : this.props.match.params.id
+        }, 
+      })
         .then(response =>response.json())
         .then(data=> this.setState({children: data}))
   }
@@ -33,7 +40,7 @@ class Family extends React.Component {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'Autorization': this.props.token
+        'Authorization': this.props.token
       },
       body: JSON.stringify({
         email: this.state.newMemberEmail,
@@ -58,6 +65,7 @@ class Family extends React.Component {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
+        'Autorization': this.props.token
       },
       body: JSON.stringify({
         firstname: this.state.newChildrenFirstname,
