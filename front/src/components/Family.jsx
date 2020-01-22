@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Axios from 'axios';
+import axios from 'axios';
 
 const mapStateToProps = state => ({
   token: state.token
@@ -85,7 +85,7 @@ class Family extends React.Component {
   }
 
   deleteChild = (id) => {
-    Axios(`http://localhost:8000/children/${id}`, {method:'delete'})
+    axios(`http://localhost:8000/children/${id}`, {method:'delete'})
       .then(response => {
         if (response.status === 200) {
           this.removeChild(id)
