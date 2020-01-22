@@ -67,7 +67,7 @@ class Family extends React.Component {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
-        'Autorization': this.props.token
+        'Authorization': this.props.token
       },
       body: JSON.stringify({
         firstname: this.state.newChildrenFirstname,
