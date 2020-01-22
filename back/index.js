@@ -49,7 +49,6 @@ app.get("/families/:id", (req, res) => {
     "SELECT * from family where id = ?",
     [req.params.id],
     (err, results) => {
-      console.log(results);
       if (err) {
         res.status(500).send("Error retrieving families");
       } else {
@@ -64,7 +63,6 @@ app.get("/families/:id/users", (req, res) => {
     "SELECT * from user_family where family_id = ?",
     [req.params.id],
     (err, results) => {
-      console.log(results);
       if (err) {
         res.status(500).send("Error retrieving families");
       } else {
@@ -80,14 +78,12 @@ app.post("/families/:id/users", verifyToken, (req, res) => {
       res.status(401)
     } else {
       database.query("INSERT INTO user_family SET?", authData, (err, result) => {
-        console.log('authData:', authData)
       })
     }
   })
   const formAdd = req.body;
   database.query("INSERT INTO user_family SET ?", formAdd, (err, result) => {
     if (err) {
-      console.log(err);
       res.status(500).send("Error saving a new family");
     } else {
       res.status(201).send({...formAdd, id: result.insertId});
@@ -103,12 +99,10 @@ app.post("/families", verifyToken, (req, res) => {
     }else {
       database.query("INSERT INTO family SET ?", formAdd, (err, result) => {
         if (err) {
-          console.log(err);
           res.status(500).send("Error saving a new family");
         } else {
           database.query("INSERT INTO user_family SET ?", {email:authData.sub, family_id:result.insertId}, (err, result) => {
             if (err) {
-              console.log(err);
               res.status(500).send("Error saving a new family");
             } else {
               res.status(201).send({...formAdd, id: result.insertId});
@@ -333,14 +327,23 @@ app.listen(port, err => {
 
   //ROUTES CHILDREN
 
-app.get("/children", (req, res) => {
-  database.query("SELECT * from child", (err, results) => {
-    if (err) {
-      res.status(500).send("Erreur lors de la récupération des enfants");
+app.get("/children", verifyToken, (req, res) => {
+  jwt.verify(req.token, myKey, (err, authData) => {
+    console.log("authData:",authData)
+    if(err){
+      res.send(401)
     } else {
-      res.json(results);
+      database.query("SELECT child.firstname FROM child JOIN family ON child.family_id=family.id WHERE family_id=?", req.headers["id"], (err, results) => {
+          console.log('err:', err)
+          console.log('results:', results)
+        if (err) {
+          res.status(500).send("Erreur lors de la récupération des enfants");
+        } else {
+          res.json(results);
+        }
+      })
     }
-  });
+  })
 });
 
 app.post("/children", (req, res) => {
