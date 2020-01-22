@@ -25,23 +25,24 @@ app.get("/", (req, res) => {
   res.send("Welcome to Express");
 });
 
-
-
 app.get("/families", verifyToken, (req, res) => {
   jwt.verify(req.token, myKey, (err, authData) => {
     if (err) {
-      res.sendStatus(401)
-    }else {
-      database.query("SELECT family.id, family.name FROM user_family JOIN family ON user_family.family_id=family.id WHERE user_family.email=?", authData.sub, (err, results) => {
-        if (err) {
-          res.status(500).send("Erreur lors de la récupération des familles");
-        } else {
-          res.json(results);
+      res.sendStatus(401);
+    } else {
+      database.query(
+        "SELECT family.id, family.name FROM user_family JOIN family ON user_family.family_id=family.id WHERE user_family.email=?",
+        authData.sub,
+        (err, results) => {
+          if (err) {
+            res.status(500).send("Erreur lors de la récupération des familles");
+          } else {
+            res.json(results);
+          }
         }
-      })
+      );
     }
-  })
-  ;
+  });
 });
 
 app.get("/families/:id", (req, res) => {
@@ -74,19 +75,22 @@ app.get("/families/:id/users", (req, res) => {
 
 app.post("/families/:id/users", verifyToken, (req, res) => {
   jwt.verify(req.token, myKey, (err, authData) => {
-    if(err){
-      res.status(401)
+    if (err) {
+      res.status(401);
     } else {
-      database.query("INSERT INTO user_family SET?", authData, (err, result) => {
-      })
+      database.query(
+        "INSERT INTO user_family SET?",
+        authData,
+        (err, result) => {}
+      );
     }
-  })
+  });
   const formAdd = req.body;
   database.query("INSERT INTO user_family SET ?", formAdd, (err, result) => {
     if (err) {
       res.status(500).send("Error saving a new family");
     } else {
-      res.status(201).send({...formAdd, id: result.insertId});
+      res.status(201).send({ ...formAdd, id: result.insertId });
     }
   });
 });
@@ -94,24 +98,28 @@ app.post("/families/:id/users", verifyToken, (req, res) => {
 app.post("/families", verifyToken, (req, res) => {
   const formAdd = req.body;
   jwt.verify(req.token, myKey, (err, authData) => {
-    if(err) {
-      res.status(401)
-    }else {
+    if (err) {
+      res.status(401);
+    } else {
       database.query("INSERT INTO family SET ?", formAdd, (err, result) => {
         if (err) {
           res.status(500).send("Error saving a new family");
         } else {
-          database.query("INSERT INTO user_family SET ?", {email:authData.sub, family_id:result.insertId}, (err, result) => {
-            if (err) {
-              res.status(500).send("Error saving a new family");
-            } else {
-              res.status(201).send({...formAdd, id: result.insertId});
+          database.query(
+            "INSERT INTO user_family SET ?",
+            { email: authData.sub, family_id: result.insertId },
+            (err, result) => {
+              if (err) {
+                res.status(500).send("Error saving a new family");
+              } else {
+                res.status(201).send({ ...formAdd, id: result.insertId });
+              }
             }
-          })
+          );
         }
-      })
+      });
     }
-  })
+  });
 });
 
 app.put("/families/:id", (req, res) => {
@@ -308,14 +316,14 @@ app.delete("/todos/:id", (req, res) => {
 });
 
 app.post("/todos", (req, res) => {
-  const {description, user_id, family_id} = req.body;
-  const formAdd = {description, user_id, family_id};
+  const { description, user_id, family_id } = req.body;
+  const formAdd = { description, user_id, family_id };
   database.query("INSERT INTO todo SET ?", formAdd, (err, result) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error saving a new todo");
     } else {
-      res.status(201).send({...formAdd, id: result.insertId});
+      res.status(201).send({ ...formAdd, id: result.insertId });
     }
   });
 });
@@ -327,36 +335,48 @@ app.listen(port, err => {
 
   //ROUTES CHILDREN
 
-app.get("/children", verifyToken, (req, res) => {
-  jwt.verify(req.token, myKey, (err, authData) => {
-    console.log("authData:",authData)
-    if(err){
-      res.send(401)
-    } else {
-      database.query("SELECT child.firstname FROM child JOIN family ON child.family_id=family.id WHERE family_id=?", req.headers["id"], (err, results) => {
-          console.log('err:', err)
-          console.log('results:', results)
-        if (err) {
-          res.status(500).send("Erreur lors de la récupération des enfants");
-        } else {
-          res.json(results);
-        }
-      })
-    }
-  })
-});
-
-app.post("/children", (req, res) => {
-  const formAdd = req.body;
-  database.query("INSERT INTO child SET ?", formAdd, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error saving a new child");
-    } else {
-      res.status(201).send({...formAdd, id: result.insertId});
-    }
+  app.get("/children", verifyToken, (req, res) => {
+    jwt.verify(req.token, myKey, (err, authData) => {
+      console.log("authData:", authData);
+      if (err) {
+        res.send(401);
+      } else {
+        database.query(
+          "SELECT child.firstname FROM child JOIN family ON child.family_id=family.id WHERE family_id=?",
+          req.headers["id"],
+          (err, results) => {
+            console.log("err:", err);
+            console.log("results:", results);
+            if (err) {
+              res
+                .status(500)
+                .send("Erreur lors de la récupération des enfants");
+            } else {
+              res.json(results);
+            }
+          }
+        );
+      }
+    });
   });
-});
+
+  app.post("/children", verifyToken, (req, res) => {
+    jwt.verify(req.token, myKey, (err, authData) => {
+      if (err) {
+        res.send(401);
+      } else {
+        const formAdd = req.body;
+        database.query("INSERT INTO child SET ?", formAdd, (err, result) => {
+          if (err) {
+            console.log(err);
+            res.status(500).send("Error saving a new child");
+          } else {
+            res.status(201).send({ ...formAdd, id: result.insertId });
+          }
+        });
+      }
+    });
+  });
 
   console.log(`Server is listening on ${port}`);
 });
