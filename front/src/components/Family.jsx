@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios';
 
 const mapStateToProps = state => ({
   token: state.token
@@ -16,6 +17,7 @@ class Family extends React.Component {
     }
     this.addMember = this.addMember.bind(this);
     this.addChild = this.addChild.bind(this);
+    this.removeChild = this.removeChild.bind(this);
   }
 
   componentDidMount() {
@@ -82,6 +84,22 @@ class Family extends React.Component {
     }
   }
 
+  deleteChild = (id) => {
+    axios(`http://localhost:8000/children/${id}`, {method:'delete'})
+      .then(response => {
+        if (response.status === 200) {
+          this.removeChild(id)
+        }
+      })
+  };
+
+  removeChild(id) {
+    const children = this.state.children.filter((child) => {
+      return child.id !== id
+    })
+    this.setState({ children })
+  }
+
   render() {
     return (
       <div>
@@ -111,9 +129,9 @@ class Family extends React.Component {
       {
         React.Children.toArray(
           this.state.children.map(
-            children => (
+            child => (
               <li>
-                {children.firstname}<button>-</button>
+                {child.firstname}<button onClick={()=> {this.deleteChild(child.id)}}>-</button>
               </li>
             )
           )
