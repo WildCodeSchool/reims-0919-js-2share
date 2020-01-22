@@ -105,14 +105,15 @@ app.post("/families", verifyToken, (req, res) => {
         if (err) {
           res.status(500).send("Error saving a new family");
         } else {
+          const familyId = result.insertId;
           database.query(
             "INSERT INTO user_family SET ?",
-            { email: authData.sub, family_id: result.insertId },
+            { email: authData.sub, family_id: familyId },
             (err, result) => {
               if (err) {
-                res.status(500).send("Error saving a new family");
+                res.status(500).send("Error saving first member family");
               } else {
-                res.status(201).send({ ...formAdd, id: result.insertId });
+                res.status(201).send({ ...formAdd, id: familyId });
               }
             }
           );
