@@ -13,7 +13,7 @@ const FamilyList = ({ families, createFamily, token }) => {
     {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
     <ul className="space:inset" style={{listStyleType: 'none'}}>
       <li className="flex:row flex-cross:center space:stack">
-        <label for="family" className="space:inline">famille</label>
+        <label htmlFor="family" className="space:inline">famille</label>
         <input
           id="family"
           className="space:inset-squish space:inline flex:1"
