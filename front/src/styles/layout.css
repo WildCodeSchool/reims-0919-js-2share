@@ -44,3 +44,9 @@
 .flex\:1 {
   flex: 1;
 }
+
+.navLink {
+  color : #0155A6;
+  text-decoration:none;
+}
+
