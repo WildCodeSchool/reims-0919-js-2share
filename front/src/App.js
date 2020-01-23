@@ -23,14 +23,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      /*isLoggedIn: true,
-      email: "",
-      password: "",
-      isAuthData: false*/
       families: []
     };
     this.createFamily = this.createFamily.bind(this);
     this.getFamilies = this.getFamilies.bind(this);
+  }
+
+  optionSelector = (e) => {
+    if(e.target.value === 0 || e.target.value === undefined || e.target.value === null) {
+     console.log("Im 0")
+    } else {
+      fetch(`http://localhost:8000/events?filter=${e.target.value}`)
+    }
   }
 
   getFamilies() {
@@ -60,13 +64,6 @@ class App extends React.Component {
         }))
       );
   }
-  /*handleLogoutClick() {
-    this.setState({ isLoggedIn: false });
-  }*/
-
-  /*isUserExist() {
-    this.setState({ isAuthData: true });
-  }*/
 
   render() {
     return (
@@ -119,7 +116,7 @@ class App extends React.Component {
                 </Route>
 
                 <Route path="/">
-                  <select>
+                  <select onChange={this.optionSelector}>
                     <option value="0">voir tout</option>
                     {React.Children.toArray(
                       this.state.families.map(family => (
