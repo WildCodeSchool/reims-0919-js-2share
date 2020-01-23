@@ -12,6 +12,7 @@ class Family extends React.Component {
     this.state = {
       members: [],
       newMemberEmail: '',
+      newMemberRole: '',
       children:[],
       newChildrenFirstname: ''
     }
@@ -47,7 +48,7 @@ class Family extends React.Component {
       body: JSON.stringify({
         email: this.state.newMemberEmail,
         family_id: this.props.match.params.id,
-        role: this.props.match.params.id,
+        role: this.state.newMemberRole,
       })
     })
       .then(response => response.json())
@@ -55,6 +56,7 @@ class Family extends React.Component {
         this.setState(prevState => ({
           members: [...prevState.members, data],
           newMemberEmail: '',
+          newMemberRole: '',
         }))
       })
   }
@@ -128,9 +130,11 @@ class Family extends React.Component {
   render() {
     return (
       <div>
+        <h2>Membres</h2>
       <ul>
         <li>
           <input type="email" placeholder="jdoe@mail.com" onChange={e => this.setState({newMemberEmail: e.target.value})} value={this.state.newMemberEmail} />
+          <input type="text" placeholder="parent, nounou..." onChange={e => this.setState({newMemberRole: e.target.value})} value={this.state.newMemberRole} />
           <button onClick={this.addMember}>+</button>
         </li>
         {
@@ -138,7 +142,7 @@ class Family extends React.Component {
             this.state.members.map(
               member => (
                 <li>
-                  {member.email}<button onClick={()=> {this.deleteMember(member.email)}}>-</button>
+                  {member.email} ({member.role})<button onClick={()=> {this.deleteMember(member.email)}}>-</button>
                 </li>
               )
             )
@@ -146,6 +150,7 @@ class Family extends React.Component {
         }
       </ul>
 
+      <h2>Enfants</h2>
       <ul>
       <li>
         <input type="firstname" placeholder="prénom enfant" onChange={e => this.setState({newChildrenFirstname: e.target.value})} value={this.state.newChildrenFirstname} />
