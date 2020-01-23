@@ -11,9 +11,7 @@ import Todos from "./components/TodoList/Todos";
 import FamilyList from "./components/FamilyList";
 import Family from "./components/Family";
 import NavBar from "./components/NavBar";
-import "./styles/common.css";
-import "./styles/layout.css";
-import "./styles/space.css";
+
 
 const mapStateToProps = state => ({
   token: state.token
