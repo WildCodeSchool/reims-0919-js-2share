@@ -4,6 +4,7 @@ import RegisterForm from "./components/RegisterForm/RegisterForm";
 import "./styles/common.css";
 import "./styles/layout.css";
 import "./styles/space.css";
+import "./styles/color.css";
 import { Link, Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Event from "./components/Events/Event";
@@ -11,13 +12,15 @@ import Todos from "./components/TodoList/Todos";
 import FamilyList from "./components/FamilyList";
 import Family from "./components/Family";
 import NavBar from "./components/NavBar";
-import "./styles/common.css";
-import "./styles/layout.css";
-import "./styles/space.css";
+
 
 const mapStateToProps = state => ({
   token: state.token
 });
+
+const h2 = (text) => (
+  <h2 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h2>
+)
 
 class App extends React.Component {
   constructor(props) {
@@ -78,14 +81,16 @@ class App extends React.Component {
             path="/login"
             render={props => (
               <>
+                {h2('2Share')}
                 <LoginForm {...props} getFamilies={this.getFamilies} />
-                <Link to="/register">s'enregistrer</Link>
+                <Link className="space:inset text:center" to="/register">pas encore de compte ?</Link>
               </>
             )}
           ></Route>
           <Route exact path="/register">
+            {h2('2Share')}
             <RegisterForm />
-            <Link to="/login">se connecter</Link>
+            <Link className="space:inset text:center" to="/login">se connecter</Link>
           </Route>
           <Route exact path="/logout">
             <Redirect to="/" />
@@ -95,7 +100,7 @@ class App extends React.Component {
             {this.props.token ? (
               <Switch>
                 <Route path="/families">
-                  <div className="flex:1">
+                  <div className="flex:1 overflow:auto">
                     <Route
                       exact
                       path="/families"
@@ -116,23 +121,23 @@ class App extends React.Component {
                 </Route>
 
                 <Route path="/">
-                  <select onChange={this.optionSelector}>
+                  <select className="space-size:s space:inset title" onChange={this.optionSelector}>
                     <option value="0">voir tout</option>
                     {React.Children.toArray(
                       this.state.families.map(family => (
-                        <option value={family.id}>{family.name}</option>
+                        <option value={family.id}>famille {family.name}</option>
                       ))
                     )}
                   </select>
 
                   <Route exact path="/events" component={Event}>
-                    <div className="flex:1">
+                    <div className="flex:1 overflow:auto">
                       <Event />
                     </div>
                   </Route>
 
                   <Route exact path="/todos" component={Todos}>
-                    <div className="flex:1">
+                    <div className="flex:1 overflow:auto">
                       <Todos />
                     </div>
                   </Route>

@@ -140,6 +140,21 @@ app.put("/families/:id", (req, res) => {
   );
 });
 
+app.delete("/families/:id/users", (req, res) => {
+  const email = req.body.email;
+  const idFamily = req.params.id
+  console.log(email)
+  database.query("DELETE FROM user_family WHERE email=? AND family_id=?", [email, idFamily], (err, results) => {
+    if (err) {
+      res.status(500).send("Error delete member");
+    } else {
+
+      res.send(results)
+    }
+  });
+});
+
+
 app.get("/events", (req, res) => {
   const familyId = req.query.filter;
   if(familyId > 0) {

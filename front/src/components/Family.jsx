@@ -6,12 +6,17 @@ const mapStateToProps = state => ({
   token: state.token
 })
 
+const h2 = (text) => (
+  <h2 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h2>
+)
+
 class Family extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       members: [],
       newMemberEmail: '',
+      newMemberRole: '',
       children:[],
       newChildrenFirstname: ''
     }
@@ -47,7 +52,7 @@ class Family extends React.Component {
       body: JSON.stringify({
         email: this.state.newMemberEmail,
         family_id: this.props.match.params.id,
-        role: this.props.match.params.id,
+        role: this.state.newMemberRole,
       })
     })
       .then(response => response.json())
@@ -55,6 +60,7 @@ class Family extends React.Component {
         this.setState(prevState => ({
           members: [...prevState.members, data],
           newMemberEmail: '',
+          newMemberRole: '',
         }))
       })
   }
@@ -104,20 +110,53 @@ class Family extends React.Component {
     this.setState({ children })
   }
 
+  deleteMember (email) {
+    axios(`http://localhost:8000/families/${this.props.match.params.id}/users`, { 
+    method:"delete", 
+    data: {email},
+    headers: {
+      'Authorization': this.props.token
+    }})
+      .then(response => {
+        if (response.status === 200) {
+          this.removeMember(email)
+        }
+      })
+  };
+
+  removeMember(email) {
+    const members = this.state.members.filter((members) => {
+      return members.email !== email
+    })
+    this.setState({ members })
+  }
+
   render() {
     return (
-      <div>
-      <ul>
-        <li>
-          <input type="email" placeholder="jdoe@mail.com" onChange={e => this.setState({newMemberEmail: e.target.value})} value={this.state.newMemberEmail} />
-          <button onClick={this.addMember}>+</button>
+      <div className="flex:column">
+      <h1 className="space-size:s space:inset title text:center">famille {this.props.location.state.familyName}</h1>
+      {h2('Membres')}
+      <ul className="space:inset text:center" style={{listStyleType: 'none'}}>
+        <li className="flex:row">
+          <div className="flex:column flex-cross:stretch flex:1 space:inline">
+            <div className="flex:row flex-cross:center space:stack">
+              <label for="email" className="space:inline">email</label>
+              <input id="email" className="flex:1 space:inset-squish" type="email" placeholder="jdoe@mail.com" onChange={e => this.setState({newMemberEmail: e.target.value})} value={this.state.newMemberEmail} />
+            </div>
+            <div className="flex:row flex-cross:center space:stack">
+              <label for="role" className="space:inline">rôle</label>
+              <input id="role" className="flex:1 space:inset-squish" type="text" placeholder="parent, nounou..." onChange={e => this.setState({newMemberRole: e.target.value})} value={this.state.newMemberRole} />
+            </div>
+          </div>
+          <button className="flex-self:center space:inset-squish space:stack" onClick={this.addMember}>+</button>
         </li>
         {
           React.Children.toArray(
             this.state.members.map(
               member => (
-                <li>
-                  {member.email}<button>-</button>
+                <li className="space:stack">
+                  <span className="space:inline">{member.email} ({member.role})</span>
+                  <button className="space:inset-squish" onClick={()=> {this.deleteMember(member.email)}}>-</button>
                 </li>
               )
             )
@@ -125,17 +164,20 @@ class Family extends React.Component {
         }
       </ul>
 
-      <ul>
-      <li>
-        <input type="firstname" placeholder="prénom enfant" onChange={e => this.setState({newChildrenFirstname: e.target.value})} value={this.state.newChildrenFirstname} />
-        <button onClick={this.addChild}>+</button>
+      {h2('Enfants')}
+      <ul className="space:inset text:center" style={{listStyleType: 'none'}}>
+      <li className="flex:row flex-cross:center space:stack">
+        <label for="firstname" className="space:inline">prénom</label>
+        <input id="firstname" className="flex:1 space:inset-squish space:inline" type="text" placeholder="Chloé, Paul..." onChange={e => this.setState({newChildrenFirstname: e.target.value})} value={this.state.newChildrenFirstname} />
+        <button className="flex-self:center space:inset-squish" onClick={this.addChild}>+</button>
       </li>
       {
         React.Children.toArray(
           this.state.children.map(
             child => (
-              <li>
-                {child.firstname}<button onClick={()=> {this.deleteChild(child.id)}}>-</button>
+              <li className="display:inline-block space:stack">
+                <span className="space-size:s space:inline">{child.firstname}</span>
+                <button className="space:inset-squish space:inline" onClick={()=> {this.deleteChild(child.id)}}>-</button>
               </li>
             )
           )
