@@ -156,14 +156,30 @@ app.delete("/families/:id/users", (req, res) => {
 
 
 app.get("/events", (req, res) => {
-  database.query("SELECT * from event", (err, results) => {
-    console.log(results);
-    if (err) {
-      res.status(500).send("Erreur lors de la récupération des events");
-    } else {
-      res.json(results);
-    }
-  });
+  const familyId = req.query.filter;
+  if(familyId > 0) {
+    database.query(
+      "SELECT * from event where family_id = ?",
+      familyId,
+      (err, result) => {
+        console.log("query:", familyId);
+        console.log(result);
+        if (err) {
+          res.status(500).send("Erreur lors de la récupération des events");
+        } else {
+          res.json(result);
+        }
+      }
+    )
+  } else {
+    database.query("SELECT * from event", (err, results) => {
+      if (err) {
+        res.status(500)
+      } else {
+        res.json(results)
+      }
+    })
+  }
 });
 
 app.get("/events/:id", (req, res) => {
@@ -296,13 +312,19 @@ app.post("/login", (req, res) => {
 
 // ROUTES TODO
 
-app.get("/todos", (req, res) => {
-  database.query("SELECT * from todo", (err, results) => {
-    console.log(results);
+app.get("/todos", verifyToken, (req, res) => {
+  jwt.sign(req.token, myKey, (err, authData) => {
     if (err) {
-      res.status(500).send("Erreur lors de la récupération des todos");
+      res.send(401);
     } else {
-      res.json(results);
+      database.query("SELECT * from todo", (err, results) => {
+        console.log(results);
+        if (err) {
+          res.status(500).send("Erreur lors de la récupération des todos");
+        } else {
+          res.json(results);
+        }
+      });
     }
   });
 });
@@ -344,57 +366,62 @@ app.post("/todos", (req, res) => {
   });
 });
 
-
-  //ROUTES CHILDREN
+//ROUTES CHILDREN
 
 app.get("/children", verifyToken, (req, res) => {
   jwt.verify(req.token, myKey, (err, authData) => {
-    console.log("authData:",authData)
-    if(err){
-      res.send(401)
+    console.log("authData:", authData);
+    if (err) {
+      res.send(401);
     } else {
-      database.query("SELECT child.firstname, child.id FROM child JOIN family ON child.family_id=family.id WHERE family_id=?", 
-          req.headers["id"], 
-         (err, results) => {
-          console.log('err:', err)
-          console.log('results:', results)
-        if (err) {
-          res.status(500)
-            .send("Erreur lors de la récupération des enfants");
-        } else {
-          res.json(results);
+      database.query(
+        "SELECT child.firstname, child.id FROM child JOIN family ON child.family_id=family.id WHERE family_id=?",
+        req.headers["id"],
+        (err, results) => {
+          console.log("err:", err);
+          console.log("results:", results);
+          if (err) {
+            res.status(500).send("Erreur lors de la récupération des enfants");
+          } else {
+            res.json(results);
+          }
         }
-      })
+      );
     }
-  })
+  });
 });
 
-
-  app.post("/children", verifyToken, (req, res) => {
-    jwt.verify(req.token, myKey, (err, authData) => {
-      if (err) {
-        res.send(401);
-      } else {
-        const formAdd = req.body;
-        database.query("INSERT INTO child SET ?", formAdd, (err, result) => {
-          if (err) {
-            console.log(err);
-            res.status(500).send("Error saving a new child");
-          } else {
-            res.status(201).send({ ...formAdd, id: result.insertId });
-          }
-        });
-      }
-    });
-  });
-
-app.delete("/children/:id", (req, res) => {
-  const idChild = req.params.id;
-  database.query("DELETE FROM child WHERE id=?", [idChild], err => {
+app.post("/children", verifyToken, (req, res) => {
+  jwt.verify(req.token, myKey, (err, authData) => {
     if (err) {
-      res.status(500).send("Error delete child");
+      res.send(401);
     } else {
-      res.sendStatus(200);
+      const formAdd = req.body;
+      database.query("INSERT INTO child SET ?", formAdd, (err, result) => {
+        if (err) {
+          console.log(err);
+          res.status(500).send("Error saving a new child");
+        } else {
+          res.status(201).send({ ...formAdd, id: result.insertId });
+        }
+      });
+    }
+  });
+});
+
+app.delete("/children/:id", verifyToken, (req, res) => {
+  jwt.verify(req.token, myKey, (err, authData) => {
+    if (err) {
+      res.send(401);
+    } else {
+      const idChild = req.params.id;
+      database.query("DELETE FROM child WHERE id=?", [idChild], err => {
+        if (err) {
+          res.status(500).send("Error delete child");
+        } else {
+          res.sendStatus(200);
+        }
+      });
     }
   });
 });
