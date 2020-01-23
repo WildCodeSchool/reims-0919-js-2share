@@ -140,7 +140,7 @@ class RegisterForm extends React.Component {
               required
             />
           </div>
-          <button className="space:inset-squish" type="button">INSCRIPTION</button>
+          <button className="space:inset-squish" type="submit">INSCRIPTION</button>
         </form>
       </div>
     );
