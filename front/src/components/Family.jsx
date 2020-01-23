@@ -104,6 +104,27 @@ class Family extends React.Component {
     this.setState({ children })
   }
 
+  deleteMember (email) {
+    axios(`http://localhost:8000/families/${this.props.match.params.id}/users`, { 
+    method:"delete", 
+    data: {email},
+    headers: {
+      'Authorization': this.props.token
+    }})
+      .then(response => {
+        if (response.status === 200) {
+          this.removeMember(email)
+        }
+      })
+  };
+
+  removeMember(email) {
+    const members = this.state.members.filter((members) => {
+      return members.email !== email
+    })
+    this.setState({ members })
+  }
+
   render() {
     return (
       <div>
@@ -117,7 +138,7 @@ class Family extends React.Component {
             this.state.members.map(
               member => (
                 <li>
-                  {member.email}<button>-</button>
+                  {member.email}<button onClick={()=> {this.deleteMember(member.email)}}>-</button>
                 </li>
               )
             )
