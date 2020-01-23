@@ -18,8 +18,8 @@ const mapStateToProps = state => ({
   token: state.token
 });
 
-const h2 = (text) => (
-  <h2 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h2>
+const h2 = (image) => (
+  <h2 className="flex-self:stretch text:center space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{image}</h2>
 )
 
 class App extends React.Component {
@@ -81,14 +81,14 @@ class App extends React.Component {
             path="/login"
             render={props => (
               <>
-                {h2('2Share')}
+                {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
                 <LoginForm {...props} getFamilies={this.getFamilies} />
                 <Link className="space:inset text:center" to="/register">pas encore de compte ?</Link>
               </>
             )}
           ></Route>
           <Route exact path="/register">
-            {h2('2Share')}
+            {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
             <RegisterForm />
             <Link className="space:inset text:center" to="/login">se connecter</Link>
           </Route>
