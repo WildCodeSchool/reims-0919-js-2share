@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const h2 = (text) => (
-  <h2 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h2>
+const h2 = (image) => (
+  <h2 className="flex-self:stretch text:center space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{image}</h2>
 )
 
 const FamilyList = ({ families, createFamily, token }) => {
@@ -10,7 +10,7 @@ const FamilyList = ({ families, createFamily, token }) => {
 
   return (
     <>
-    {h2('2Share')}
+    {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
     <ul className="space:inset" style={{listStyleType: 'none'}}>
       <li className="flex:row flex-cross:center space:stack">
         <label for="family" className="space:inline">famille</label>
