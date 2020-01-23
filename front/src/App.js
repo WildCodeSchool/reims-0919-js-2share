@@ -26,11 +26,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       families: []
     };
     this.createFamily = this.createFamily.bind(this);
     this.getFamilies = this.getFamilies.bind(this);
+  }
+
+  optionSelector = (e) => {
+    if(e.target.value === 0 || e.target.value === undefined || e.target.value === null) {
+     console.log("Im 0")
+    } else {
+      fetch(`http://localhost:8000/events?filter=${e.target.value}`)
+    }
   }
 
   getFamilies() {
@@ -114,7 +121,7 @@ class App extends React.Component {
                 </Route>
 
                 <Route path="/">
-                  <select className="space-size:s space:inset title">
+                  <select className="space-size:s space:inset title" onChange={this.optionSelector}>
                     <option value="0">voir tout</option>
                     {React.Children.toArray(
                       this.state.families.map(family => (
