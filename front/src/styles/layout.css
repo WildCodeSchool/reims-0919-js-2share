@@ -1,3 +1,11 @@
+.display\:inline {
+  display: inline;
+}
+
+.display\:inline-block {
+  display: inline-block;
+}
+
 .flex\:column {
   display: flex;
   flex-direction: column;
@@ -37,6 +45,14 @@
   justify-content: space-evenly;
 }
 
+.flex-self\:center {
+  align-self: center;
+}
+
+.flex-self\:end {
+  align-self: flex-end;
+}
+
 .flex-self\:stretch {
   align-self: stretch;
 }
@@ -44,9 +60,3 @@
 .flex\:1 {
   flex: 1;
 }
-
-.navLink {
-  color : #0155A6;
-  text-decoration:none;
-}
-
