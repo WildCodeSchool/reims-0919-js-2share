@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 
 
 class TodoList extends Component {
   deleteItem = (id) => {
-    Axios(`http://localhost:8000/todos/${id}`, {method:'delete'})
+    axios(`http://localhost:8000/todos/${id}`, {
+      method:'delete',
+      headers: {
+        'Authorization': this.props.token
+      }})
       .then(response => {
         if (response.status === 200) {
           this.props.removeItem(id)
@@ -14,13 +18,17 @@ class TodoList extends Component {
 
   render() {
     return(
-      <div className="list">{ React.Children.toArray(this.props.todos.map((todo) => {
-          return <div className="items">
+      <ul className="space:inset" style={{listStyleType: 'none'}}
+      
+      className="flex:column flex-cross:center space:stack">{ React.Children.toArray(this.props.todos.map((todo) => {
+          return <li className="space:inline">
+            <span className="space:inline">
             { todo.description }
-            <button className="btnDelete" onClick={() => { this.deleteItem(todo.id)}} >Supp</button>
-          </div>
+            </span>
+            <button className="space:inset-squish" onClick={() => { this.deleteItem(todo.id)}} >-</button>
+          </li>
         }))}
-      </div>
+      </ul>
 
     );
   }
