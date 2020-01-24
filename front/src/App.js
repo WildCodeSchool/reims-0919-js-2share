@@ -32,13 +32,13 @@ class App extends React.Component {
     this.getFamilies = this.getFamilies.bind(this);
   }
 
-  optionSelector = (e) => {
-    if(e.target.value === 0 || e.target.value === undefined || e.target.value === null) {
-     console.log("Im 0")
-    } else {
-      fetch(`http://localhost:8000/events?filter=${e.target.value}`)
-    }
-  }
+  // optionSelector = (e) => {
+  //   if(e.target.value === 0 || e.target.value === undefined || e.target.value === null) {
+  //    console.log("Im 0")
+  //   } else {
+  //     fetch(`http://localhost:8000/events?filter=${e.target.value}`)
+  //   }
+  // }
 
   getFamilies() {
     fetch("http://localhost:8000/families", {
@@ -83,14 +83,14 @@ class App extends React.Component {
               <>
                 {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
                 <LoginForm {...props} getFamilies={this.getFamilies} />
-                <Link className="space:inset text:center" to="/register">pas encore de compte ?</Link>
+                <Link className="space:inset text:center" to="/register">Pas encore de compte ?</Link>
               </>
             )}
           ></Route>
           <Route exact path="/register">
             {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
             <RegisterForm />
-            <Link className="space:inset text:center" to="/login">se connecter</Link>
+            <Link className="space:inset text:center" to="/login">Se connecter</Link>
           </Route>
           <Route exact path="/logout">
             <Redirect to="/" />
@@ -125,7 +125,7 @@ class App extends React.Component {
                     <option value="0">voir tout</option>
                     {React.Children.toArray(
                       this.state.families.map(family => (
-                        <option value={family.id}>famille {family.name}</option>
+                        <option value={family.id}>Famille {family.name}</option>
                       ))
                     )}
                   </select>
