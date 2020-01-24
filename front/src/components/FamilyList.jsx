@@ -18,7 +18,7 @@ const FamilyList = ({ families, createFamily, token }) => {
           id="family"
           className="space:inset-squish space:inline flex:1"
           type="text"
-          placeholder="Doe"
+          placeholder="DUPONT"
           onChange={e => setNewFamilyName(e.target.value)}
           value={newFamilyName}
         />
@@ -38,7 +38,7 @@ const FamilyList = ({ families, createFamily, token }) => {
             <Link className="flex:1 space:stack space:inset border:1" to={{
               pathname: `/families/${family.id}`,
               state: { familyName: family.name }
-            }}>famille {family.name}</Link>
+            }}>Famille: {family.name}</Link>
           </li>
         ))
       )}

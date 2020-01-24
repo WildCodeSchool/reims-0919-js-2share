@@ -157,9 +157,9 @@ class Event extends React.Component {
           />
         </div>
         <div className='button_change_period'>
-          <button onClick={this.changePeriod} >Garde 1/1</button>
-          <button onClick={this.changePeriod2} >Garde 2/2</button>
-          <button className='btn_newEvent' onClick={this.handleOpenModal}>+</button>
+          <button onClick={this.changePeriod} style={{fontSize: '3vh'}}>Garde 1/1</button>
+          <button onClick={this.changePeriod2} style={{fontSize: '3vh'}}>Garde 2/2</button>
+          <button className='btn_newEvent' onClick={this.handleOpenModal} style={{fontSize: '3vh'}}>+</button>
         </div>
         {h4('RAPPEL(S):')}
         <div className='event_list_container'>
@@ -177,23 +177,23 @@ class Event extends React.Component {
               <input className="flex:1 space:inset-squish" type='text' name="title" value={this.state.title} onChange={this.handleInputChange} />
             </div>
             <div className="flex:column flex-cross:center space:stack" >
-              <label className="space:stack" htmlFor="start-date">Start date :</label>
+              <label className="space:stack" htmlFor="start-date">Date de début :</label>
               <input className="flex:1 space:inset-squish" type='date' name="startDateEvent" value={this.state.startDateEvent} onChange={this.handleInputChange}/>
 
-              <label className="space:stack" htmlFor="start-hour">Start hour :</label>
+              <label className="space:stack" htmlFor="start-hour">Heure de début :</label>
               <input className="flex:1 space:inset-squish" type='time' name="startHourEvent" value={this.state.startHourEvent} onChange={this.handleInputChange} />
             </div>
             <div className="flex:column flex-cross:center space:stack" >
-              <label className="space:stack" htmlFor="end-date">End date :</label>
+              <label className="space:stack" htmlFor="end-date">Date de fin :</label>
               <input className="flex:1 space:inset-squish" type='date' name="endDateEvent" value={this.state.endDateEvent} onChange={this.handleInputChange}/>
               
-              <label className="space:stack" htmlFor="end-hour">End hour :</label>
+              <label className="space:stack" htmlFor="end-hour">Heure de fin :</label>
               <input className="flex:1 space:inset-squish" type='time' name="endHourEvent" value={this.state.endHourEvent} onChange={this.handleInputChange}/>
               </div>
-              <div>
-                <button onClick={this.addEvent}>Valider</button>
+              <div className='button_change_period'>
+              <button onClick={this.handleCloseModal} style={{fontSize: '3vh'}} >Fermer</button>
+                <button onClick={this.addEvent} style={{fontSize: '3vh'}} >Valider</button>
               </div>
-              <button onClick={this.handleCloseModal}>Fermer</button>
             </form>
           </Modal>
         </div>
