@@ -18,6 +18,9 @@ Date.prototype.getWeek = function() {
 const h2 = (text) => (
   <h2 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h2>
 )
+const h4 = (text) => (
+  <h4 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h4>
+)
 
 
 class Event extends React.Component {
@@ -88,7 +91,7 @@ class Event extends React.Component {
         title: this.state.title,
         date_start: this.state.startDateEvent + ' ' + this.state.startHourEvent + ':00',
         date_end: this.state.endDateEvent + ' ' + this.state.endHourEvent + ':00',
-        family_id: event.target.value
+        family_id: 1
       })
       .then(res => {
         alert("Vos dates ont bien été enregistrées");
@@ -114,7 +117,6 @@ class Event extends React.Component {
   }
 
   definePeriod = ({ date, view }) => {
-    console.log('lol')
     if (this.state.parent1.includes(date.getWeek() )){
       return "parent1"
     }
@@ -153,19 +155,21 @@ class Event extends React.Component {
             tileClassName={this.definePeriod}
           />
         </div>
-        <button onClick={this.changePeriod} >Garde 1/1</button>
-        <button onClick={this.changePeriod2} >Garde 2/2</button>
-        <h4 className='event_title'>Rappels :</h4>
+        <div className='button_change_period'>
+          <button onClick={this.changePeriod} >Garde 1/1</button>
+          <button onClick={this.changePeriod2} >Garde 2/2</button>
+          <button className='btn_newEvent' onClick={this.handleOpenModal}>+</button>
+        </div>
+        {h4('RAPPEL(S):')}
         <div className='event_list_container'>
          <EventList className='event_list' events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
         </div>
-        <button className='btn_newEvent' onClick={this.handleOpenModal}>Ajouter un<br/>évènement</button>
         <div>
           <Modal 
             className='modal_style'
             isOpen={this.state.showModal}
           >
-            <h3>Nouvel évènement</h3>
+            {h4('NOUVEL EVENEMENT')}
             <form className="flex:column flex-both:center" action="#">
             <div classname="flex:column flex-cross:center space:stack">
               <label className="space:stack" htmlFor="titre">Titre :</label>

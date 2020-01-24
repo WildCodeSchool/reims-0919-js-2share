@@ -1,14 +1,21 @@
 
 .parent1 {
-  background-color: grey !important;
+  background-color: #FDEDEC !important;
   color : black;
 }
 
 .parent2 {
-  background-color:rgb(182, 162, 162);
+  background-color:#EAF2F8 ! important;
   color : black
 }
 
 .modal_style {
   text-align: center;
+}
+
+.button_change_period {
+  margin: 10px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-around;
 }
