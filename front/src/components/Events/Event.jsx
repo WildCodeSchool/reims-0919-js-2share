@@ -15,6 +15,10 @@ Date.prototype.getWeek = function() {
   );
 };
 
+const h2 = (text) => (
+  <h2 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h2>
+)
+
 
 class Event extends React.Component {
   constructor() {
@@ -109,22 +113,18 @@ class Event extends React.Component {
       })
   }
 
-  // sergio = ({ date, view }) => {
-  //   return date.getDate() > 15 ? "red" : "blue";
-  // };
-
   definePeriod = ({ date, view }) => {
     console.log('lol')
     if (this.state.parent1.includes(date.getWeek() )){
-      return "red"
+      return "parent1"
     }
     if (this.state.parent2.includes(date.getWeek() )){
-      return "blue"
+      return "parent2"
     }
     else{
-      return "green"
+      return "undefined_period"
     }
-    }
+  }
 
   changePeriod () {
     this.setState({
@@ -141,8 +141,8 @@ class Event extends React.Component {
    
   render() {
     return (
-      <div className="Bodyevent">
-        <h2 className='event_title'>Calendrier Partagé</h2>
+      <div>
+        {h2('AGENDA')}
         <div className='main_calendar'>
           <Calendar
             onChange={this.onChange}
@@ -153,8 +153,8 @@ class Event extends React.Component {
             tileClassName={this.definePeriod}
           />
         </div>
-        <button onClick={this.changePeriod} >Mode 1</button>
-        <button onClick={this.changePeriod2} >Mode 2</button>
+        <button onClick={this.changePeriod} >Garde 1/1</button>
+        <button onClick={this.changePeriod2} >Garde 2/2</button>
         <h4 className='event_title'>Rappels :</h4>
         <div className='event_list_container'>
          <EventList className='event_list' events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
@@ -166,21 +166,25 @@ class Event extends React.Component {
             isOpen={this.state.showModal}
           >
             <h3>Nouvel évènement</h3>
-            <form className='form_style' action="#">
-              <label htmlFor="titre">Titre :</label>
-              <input type='text' name="title" value={this.state.title} onChange={this.handleInputChange} />
+            <form className="flex:column flex-both:center" action="#">
+            <div classname="flex:column flex-cross:center space:stack">
+              <label className="space:stack" htmlFor="titre">Titre :</label>
+              <input className="flex:1 space:inset-squish" type='text' name="title" value={this.state.title} onChange={this.handleInputChange} />
+            </div>
+            <div className="flex:column flex-cross:center space:stack" >
+              <label className="space:stack" htmlFor="start-date">Start date :</label>
+              <input className="flex:1 space:inset-squish" type='date' name="startDateEvent" value={this.state.startDateEvent} onChange={this.handleInputChange}/>
 
-              <label htmlFor="start-date">Start date :</label>
-              <input type='date' name="startDateEvent" value={this.state.startDateEvent} onChange={this.handleInputChange}/>
-
-              <label htmlFor="start-hour">Start hour :</label>
-              <input type='time' name="startHourEvent" value={this.state.startHourEvent} onChange={this.handleInputChange} />
-
-              <label htmlFor="end-date">End date :</label>
-              <input type='date' name="endDateEvent" value={this.state.endDateEvent} onChange={this.handleInputChange}/>
+              <label className="space:stack" htmlFor="start-hour">Start hour :</label>
+              <input className="flex:1 space:inset-squish" type='time' name="startHourEvent" value={this.state.startHourEvent} onChange={this.handleInputChange} />
+            </div>
+            <div className="flex:column flex-cross:center space:stack" >
+              <label className="space:stack" htmlFor="end-date">End date :</label>
+              <input className="flex:1 space:inset-squish" type='date' name="endDateEvent" value={this.state.endDateEvent} onChange={this.handleInputChange}/>
               
-              <label htmlFor="end-hour">End hour :</label>
-              <input type='time' name="endHourEvent" value={this.state.endHourEvent} onChange={this.handleInputChange}/>
+              <label className="space:stack" htmlFor="end-hour">End hour :</label>
+              <input className="flex:1 space:inset-squish" type='time' name="endHourEvent" value={this.state.endHourEvent} onChange={this.handleInputChange}/>
+              </div>
               <div>
                 <button onClick={this.addEvent}>Valider</button>
               </div>

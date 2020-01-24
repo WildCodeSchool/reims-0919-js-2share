@@ -1,14 +1,14 @@
-/*button {
-  background-color: cornflowerblue;
-  border-radius: 10%;
-}*/
 
-.red {
+.parent1 {
   background-color: grey !important;
+  color : black;
+}
+
+.parent2 {
+  background-color:rgb(182, 162, 162);
   color : black
 }
 
-.blue{
-  background-color:rgb(182, 162, 162);
-  color : black
+.modal_style {
+  text-align: center;
 }
