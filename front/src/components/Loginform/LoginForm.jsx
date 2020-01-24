@@ -46,7 +46,7 @@ class LoginForm extends React.Component {
     return (
       <div className="flex:column flex-cross:center">
         <div className="flex:column flex-cross:center space:stack">
-          <label htmlFor="email" className="space:stack">email</label>
+          <label htmlFor="email" className="space:stack">Email</label>
           <input
             className="flex:1 space:inset-squish"
             type="email"
@@ -59,7 +59,7 @@ class LoginForm extends React.Component {
         </div>
 
         <div className="flex:column flex-cross:center space:stack">
-          <label htmlFor="password" className="space:stack">mot de passe</label>
+          <label htmlFor="password" className="space:stack">Mot de passe</label>
           <input
             className="flex:1 space:inset-squish"
             type="password"

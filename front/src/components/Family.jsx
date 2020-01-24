@@ -134,17 +134,17 @@ class Family extends React.Component {
   render() {
     return (
       <div className="flex:column">
-      <h1 className="space-size:s space:inset title text:center">famille {this.props.location.state.familyName}</h1>
+      <h1 className="space-size:s space:inset title text:center">Famille {this.props.location.state.familyName}</h1>
       {h2('Membres')}
       <ul className="space:inset text:center" style={{listStyleType: 'none'}}>
         <li className="flex:row">
           <div className="flex:column flex-cross:stretch flex:1 space:inline">
             <div className="flex:row flex-cross:center space:stack">
-              <label htmlFor="email" className="space:inline">email</label>
+              <label htmlFor="email" className="space:inline">Email</label>
               <input id="email" className="flex:1 space:inset-squish" type="email" placeholder="jdoe@mail.com" onChange={e => this.setState({newMemberEmail: e.target.value})} value={this.state.newMemberEmail} />
             </div>
             <div className="flex:row flex-cross:center space:stack">
-              <label htmlFor="role" className="space:inline">rôle</label>
+              <label htmlFor="role" className="space:inline">Rôle</label>
               <input id="role" className="flex:1 space:inset-squish" type="text" placeholder="parent, nounou..." onChange={e => this.setState({newMemberRole: e.target.value})} value={this.state.newMemberRole} />
             </div>
           </div>
@@ -167,7 +167,7 @@ class Family extends React.Component {
       {h2('Enfants')}
       <ul className="space:inset text:center" style={{listStyleType: 'none'}}>
       <li className="flex:row flex-cross:center space:stack">
-        <label htmlFor="firstname" className="space:inline">prénom</label>
+        <label htmlFor="firstname" className="space:inline">Prénom</label>
         <input id="firstname" className="flex:1 space:inset-squish space:inline" type="text" placeholder="Chloé, Paul..." onChange={e => this.setState({newChildrenFirstname: e.target.value})} value={this.state.newChildrenFirstname} />
         <button className="flex-self:center space:inset-squish" onClick={this.addChild}>+</button>
       </li>
