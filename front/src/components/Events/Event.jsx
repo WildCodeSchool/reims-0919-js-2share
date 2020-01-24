@@ -84,14 +84,15 @@ class Event extends React.Component {
 
   // add event method
   addEvent = (event) => {
+    event.preventDefault()
     axios.post("http://localhost:8000/events", {
         title: this.state.title,
         date_start: this.state.startDateEvent + ' ' + this.state.startHourEvent + ':00',
         date_end: this.state.endDateEvent + ' ' + this.state.endHourEvent + ':00',
-        family_id: event.target.value
+        family_id: 1
       })
       .then(res => {
-        alert("Vos dates ont bien été enregistrées");
+        this.setState({events : [...this.state.events, res.data] }, () => alert("Vos dates ont bien été enregistrées"));
       });
   };
 

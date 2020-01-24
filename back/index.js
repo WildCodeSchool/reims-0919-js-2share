@@ -204,7 +204,7 @@ app.post("/events", (req, res) => {
       console.log(err);
       res.status(500).send("Error saving a new event");
     } else {
-      res.sendStatus(200);
+      res.status(201).send({...formAdd, id : results.insertId});
     }
   });
 });
