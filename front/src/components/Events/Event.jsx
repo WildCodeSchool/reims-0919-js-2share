@@ -6,6 +6,14 @@ import axios from 'axios';
 import Modal from 'react-modal';
 // import { PostButton } from '../post-button-and-function/PostButton.component';
 
+// eslint-disable-next-line
+Date.prototype.getWeek = function() {
+  var onejan = new Date(this.getFullYear(), 0, 1);
+  var millisecsInDay = 86400000;
+  return Math.ceil(
+    ((this - onejan) / millisecsInDay + onejan.getDay() + 1) / 7
+  );
+};
 
 
 class Event extends React.Component {
@@ -19,12 +27,15 @@ class Event extends React.Component {
       endDateEvent:'',
       endHourEvent:'',
       startHourEvent:'',
-      title:''
+      title:'',
+      parent1:[],
+      parent2:[]
     }
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.checkEvent = this.checkEvent.bind(this);
+    this.changePeriod=this.changePeriod.bind(this)
   }
 
   getEvent = () =>{
@@ -96,6 +107,30 @@ class Event extends React.Component {
           }
       })
   }
+
+  // sergio = ({ date, view }) => {
+  //   return date.getDate() > 15 ? "red" : "blue";
+  // };
+
+  sergio = ({ date, view }) => {
+    console.log('lol')
+    if (this.state.parent1.includes(date.getWeek() )){
+      return "red"
+    }
+    if (this.state.parent2.includes(date.getWeek() )){
+      return "blue"
+    }
+    else{
+      return "green"
+    }
+    }
+
+    changePeriod () {
+      this.setState({
+        parent1:[1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51],
+        parent2:[2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52]
+      })
+    }
    
   render() {
     return (
@@ -108,6 +143,7 @@ class Event extends React.Component {
             selectRange={false} 
             locale={'fr-FR'}
             calendarType={"ISO 8601"}
+            tileClassName={this.sergio}
           />
         </div>
         <h4 className='event_title'>Rappels :</h4>
@@ -115,6 +151,9 @@ class Event extends React.Component {
          <EventList className='event_list' events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
         </div>
         <button className='btn_newEvent' onClick={this.handleOpenModal}>Ajouter un<br/>évènement</button>
+
+        <button onClick={this.changePeriod} >Mode 1</button>
+
         <div>
           <Modal 
             className='modal_style'

@@ -2,3 +2,13 @@
   background-color: cornflowerblue;
   border-radius: 10%;
 }*/
+
+.red {
+  background-color: grey !important;
+  color : black
+}
+
+.blue{
+  background-color:rgb(182, 162, 162);
+  color : black
+}
