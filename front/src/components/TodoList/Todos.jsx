@@ -61,7 +61,7 @@ export default class Todos extends Component {
       <div>
         {h2('TACHES A REALISER')}
         <ul className="space:inset text:center" style={{listStyleType: 'none'}}>
-          <label for="tâche" className="space:inline">tâche</label>
+          <label for="tâche" className="space:inline">Tâche</label>
           <input
             id="tâche"
             className="flex:1 space:inset-squish space:inline"
