@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { storeToken } from "../../redux/reducer";
+import cogoToast from "cogo-toast";
 
 import axios from "axios";
 
@@ -27,7 +28,7 @@ class LoginForm extends React.Component {
   };
 
   componentDidUpdate() {
-    this.props.token && this.props.getFamilies()
+    this.props.token && this.props.getFamilies();
   }
 
   handleSubmit = () => {
@@ -39,6 +40,9 @@ class LoginForm extends React.Component {
       .then(response => {
         this.props.storeToken(response.data.token);
       })
+      .catch(e => {
+        cogoToast.error("Identifiant ou mot de passe incorrect");
+      });
   };
 
   render() {
@@ -46,7 +50,9 @@ class LoginForm extends React.Component {
     return (
       <div className="flex:column flex-cross:center">
         <div className="flex:column flex-cross:center space:stack">
-          <label htmlFor="email" className="space:stack">Email</label>
+          <label htmlFor="email" className="space:stack">
+            Email
+          </label>
           <input
             className="flex:1 space:inset-squish"
             type="email"
@@ -59,7 +65,9 @@ class LoginForm extends React.Component {
         </div>
 
         <div className="flex:column flex-cross:center space:stack">
-          <label htmlFor="password" className="space:stack">Mot de passe</label>
+          <label htmlFor="password" className="space:stack">
+            Mot de passe
+          </label>
           <input
             className="flex:1 space:inset-squish"
             type="password"
@@ -71,7 +79,11 @@ class LoginForm extends React.Component {
             required
           />
         </div>
-        <button className="space:inset-squish" type="button" onClick={this.handleSubmit}>
+        <button
+          className="space:inset-squish"
+          type="button"
+          onClick={this.handleSubmit}
+        >
           CONNEXION
         </button>
       </div>
