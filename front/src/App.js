@@ -12,15 +12,25 @@ import Todos from "./components/TodoList/Todos";
 import FamilyList from "./components/FamilyList";
 import Family from "./components/Family";
 import NavBar from "./components/NavBar";
-
+import cogoToast from "cogo-toast";
 
 const mapStateToProps = state => ({
   token: state.token
 });
 
-const h2 = (image) => (
-  <h2 className="flex-self:stretch text:center space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{image}</h2>
-)
+const h2 = image => (
+  <h2
+    className="flex-self:stretch text:center space:stack title"
+    style={{
+      backgroundColor: "var(--primary-color)",
+      background:
+        "linear-gradient(var(--primary-color), 10%, var(--secondary-color))",
+      color: "var(--primary-text-color)"
+    }}
+  >
+    {image}
+  </h2>
+);
 
 class App extends React.Component {
   constructor(props) {
@@ -43,7 +53,7 @@ class App extends React.Component {
   getFamilies() {
     fetch("http://localhost:8000/families", {
       headers: {
-        "Authorization": this.props.token,
+        Authorization: this.props.token,
         "Content-Type": "application/json"
       }
     })
@@ -52,20 +62,24 @@ class App extends React.Component {
       .then(() => this.props.history.push("/families"));
   }
   createFamily(name) {
-    fetch("http://localhost:8000/families", {
-      method: "post",
-      headers: {
-        "Authorization": this.props.token,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ name })
-    })
-      .then(response => response.json())
-      .then(data =>
-        this.setState(prevState => ({
-          families: [...prevState.families, data]
-        }))
-      );
+    if (name === undefined || name === null || name === "") {
+      cogoToast.warn("Veuillez entrer un nom de Famille");
+    } else {
+      fetch("http://localhost:8000/families", {
+        method: "post",
+        headers: {
+          Authorization: this.props.token,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ name })
+      })
+        .then(response => response.json())
+        .then(data =>
+          this.setState(prevState => ({
+            families: [...prevState.families, data]
+          }))
+        );
+    }
   }
 
   render() {
@@ -81,16 +95,34 @@ class App extends React.Component {
             path="/login"
             render={props => (
               <>
-                {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
+                {h2(
+                  <img
+                    src="logo_toshare_white.png"
+                    height="70px"
+                    width="200px"
+                    alt="logo"
+                  />
+                )}
                 <LoginForm {...props} getFamilies={this.getFamilies} />
-                <Link className="space:inset text:center" to="/register">Pas encore de compte ?</Link>
+                <Link className="space:inset text:center" to="/register">
+                  Pas encore de compte ?
+                </Link>
               </>
             )}
           ></Route>
           <Route exact path="/register">
-            {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
+            {h2(
+              <img
+                src="logo_toshare_white.png"
+                height="70px"
+                width="200px"
+                alt="logo"
+              />
+            )}
             <RegisterForm />
-            <Link className="space:inset text:center" to="/login">Se connecter</Link>
+            <Link className="space:inset text:center" to="/login">
+              Se connecter
+            </Link>
           </Route>
           <Route exact path="/logout">
             <Redirect to="/" />
@@ -121,7 +153,10 @@ class App extends React.Component {
                 </Route>
 
                 <Route path="/">
-                  <select className="space-size:s space:inset title" onChange={this.optionSelector}>
+                  <select
+                    className="space-size:s space:inset title"
+                    onChange={this.optionSelector}
+                  >
                     <option value="0">voir tout</option>
                     {React.Children.toArray(
                       this.state.families.map(family => (

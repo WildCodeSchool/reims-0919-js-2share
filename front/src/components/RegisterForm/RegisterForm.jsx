@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import cogoToast from "cogo-toast";
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -32,24 +33,27 @@ class RegisterForm extends React.Component {
         })
         .then(res => {
           if (res.error) {
-            alert(res.error);
+            cogoToast.error(res.error);
           } else {
-            alert("Compte créé");
+            cogoToast.success("Compte créé");
           }
         })
         .catch(e => {
           console.error(e);
-          alert("Erreur lors de l'envoi du formulaire d'inscription");
+          cogoToast.error("Erreur lors de l'envoi du formulaire d'inscription");
         });
     } else {
-      alert("Le mot de passe ne correspond pas");
+      cogoToast.error("Le mot de passe ne correspond pas");
     }
   };
 
   render() {
     return (
       <div>
-        <form className="flex:column flex-both:center" onSubmit={this.submitForm}>
+        <form
+          className="flex:column flex-both:center"
+          onSubmit={this.submitForm}
+        >
           <div className="flex:column flex-cross:center space:stack">
             <label className="space:stack" htmlFor="lastname">
               Nom
@@ -140,7 +144,9 @@ class RegisterForm extends React.Component {
               required
             />
           </div>
-          <button className="space:inset-squish" type="submit">INSCRIPTION</button>
+          <button className="space:inset-squish" type="submit">
+            INSCRIPTION
+          </button>
         </form>
       </div>
     );
