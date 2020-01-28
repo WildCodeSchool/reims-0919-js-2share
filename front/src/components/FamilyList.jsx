@@ -11,19 +11,21 @@ const FamilyList = ({ families, createFamily, token }) => {
   return (
     <>
     {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
+    <p className="text:center space:inline" style={{fontSize: '17px', fontWeight: 'bold'}}> Créez une famille ici :</p>
     <ul className="space:inset" style={{listStyleType: 'none'}}>
       <li className="flex:row flex-cross:center space:stack">
-        <label htmlFor="family" className="space:inline">Famille</label>
+        <label htmlFor="family" className="space:inline"></label>
         <input
           id="family"
           className="space:inset-squish space:inline flex:1"
           type="text"
-          placeholder="DUPONT"
+          placeholder="Nom de famille..."
           onChange={e => setNewFamilyName(e.target.value)}
           value={newFamilyName}
         />
         <button
-          className="flex-self:center space:inset-squish"
+          className="flex-self:center space:inset-squish space-size:s"
+          style={{fontWeight:'bold', fontSize:'20px'}}
           onClick={() => {
             createFamily(newFamilyName);
             setNewFamilyName("");
@@ -35,7 +37,9 @@ const FamilyList = ({ families, createFamily, token }) => {
       {React.Children.toArray(
         families.map(family => (
           <li className="flex:row">
-            <Link className="flex:1 space:stack space:inset border:1" to={{
+            <Link className="flex:1 space:stack space:inset border:1" 
+            style={{borderRadius: '15px'}}
+            to={{
               pathname: `/families/${family.id}`,
               state: { familyName: family.name }
             }}>Famille: {family.name}</Link>

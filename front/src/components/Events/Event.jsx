@@ -276,8 +276,10 @@ class Event extends React.Component {
   render() {
     return (
       <div>
-        {h2("AGENDA")}
-        <div className="main_calendar">
+
+        {h2('AGENDA')}
+        <div className="flex-self:center space:inset-squish space-size:m">
+
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
@@ -287,20 +289,16 @@ class Event extends React.Component {
             tileClassName={this.definePeriod}
           />
         </div>
-        <div className="button_change_period">
-          <button onClick={this.changePeriod} style={{ fontSize: "3vh" }}>
-            Garde 1/1
-          </button>
-          <button onClick={this.changePeriod2} style={{ fontSize: "3vh" }}>
-            Garde 2/2
-          </button>
-          <button
-            className="btn_newEvent"
-            onClick={this.handleOpenModal}
-            style={{ fontSize: "3vh" }}
-          >
-            +
-          </button>
+
+        <div className='button_change_period'>
+          <button onClick={this.changePeriod} style={{fontSize: '3vh'}}>Garde 1/1</button>
+          <button onClick={this.changePeriod2} style={{fontSize: '3vh'}}>Garde 2/2</button>
+          <button 
+          className="flex-self:center space:inset-squish space-size:s"
+          style={{fontWeight:'bold', fontSize:'20px'}} 
+          onClick={this.handleOpenModal} 
+          >+</button>
+
         </div>
         {h4("RAPPEL(S):")}
         <div className="event_list_container">

@@ -20,12 +20,16 @@ class TodoList extends Component {
     return(
       <ul className="space:inset" style={{listStyleType: 'none'}}
       
-      className="flex:column flex-cross:center space:stack">{ React.Children.toArray(this.props.todos.map((todo) => {
-          return <li className="space:inline">
+      className="flex:column flex-cross:stretch space:inset">{ React.Children.toArray(this.props.todos.map((todo) => {
+          return <li style={{listStyle:'square', marginLeft: '10px'}}>
             <span className="space:inline">
             { todo.description }
             </span>
-            <button className="space:inset-squish" onClick={() => { this.deleteItem(todo.id)}} >-</button>
+
+            <button 
+            className="flex-self:center space:inset-squish space-size:s"
+            style={{fontWeight:'bold', fontSize:'20px'}} 
+            onClick={() => { this.deleteItem(todo.id)}} >-</button>
           </li>
         }))}
       </ul>
