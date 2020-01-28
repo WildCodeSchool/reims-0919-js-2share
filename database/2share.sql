@@ -49,7 +49,7 @@ CREATE TABLE user_family
 CREATE TABLE todo
 (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  description VARCHAR(50),
+  description VARCHAR(150),
   user_id INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user (id),
   family_id INT NOT NULL,

@@ -49,15 +49,13 @@ class RegisterForm extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="h1Family">Création de compte</h1>
-
-        <form className="FormFamily" onSubmit={this.submitForm}>
-          <div>
-            <p className="paragraphFamily" htmlFor="lastname">
+        <form className="flex:column flex-both:center" onSubmit={this.submitForm}>
+          <div className="flex:column flex-cross:center space:stack">
+            <label className="space:stack" htmlFor="lastname">
               Nom
-            </p>
+            </label>
             <input
-              className="inputFamily"
+              className="flex:1 space:inset-squish"
               type="text"
               id="lastname"
               name="lastname"
@@ -67,12 +65,12 @@ class RegisterForm extends React.Component {
             />
           </div>
 
-          <div>
-            <p className="paragraphFamily" htmlFor="firstname">
+          <div className="flex:column flex-cross:center space:stack">
+            <label className="space:stack" htmlFor="firstname">
               Prénom
-            </p>
+            </label>
             <input
-              className="inputFamily"
+              className="flex:1 space:inset-squish"
               type="text"
               id="firstname"
               name="firstname"
@@ -82,12 +80,12 @@ class RegisterForm extends React.Component {
             />
           </div>
 
-          <div>
-            <p className="paragraphFamily" htmlFor="Birthdate">
+          <div className="flex:column flex-cross:center space:stack">
+            <label className="space:stack" htmlFor="birthdate">
               Date de naissance
-            </p>
+            </label>
             <input
-              className="inputFamily"
+              className="flex:1 space:inset-squish"
               type="date"
               id="birthdate"
               name="birthdate"
@@ -98,12 +96,12 @@ class RegisterForm extends React.Component {
             />
           </div>
 
-          <div>
-            <p className="paragraphFamily" htmlFor="email">
+          <div className="flex:column flex-cross:center space:stack">
+            <label className="space:stack" htmlFor="email">
               Email
-            </p>
+            </label>
             <input
-              className="inputFamily"
+              className="flex:1 space:inset-squish"
               type="email"
               id="email"
               name="email"
@@ -113,12 +111,12 @@ class RegisterForm extends React.Component {
             />
           </div>
 
-          <div>
-            <p className="paragraphFamily" htmlFor="password">
+          <div className="flex:column flex-cross:center space:stack">
+            <label className="space:stack" htmlFor="password">
               Mot de passe
-            </p>
+            </label>
             <input
-              className="inputFamily"
+              className="flex:1 space:inset-squish"
               type="password"
               id="password"
               name="password"
@@ -128,12 +126,12 @@ class RegisterForm extends React.Component {
             />
           </div>
 
-          <div>
-            <p className="paragraphFamily" htmlFor="password">
+          <div className="flex:column flex-cross:center space:stack">
+            <label className="space:stack" htmlFor="password_confirm">
               Confirmation du mot de passe
-            </p>
+            </label>
             <input
-              className="inputFamily"
+              className="flex:1 space:inset-squish"
               type="password"
               id="password_confirm"
               name="password_confirm"
@@ -142,9 +140,7 @@ class RegisterForm extends React.Component {
               required
             />
           </div>
-          <div className="divButton">
-            <input className="familyButton" type="submit" value="Envoyer" />
-          </div>
+          <button className="space:inset-squish" type="submit">INSCRIPTION</button>
         </form>
       </div>
     );

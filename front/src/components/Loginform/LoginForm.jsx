@@ -30,8 +30,7 @@ class LoginForm extends React.Component {
     this.props.token && this.props.getFamilies()
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = () => {
     axios
       .post("http://localhost:8000/login", {
         email: this.state.email,
@@ -45,40 +44,36 @@ class LoginForm extends React.Component {
   render() {
     const { email, password } = this.state;
     return (
-      <div className="LoginForm">
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <div>
-              <input
-                className="inputStyle"
-                type="text"
-                id="email"
-                placeholder="Email"
-                name="email"
-                onChange={this.handleChange}
-                value={email}
-              />
-            </div>
-          </div>
+      <div className="flex:column flex-cross:center">
+        <div className="flex:column flex-cross:center space:stack">
+          <label htmlFor="email" className="space:stack">Email</label>
+          <input
+            className="flex:1 space:inset-squish"
+            type="email"
+            id="email"
+            placeholder="jdoe@mail.com"
+            name="email"
+            onChange={this.handleChange}
+            value={email}
+          />
+        </div>
 
-          <div>
-            <input
-              className="inputStyle"
-              type="password"
-              id="password"
-              placeholder="Mot de passe"
-              name="password"
-              onChange={this.handleChange}
-              value={password}
-              required
-            />
-          </div>
-          <div className="spaceBetween">
-            <button className="loginButton" type="submit" value="Login">
-              CONNEXION
-            </button>
-          </div>
-        </form>
+        <div className="flex:column flex-cross:center space:stack">
+          <label htmlFor="password" className="space:stack">Mot de passe</label>
+          <input
+            className="flex:1 space:inset-squish"
+            type="password"
+            id="password"
+            placeholder="********"
+            name="password"
+            onChange={this.handleChange}
+            value={password}
+            required
+          />
+        </div>
+        <button className="space:inset-squish" type="button" onClick={this.handleSubmit}>
+          CONNEXION
+        </button>
       </div>
     );
   }

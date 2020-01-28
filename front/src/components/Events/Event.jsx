@@ -6,6 +6,21 @@ import axios from 'axios';
 import Modal from 'react-modal';
 // import { PostButton } from '../post-button-and-function/PostButton.component';
 
+// eslint-disable-next-line
+Date.prototype.getWeek = function() {
+  var onejan = new Date(this.getFullYear(), 0, 1);
+  var millisecsInDay = 86400000;
+  return Math.ceil(
+    ((this - onejan) / millisecsInDay + onejan.getDay() + 1) / 7
+  );
+};
+
+const h2 = (text) => (
+  <h2 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h2>
+)
+const h4 = (text) => (
+  <h4 className="flex-self:stretch space:inset space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{text}</h4>
+)
 
 
 class Event extends React.Component {
@@ -19,12 +34,16 @@ class Event extends React.Component {
       endDateEvent:'',
       endHourEvent:'',
       startHourEvent:'',
-      title:''
+      title:'',
+      parent1:[],
+      parent2:[]
     }
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.checkEvent = this.checkEvent.bind(this);
+    this.changePeriod=this.changePeriod.bind(this);
+    this.changePeriod2=this.changePeriod2.bind(this)
   }
 
   getEvent = () =>{
@@ -67,7 +86,8 @@ class Event extends React.Component {
   }
 
   // add event method
-  addEvent = () => {
+  addEvent = (event) => {
+    event.preventDefault()
     axios.post("http://localhost:8000/events", {
         title: this.state.title,
         date_start: this.state.startDateEvent + ' ' + this.state.startHourEvent + ':00',
@@ -75,7 +95,7 @@ class Event extends React.Component {
         family_id: 1
       })
       .then(res => {
-        alert("Vos dates ont bien été enregistrées");
+        this.setState({events : [...this.state.events, res.data] }, () => alert("Vos dates ont bien été enregistrées"));
       });
   };
 
@@ -96,11 +116,36 @@ class Event extends React.Component {
           }
       })
   }
+
+  definePeriod = ({ date, view }) => {
+    if (this.state.parent1.includes(date.getWeek() )){
+      return "parent1"
+    }
+    if (this.state.parent2.includes(date.getWeek() )){
+      return "parent2"
+    }
+    else{
+      return "undefined_period"
+    }
+  }
+
+  changePeriod () {
+    this.setState({
+      parent1:[1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51],
+      parent2:[2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52]
+    })
+  }
+  changePeriod2 () {
+    this.setState({
+      parent1:[3,4,7,8,11,12,15,16,19,20,23,24,27,28,31,32,35,36,39,40,43,44,47,48,51,52],
+      parent2:[1,2,5,6,9,10,13,14,17,18,21,22,25,26,29,30,33,34,37,38,41,42,45,46,49,50]
+    })
+  }
    
   render() {
     return (
-      <div className="Bodyevent">
-        <h2 className='event_title'>Calendrier Partagé</h2>
+      <div>
+        {h2('AGENDA')}
         <div className='main_calendar'>
           <Calendar
             onChange={this.onChange}
@@ -108,38 +153,47 @@ class Event extends React.Component {
             selectRange={false} 
             locale={'fr-FR'}
             calendarType={"ISO 8601"}
+            tileClassName={this.definePeriod}
           />
         </div>
-        <h4 className='event_title'>Rappels :</h4>
+        <div className='button_change_period'>
+          <button onClick={this.changePeriod} style={{fontSize: '3vh'}}>Garde 1/1</button>
+          <button onClick={this.changePeriod2} style={{fontSize: '3vh'}}>Garde 2/2</button>
+          <button className='btn_newEvent' onClick={this.handleOpenModal} style={{fontSize: '3vh'}}>+</button>
+        </div>
+        {h4('RAPPEL(S):')}
         <div className='event_list_container'>
          <EventList className='event_list' events={this.getEventsOfDate()} removeEvent={this.removeEvent} />
         </div>
-        <button className='btn_newEvent' onClick={this.handleOpenModal}>Ajouter un<br/>évènement</button>
         <div>
           <Modal 
             className='modal_style'
             isOpen={this.state.showModal}
           >
-            <h3>Nouvel évènement</h3>
-            <form className='form_style' action="#">
-              <label htmlFor="titre">Titre :</label>
-              <input type='text' name="title" value={this.state.title} onChange={this.handleInputChange} />
+            {h4('NOUVEL EVENEMENT')}
+            <form className="flex:column flex-both:center" action="#">
+            <div classname="flex:column flex-cross:center space:stack">
+              <label className="space:stack" htmlFor="titre">Titre :</label>
+              <input className="flex:1 space:inset-squish" type='text' name="title" value={this.state.title} onChange={this.handleInputChange} />
+            </div>
+            <div className="flex:column flex-cross:center space:stack" >
+              <label className="space:stack" htmlFor="start-date">Date de début :</label>
+              <input className="flex:1 space:inset-squish" type='date' name="startDateEvent" value={this.state.startDateEvent} onChange={this.handleInputChange}/>
 
-              <label htmlFor="start-date">Start date :</label>
-              <input type='date' name="startDateEvent" value={this.state.startDateEvent} onChange={this.handleInputChange}/>
-
-              <label htmlFor="start-hour">Start hour :</label>
-              <input type='time' name="startHourEvent" value={this.state.startHourEvent} onChange={this.handleInputChange} />
-
-              <label htmlFor="end-date">End date :</label>
-              <input type='date' name="endDateEvent" value={this.state.endDateEvent} onChange={this.handleInputChange}/>
+              <label className="space:stack" htmlFor="start-hour">Heure de début :</label>
+              <input className="flex:1 space:inset-squish" type='time' name="startHourEvent" value={this.state.startHourEvent} onChange={this.handleInputChange} />
+            </div>
+            <div className="flex:column flex-cross:center space:stack" >
+              <label className="space:stack" htmlFor="end-date">Date de fin :</label>
+              <input className="flex:1 space:inset-squish" type='date' name="endDateEvent" value={this.state.endDateEvent} onChange={this.handleInputChange}/>
               
-              <label htmlFor="end-hour">End hour :</label>
-              <input type='time' name="endHourEvent" value={this.state.endHourEvent} onChange={this.handleInputChange}/>
-              <div>
-                <button onClick={this.addEvent}>Valider</button>
+              <label className="space:stack" htmlFor="end-hour">Heure de fin :</label>
+              <input className="flex:1 space:inset-squish" type='time' name="endHourEvent" value={this.state.endHourEvent} onChange={this.handleInputChange}/>
               </div>
-              <button onClick={this.handleCloseModal}>Fermer</button>
+              <div className='button_change_period'>
+              <button onClick={this.handleCloseModal} style={{fontSize: '3vh'}} >Fermer</button>
+                <button onClick={this.addEvent} style={{fontSize: '3vh'}} >Valider</button>
+              </div>
             </form>
           </Modal>
         </div>

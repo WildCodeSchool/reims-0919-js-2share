@@ -1,4 +1,21 @@
-button {
-  background-color: cornflowerblue;
-  border-radius: 10%;
+
+.parent1 {
+  background-color: rgb(250, 190, 186) !important;
+  color : black;
+}
+
+.parent2 {
+  background-color:rgb(83, 127, 192) ! important;
+  color : black
+}
+
+.modal_style {
+  text-align: center;
+}
+
+.button_change_period {
+  margin: 10px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-around;
 }
