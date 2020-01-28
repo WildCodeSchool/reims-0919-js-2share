@@ -141,14 +141,20 @@ class Family extends React.Component {
           <div className="flex:column flex-cross:stretch flex:1 space:inline">
             <div className="flex:row flex-cross:center space:stack">
               <label htmlFor="email" className="space:inline">Email</label>
-              <input id="email" className="flex:1 space:inset-squish" type="email" placeholder="jdoe@mail.com" onChange={e => this.setState({newMemberEmail: e.target.value})} value={this.state.newMemberEmail} />
+              <input id="email" className="flex:1 space:inset-squish" type="email" 
+              placeholder="exemple@mail.com" onChange={e => this.setState({newMemberEmail: e.target.value})} value={this.state.newMemberEmail} />
             </div>
             <div className="flex:row flex-cross:center space:stack">
               <label htmlFor="role" className="space:inline">Rôle</label>
-              <input id="role" className="flex:1 space:inset-squish" type="text" placeholder="parent, nounou..." onChange={e => this.setState({newMemberRole: e.target.value})} value={this.state.newMemberRole} />
+              <input id="role" className="flex:1 space:inset-squish" type="text" 
+              placeholder="parent, nounou..." onChange={e => this.setState({newMemberRole: e.target.value})} value={this.state.newMemberRole} />
             </div>
           </div>
-          <button className="flex-self:center space:inset-squish space:stack" onClick={this.addMember}>+</button>
+          <button 
+          className="flex-self:center space:inset-squish space-size:s"
+          style={{fontWeight:'bold', fontSize:'20px'}}
+          onClick={this.addMember}
+          >+</button>
         </li>
         {
           React.Children.toArray(
@@ -156,7 +162,11 @@ class Family extends React.Component {
               member => (
                 <li className="space:stack">
                   <span className="space:inline">{member.email} ({member.role})</span>
-                  <button className="space:inset-squish" onClick={()=> {this.deleteMember(member.email)}}>-</button>
+                  <button 
+                  className="flex-self:center space:inset-squish space-size:s"
+                  style={{fontWeight:'bold', fontSize:'20px'}} 
+                  onClick={()=> {this.deleteMember(member.email)}}
+                  >-</button>
                 </li>
               )
             )
@@ -168,8 +178,12 @@ class Family extends React.Component {
       <ul className="space:inset text:center" style={{listStyleType: 'none'}}>
       <li className="flex:row flex-cross:center space:stack">
         <label htmlFor="firstname" className="space:inline">Prénom</label>
-        <input id="firstname" className="flex:1 space:inset-squish space:inline" type="text" placeholder="Chloé, Paul..." onChange={e => this.setState({newChildrenFirstname: e.target.value})} value={this.state.newChildrenFirstname} />
-        <button className="flex-self:center space:inset-squish" onClick={this.addChild}>+</button>
+        <input id="firstname" className="flex:1 space:inset-squish space:inline" 
+        type="text" placeholder="indiquez un prénom..." onChange={e => this.setState({newChildrenFirstname: e.target.value})} value={this.state.newChildrenFirstname} />
+        <button 
+        className="flex-self:center space:inset-squish space-size:s"
+        style={{fontWeight:'bold', fontSize:'20px'}} 
+        onClick={this.addChild}>+</button>
       </li>
       {
         React.Children.toArray(
@@ -177,7 +191,10 @@ class Family extends React.Component {
             child => (
               <li className="display:inline-block space:stack">
                 <span className="space-size:s space:inline">{child.firstname}</span>
-                <button className="space:inset-squish space:inline" onClick={()=> {this.deleteChild(child.id)}}>-</button>
+                <button 
+                className="flex-self:center space:inset-squish space-size:s"
+                style={{fontWeight:'bold', fontSize:'20px'}}
+                onClick={()=> {this.deleteChild(child.id)}}>-</button>
               </li>
             )
           )

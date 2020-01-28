@@ -51,7 +51,7 @@ class LoginForm extends React.Component {
             className="flex:1 space:inset-squish"
             type="email"
             id="email"
-            placeholder="jdoe@mail.com"
+            placeholder="exemple@mail.com"
             name="email"
             onChange={this.handleChange}
             value={email}

@@ -70,7 +70,10 @@ export default class Todos extends Component {
             value={this.state.description}
             onChange={(e) => {this.updateValue(e)}}
             />
-          <button className="flex-self:center space:inset-squish" type="submit" onClick = {this.addTodo}>
+          <button 
+          className="flex-self:center space:inset-squish space-size:s"
+          style={{fontWeight:'bold', fontSize:'20px'}}
+          type="submit" onClick = {this.addTodo}>
             +
           </button>
         </ul>
