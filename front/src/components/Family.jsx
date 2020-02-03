@@ -189,7 +189,7 @@ class Family extends React.Component {
         React.Children.toArray(
           this.state.children.map(
             child => (
-              <li className="display:inline-block space:stack">
+              <li className="display:inline-block space:inset-squish">
                 <span className="space-size:s space:inline">{child.firstname}</span>
                 <button 
                 className="flex-self:center space:inset-squish space-size:s"
