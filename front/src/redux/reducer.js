@@ -7,11 +7,17 @@ export const storeToken = token => ({
   payload: token
 });
 
+export const forgetToken = () => ({
+  type: "FORGET_TOKEN"
+});
+
 const authWithTokenReducer = (state = initialState, action) => {
   switch (action.type) {
     case "STORE_TOKEN":
       return { ...state, token: `Bearer ${action.payload}` };
-    default:
+      case "FORGET_TOKEN":
+        return { ...state, token: null };
+      default:
       return state;
   }
 };
