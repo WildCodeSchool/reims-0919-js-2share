@@ -18,7 +18,7 @@ class TodoList extends Component {
 
   render() {
     return(
-      <ul className="space:inset" style={{listStyleType: 'none'}}
+      <ul style={{listStyleType: 'none'}}
       
       className="flex:column flex-cross:stretch space:inset">{ React.Children.toArray(this.props.todos.map((todo) => {
           return <li style={{listStyle:'square', marginLeft: '10px'}}>

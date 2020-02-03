@@ -13,9 +13,14 @@ import FamilyList from "./components/FamilyList";
 import Family from "./components/Family";
 import NavBar from "./components/NavBar";
 import cogoToast from "cogo-toast";
+import { forgetToken } from "./redux/reducer";
 
 const mapStateToProps = state => ({
   token: state.token
+});
+
+const mapDispatchToProps = dispatch => ({
+  forgetToken: () => dispatch(forgetToken())
 });
 
 const h2 = image => (
@@ -124,8 +129,12 @@ class App extends React.Component {
               Se connecter
             </Link>
           </Route>
-          <Route exact path="/logout">
-            <Redirect to="/" />
+          <Route exact path="/logout" render={() => {
+            this.props.forgetToken();
+            return (
+              <Redirect to="/" />
+            );
+          }}>
           </Route>
 
           <Route path="/">
@@ -159,19 +168,21 @@ class App extends React.Component {
                   >
                     <option value="0">voir tout</option>
                     {React.Children.toArray(
-                      this.state.families.map(family => (
+                      this.state.families.map((family, index) => (
+                        index === 0 ?
+                        <option value={family.id} selected>Famille {family.name}</option> :
                         <option value={family.id}>Famille {family.name}</option>
                       ))
                     )}
                   </select>
 
-                  <Route exact path="/events" component={Event}>
+                  <Route exact path="/events">
                     <div className="flex:1 overflow:auto">
                       <Event />
                     </div>
                   </Route>
 
-                  <Route exact path="/todos" component={Todos}>
+                  <Route exact path="/todos">
                     <div className="flex:1 overflow:auto">
                       <Todos />
                     </div>
@@ -190,4 +201,4 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

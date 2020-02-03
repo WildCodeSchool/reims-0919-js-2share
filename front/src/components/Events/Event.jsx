@@ -56,7 +56,8 @@ class Event extends React.Component {
       startHourEvent: "",
       title: "",
       parent1: [],
-      parent2: []
+      parent2: [],
+      showCalendar: true
     };
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -209,8 +210,10 @@ class Event extends React.Component {
         48,
         50,
         52
-      ]
+      ],
+      showCalendar: false
     });
+    setTimeout(() => this.setState({showCalendar: true}), 0)
   }
   changePeriod2() {
     this.setState({
@@ -269,8 +272,10 @@ class Event extends React.Component {
         46,
         49,
         50
-      ]
+      ],
+      showCalendar: false
     });
+    setTimeout(() => this.setState({showCalendar: true}), 0)
   }
 
   render() {
@@ -286,7 +291,7 @@ class Event extends React.Component {
             selectRange={false}
             locale={"fr-FR"}
             calendarType={"ISO 8601"}
-            tileClassName={this.definePeriod}
+            tileClassName={this.state.showCalendar ? this.definePeriod : null}
           />
         </div>
 

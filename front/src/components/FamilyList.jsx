@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 
 const h2 = (image) => (
   <h2 className="flex-self:stretch text:center space:stack title" style={{backgroundColor: 'var(--primary-color)', background: 'linear-gradient(var(--primary-color), 10%, var(--secondary-color))', color: 'var(--primary-text-color)'}}>{image}</h2>
@@ -7,10 +9,14 @@ const h2 = (image) => (
 
 const FamilyList = ({ families, createFamily, token }) => {
   const [newFamilyName, setNewFamilyName] = useState("");
+  const hystory = useHistory();
 
   return (
     <>
-    {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
+    <div style={{position: 'relative'}}>
+      <FontAwesomeIcon icon={ faSignOutAlt } size="2x" className="flex-self:stretch" style={{position: 'absolute', right: '1rem', color: 'white', height: '76px', lineHeight: '76px'}} onClick={() => hystory.push('/logout')} />
+      {h2(<img src="logo_toshare_white.png" height="70px" width="200px" alt="logo"/>)}
+    </div>
     <p className="text:center space:inline" style={{fontSize: '17px', fontWeight: 'bold'}}> Créez une famille ici :</p>
     <ul className="space:inset" style={{listStyleType: 'none'}}>
       <li className="flex:row flex-cross:center space:stack">
