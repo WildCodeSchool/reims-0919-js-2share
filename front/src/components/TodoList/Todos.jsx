@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import TodoList from "./TodoList";
 import axios from "axios";
 import cogoToast from "cogo-toast";
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => ({
+  token: state.token
+})
 
 const h2 = text => (
   <h2
@@ -17,7 +22,7 @@ const h2 = text => (
   </h2>
 );
 
-export default class Todos extends Component {
+class Todos extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,12 +34,18 @@ export default class Todos extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8000/todos").then(response =>
-      this.setState({
-        todos: response.data
-      })
-    );
-  }
+    fetch("http://localhost:8000/todos", {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': this.props.token,
+    }
+  })
+    .then(response => response.json())
+    .then(data => this.setState({
+        todos: data}))
+    }
+
 
   addTodo(e) {
     e.preventDefault();
@@ -46,7 +57,13 @@ export default class Todos extends Component {
         user_id: 1,
         family_id: 1
       };
-      axios.post(`http://localhost:8000/todos`, body).then(res => {
+      axios.post(`http://localhost:8000/todos`, body,{
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': this.props.token
+        }
+      })
+      .then(res => {
         this.setState(prevState => ({
           todos: [...prevState.todos, res.data],
           description: ""
@@ -98,3 +115,5 @@ export default class Todos extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps)(Todos); 
