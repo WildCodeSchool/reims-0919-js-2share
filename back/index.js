@@ -108,7 +108,7 @@ app.post("/families", verifyToken, (req, res) => {
           const familyId = result.insertId;
           database.query(
             "INSERT INTO user_family SET ?",
-            { email: authData.sub, family_id: familyId, role: 'moi' },
+            { email: authData.sub, family_id: familyId, role: 'Parent' },
             (err, result) => {
               if (err) {
                 res.status(500).send("Error saving first member family");
